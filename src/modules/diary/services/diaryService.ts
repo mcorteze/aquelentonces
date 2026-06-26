@@ -94,3 +94,22 @@ export async function updateEntry(
 export async function deleteEntry(uid: string, entryId: string): Promise<void> {
   await deleteDoc(doc(db, 'users', uid, 'diaryEntries', entryId));
 }
+
+/**
+ * Entradas de la misma fecha (MM-DD) en años anteriores.
+ * Busca en los últimos 10 años — Firestore `in` admite hasta 10 valores.
+ */
+export async function fetchEntriesOnThisDay(
+  uid: string,
+  monthDay: string,    // "MM-DD", ej: "06-26"
+  currentYear: number
+): Promise<DiaryEntry[]> {
+  const dates = Array.from({ length: 10 }, (_, i) => `${currentYear - 1 - i}-${monthDay}`);
+  const q = query(
+    entriesRef(uid),
+    where('date', 'in', dates),
+    orderBy('date', 'desc')
+  );
+  const snap = await getDocs(q);
+  return snap.docs.map((d) => toEntry(d.id, d.data() as Record<string, unknown>));
+}

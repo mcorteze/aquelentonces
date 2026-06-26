@@ -1,4 +1,5 @@
 import { useDiary } from './hooks/useDiary';
+import { useThisDayEntries } from './hooks/useThisDayEntries';
 import { ENTRY_TYPE_META, MOOD_META } from './types';
 import type { DiaryEntry } from './types';
 import type { Child } from '../../types';
@@ -21,6 +22,14 @@ function isToday(dateStr: string): boolean {
   const now = new Date();
   const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
   return dateStr === today;
+}
+
+function yearsAgoLabel(dateStr: string): string {
+  const year     = parseInt(dateStr.split('-')[0], 10);
+  const thisYear = new Date().getFullYear();
+  const diff     = thisYear - year;
+  if (diff === 1) return 'Hace un año';
+  return `Hace ${diff} años`;
 }
 
 interface EntryCardProps {
@@ -63,13 +72,72 @@ function EntryCard({ entry, childMap }: EntryCardProps) {
   );
 }
 
+/* ── Sección "En este día" ─────────────────────────────────────────────────── */
+
+function groupByYear(entries: DiaryEntry[]): Map<string, DiaryEntry[]> {
+  const map = new Map<string, DiaryEntry[]>();
+  for (const e of entries) {
+    const year   = e.date.split('-')[0];
+    const bucket = map.get(year) ?? [];
+    bucket.push(e);
+    map.set(year, bucket);
+  }
+  return map;
+}
+
+interface ThisDaySectionProps {
+  entries: DiaryEntry[];
+  childMap: Map<string, Child>;
+}
+
+function ThisDaySection({ entries, childMap }: ThisDaySectionProps) {
+  if (entries.length === 0) return null;
+
+  const byYear = groupByYear(entries);
+  const years  = Array.from(byYear.keys()).sort((a, b) => b.localeCompare(a));
+
+  return (
+    <section className={styles.thisDaySection} aria-label="En este día">
+      <div className={styles.thisDayHeader}>
+        <span className={styles.thisDayIcon} aria-hidden="true">★</span>
+        <h2 className={styles.thisDayTitle}>En este día</h2>
+        <span className={styles.thisDayHint}>recuerdos de años anteriores</span>
+      </div>
+
+      <div className={styles.thisDayGroups}>
+        {years.map((year) => {
+          const yearEntries = byYear.get(year)!;
+          const dateStr     = yearEntries[0].date;
+          return (
+            <div key={year} className={styles.thisDayYearGroup}>
+              <div className={styles.thisDayYearLabel}>
+                <span className={styles.thisDayYearTag}>{yearsAgoLabel(dateStr)}</span>
+                <span className={styles.thisDayYearDate}>{formatDate(dateStr)}</span>
+                <div className={styles.thisDayYearLine} aria-hidden="true" />
+              </div>
+              <div className={styles.entries}>
+                {yearEntries.map((entry) => (
+                  <EntryCard key={entry.id} entry={entry} childMap={childMap} />
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+/* ── Página principal ──────────────────────────────────────────────────────── */
+
 interface Props {
   children: Child[];
   onEntryCreated?: () => void;
 }
 
 export function DiaryPage({ children }: Props) {
-  const { days, loading, error, reload } = useDiary();
+  const { days, loading, error, reload }                     = useDiary();
+  const { entries: thisDayEntries, loading: thisDayLoading } = useThisDayEntries();
 
   const childMap = new Map(children.map((c) => [c.id, c]));
 
@@ -109,6 +177,11 @@ export function DiaryPage({ children }: Props) {
             </div>
           ))}
         </div>
+      )}
+
+      {/* En este día — solo cuando ambas cargas terminaron y hay recuerdos pasados */}
+      {!loading && !thisDayLoading && thisDayEntries.length > 0 && (
+        <ThisDaySection entries={thisDayEntries} childMap={childMap} />
       )}
 
       {/* Estado vacío */}

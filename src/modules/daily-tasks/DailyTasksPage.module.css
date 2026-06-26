@@ -313,6 +313,13 @@
   background: var(--aq-s-acento);
   border-color: var(--aq-s-acento);
   color: #FFFFFF;
+  animation: checkPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes checkPop {
+  0%   { transform: scale(0.7); }
+  60%  { transform: scale(1.2); }
+  100% { transform: scale(1.0); }
 }
 
 /* ── Mensaje de todos hechos ───────────────────────────────────────────────── */

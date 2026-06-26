@@ -2,9 +2,7 @@
 Actualizado: 2026-06-26
 
 ## Tarea actual
-Avances completados esta sesión:
-1. ✅ Identidad visual interior — LoginScreen y HomePage rediseñados con brand Aquelentonces
-2. ✅ Módulo Rutina Diaria — modelo nuevo implementado completo
+Vista "En este día" completada. Próximo: Perfil de hijo expandido.
 
 ## Decisiones tomadas (acumuladas)
 - 2026-06-26 Paleta definitiva: petróleo #417178, lima #E5FE73, crema #FAF6ED, lavanda #A6B1E7, petróleo oscuro #335B60, verde claro #C0D2C7
@@ -16,6 +14,7 @@ Avances completados esta sesión:
 - 2026-06-26 LoginScreen: rediseñado con layout 2 columnas (panel decorativo petróleo + form crema)
 - 2026-06-26 HomePage: rediseñado con cards de colores de marca, sin translateY en hover
 - 2026-06-26 Módulo Rutina Diaria: nuevo modelo TaskTemplate + DaySchedule + DayVariation + DailyInstance
+- 2026-06-26 "En este día": Firestore IN sobre array de fechas (10 años), lavanda como color de sección, agrupado por año
 
 ## Concepto Rutina Diaria (CRÍTICO)
 - TaskTemplate: tarea base con días asignados y variaciones por día
@@ -29,23 +28,27 @@ Avances completados esta sesión:
 - Landing `/`: COMPLETA v4
 - Login `/login`: REDISEÑADO — layout 2 cols, panel petróleo + form, sin emoji
 - AppLayout sidebar: petróleo correcto, item activo lima, Lucide icons
-- HomePage `/app/inicio`: REDISEÑADO — cards marca, eyebrow, 4 módulos (incluye Diario placeholder)
+- HomePage `/app/inicio`: REDISEÑADO — cards marca, eyebrow, 4 módulos
 - Mis Hijos `/app/hijos`: funcional
 - Mi Perfil `/app/perfil`: funcional
-- DailyTasks `/app/tareas`: REDISEÑADO — tabs Hoy/Mi rutina, CRUD templates, asignación por días, variaciones
-- Diario `/app/diario`: ruta creada, redirige a inicio (módulo pendiente de construir)
+- DailyTasks `/app/tareas`: REDISEÑADO — tabs Hoy/Mi rutina, CRUD templates, asignación por días, variaciones + animación check
+- Diario `/app/diario`: COMPLETO — línea de tiempo + FAB global + "En este día" (sección lavanda)
 
 ## Pendiente (orden de prioridad)
-- [ ] Push commits a GitHub
-- [ ] Módulo Diario de Notas (prioridad 1 del producto)
-  - Crear notas de texto con fecha automática
-  - Categorías: momento, logro, anécdota, etc.
-  - Vista de línea de tiempo
-  - Adjuntar foto (opcional, diferido)
-- [ ] Sidebar: agregar enlace a Diario en nav
+- [ ] Perfil de hijo expandido — línea de tiempo propia por hijo, foto, hitos, "El libro de [nombre]"
 - [ ] Módulo Fotos comentadas
 - [ ] Módulo Muro familiar
 - [ ] Módulo Calendario
+- [ ] Resumen mensual generado (diferido)
+
+## Completado esta sesión
+- ✅ Módulo Diario completo: tipos + Firestore + hooks + DiaryPage (línea de tiempo)
+- ✅ FAB global: botón + desde cualquier pantalla, EntrySheet animado, 5 tipos con prompts
+- ✅ Selector de hijo activo (Zustand store)
+- ✅ Sidebar actualizado: enlace a Diario con BookOpen icon
+- ✅ Vista "En este día": hook useThisDayEntries + sección lavanda en DiaryPage + agrupado por año
+- ✅ Animación check pop (scale spring) en cards de rutina
+- ✅ Push a GitHub: commits 3753fd2 + 0a5b03a
 
 ## Contexto crítico
 - Zustand: selectores individuales `(s) => s.field` — NUNCA destructuring
@@ -57,4 +60,5 @@ Avances completados esta sesión:
 
 ## Historial
 - Sesión anterior: landing v1→v4, sistema tokens 4 capas, paletas, providers fix
-- Sesión actual: _flujo-activo.md creado/actualizado, memoria corregida, identidad interior completa, módulo Rutina Diaria completo
+- Sesión previa: identidad interior, módulo Rutina Diaria completo, memoria corregida
+- Sesión actual: Diario + FAB + "En este día" + animación check rutina
