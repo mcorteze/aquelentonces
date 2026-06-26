@@ -59,6 +59,10 @@
   transition: border-color 0.18s, box-shadow 0.18s;
 }
 
+.childCard {
+  cursor: pointer;
+}
+
 .childCard:hover {
   border-color: var(--sofia-acento-borde);
   box-shadow: 0 4px 20px rgba(0,0,0,0.06);

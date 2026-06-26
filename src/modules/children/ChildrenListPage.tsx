@@ -68,7 +68,15 @@ export function ChildrenListPage() {
       ) : (
         <ul className={styles.list}>
           {children.map(child => (
-            <li key={child.id} className={styles.childCard}>
+            <li
+              key={child.id}
+              className={styles.childCard}
+              onClick={() => navigate(`/app/hijos/${child.id}`)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && navigate(`/app/hijos/${child.id}`)}
+              aria-label={`Ver perfil de ${child.name}`}
+            >
               <div className={styles.childAvatar} aria-hidden="true">
                 <span className={styles.childAvatarEmoji}>{child.avatarEmoji}</span>
               </div>
@@ -79,7 +87,7 @@ export function ChildrenListPage() {
               <div className={styles.childActions}>
                 <button
                   className={styles.editBtn}
-                  onClick={() => navigate(`/app/hijos/${child.id}/editar`)}
+                  onClick={(e) => { e.stopPropagation(); navigate(`/app/hijos/${child.id}/editar`); }}
                   aria-label={`Editar ${child.name}`}
                 >
                   <Pencil size={16} strokeWidth={2} />
@@ -87,7 +95,7 @@ export function ChildrenListPage() {
                 </button>
                 <button
                   className={`${styles.deleteBtn} ${confirmId === child.id ? styles.deleteBtnConfirm : ''}`}
-                  onClick={() => handleDelete(child.id)}
+                  onClick={(e) => { e.stopPropagation(); handleDelete(child.id); }}
                   disabled={deletingId === child.id}
                   aria-label={confirmId === child.id ? `Confirmar eliminar a ${child.name}` : `Eliminar a ${child.name}`}
                 >

@@ -11,6 +11,7 @@ import { DiaryPage } from '../modules/diary/DiaryPage';
 import { ProfilePage } from '../modules/profile/ProfilePage';
 import { ChildrenListPage } from '../modules/children/ChildrenListPage';
 import { ChildFormPage } from '../modules/children/ChildFormPage';
+import { ChildProfilePage } from '../modules/children/ChildProfilePage';
 import { PrivateRoute } from './PrivateRoute';
 
 function RedirectIfAuth({ children }: { children: React.ReactNode }) {
@@ -57,6 +58,7 @@ export function AppRouter() {
           <Route path="tareas"            element={<DailyTasksPage />} />
           <Route path="hijos"             element={<ChildrenListPage />} />
           <Route path="hijos/nuevo"       element={<ChildFormPage />} />
+          <Route path="hijos/:id"         element={<ChildProfilePage />} />
           <Route path="hijos/:id/editar"  element={<ChildFormPage />} />
           <Route path="perfil"            element={<ProfilePage />} />
         </Route>
