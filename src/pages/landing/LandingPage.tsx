@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Camera, CalendarDays, Users, Pen, Package } from 'lucide-react';
+import { BookOpen, Camera, CalendarDays, Users, Pen, Package, Heart, Star } from 'lucide-react';
 import styles from './LandingPage.module.css';
 
 export function LandingPage() {
@@ -10,40 +10,11 @@ export function LandingPage() {
     <div className={styles.page}>
       <Nav onLogin={goLogin} />
       <Hero onCta={goLogin} />
-      <Strip
-        bg="#FAF6ED"
-        icon={<BookOpen size={40} strokeWidth={1.5} />}
-        label="Diario de vida"
-        title="El diario que siempre quisiste llevar"
-        body="Anota lo que pasó hoy. Un momento, una frase, una historia. Cada nota queda fechada y guardada para siempre, organizada por hijo y por día."
-        flip={false}
-      />
-      <Strip
-        bg="#A6B1E7"
-        icon={<Camera size={40} strokeWidth={1.5} />}
-        label="Fotos"
-        title="Fotos con contexto, no solo imágenes"
-        body="Sube una foto y cuéntale qué estaba pasando. La familia comenta. En diez años verás la foto y sabrás exactamente cómo fue ese día."
-        flip={true}
-      />
-      <Strip
-        bg="#FAF6ED"
-        icon={<CalendarDays size={40} strokeWidth={1.5} />}
-        label="Calendario"
-        title="La rutina también es un recuerdo"
-        body="El fútbol del martes, el taller de cerámica, el cumpleaños de la abuela — todo queda registrado y se convierte en la historia de lo que vivían."
-        flip={false}
-      />
-      <Strip
-        bg="#417178"
-        icon={<Users size={40} strokeWidth={1.5} />}
-        label="Familia"
-        title="La familia conectada, sin redes sociales"
-        body="Invita a los abuelos, los tíos, el papá. Cada uno ve y comenta desde su propia cuenta. Privado, seguro, solo para los tuyos."
-        flip={true}
-        dark={true}
-      />
-      <ComingSoon />
+      <StripDiario />
+      <StripFotos />
+      <StripCalendario />
+      <StripFamilia />
+      <SocialProof />
       <Quote />
       <CtaFinal onCta={goLogin} />
       <Footer />
@@ -72,9 +43,8 @@ function Hero({ onCta }: { onCta: () => void }) {
           será <em>aquelentonces</em>.
         </h1>
         <p className={styles.heroSub}>
-          El diario de vida de tus hijos. Las notas, las fotos, los dibujos,
-          los comentarios de la familia — todo junto, guardado, para cuando
-          quieras volver a vivirlo.
+          El diario de vida de tus hijos. Notas, fotos, rutinas, comentarios
+          de la familia — todo guardado, para cuando quieras volver a vivirlo.
         </p>
         <div className={styles.heroActions}>
           <button className={styles.ctaHero} onClick={onCta}>Empezar gratis</button>
@@ -82,13 +52,47 @@ function Hero({ onCta }: { onCta: () => void }) {
         </div>
       </div>
 
-      <div className={styles.heroCard}>
-        <div className={styles.heroCardChip}>Sofía, 4 años · martes 24 jun</div>
-        <p className={styles.heroCardEntry}>
-          "Hoy fue su primer día de baile.<br />Entró sin mirar atrás."
-        </p>
-        <div className={styles.heroCardMeta}>
-          <span className={styles.heroCardDot} />
+      <div className={styles.heroVisual}>
+        {/* Mockup de pantalla de diario */}
+        <div className={styles.phoneMockup}>
+          <div className={styles.phoneHeader}>
+            <div className={styles.phoneHeaderLeft}>
+              <div className={styles.phoneAvatar}>S</div>
+              <div>
+                <div className={styles.phoneName}>Sofía</div>
+                <div className={styles.phoneAge}>4 años · jun 2026</div>
+              </div>
+            </div>
+            <Heart size={18} className={styles.phoneHeart} />
+          </div>
+          <div className={styles.phoneEntry}>
+            <div className={styles.phoneDate}>Martes 24 junio</div>
+            <p className={styles.phoneText}>"Hoy fue su primer día de baile. Entró sin mirar atrás."</p>
+            <div className={styles.phoneTag}>Primer día</div>
+          </div>
+          <div className={styles.phoneEntry}>
+            <div className={styles.phoneDate}>Lunes 23 junio</div>
+            <p className={styles.phoneText}>"Le pregunté qué quería ser. Dijo: bailarina y veterinaria."</p>
+          </div>
+          <div className={styles.phoneStats}>
+            <div className={styles.phoneStat}>
+              <div className={styles.phoneStatNum}>48</div>
+              <div className={styles.phoneStatLabel}>recuerdos</div>
+            </div>
+            <div className={styles.phoneStat}>
+              <div className={styles.phoneStatNum}>3</div>
+              <div className={styles.phoneStatLabel}>meses</div>
+            </div>
+            <div className={styles.phoneStat}>
+              <div className={styles.phoneStatNum}>12</div>
+              <div className={styles.phoneStatLabel}>fotos</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Tarjeta flotante */}
+        <div className={styles.floatingCard}>
+          <Star size={14} className={styles.floatStar} />
           <span>Guardado en Aquelentonces</span>
         </div>
       </div>
@@ -96,29 +100,41 @@ function Hero({ onCta }: { onCta: () => void }) {
   );
 }
 
-/* ── Strip (sección feature full-width) ─────────────────────────────────── */
-interface StripProps {
-  bg: string;
-  icon: React.ReactNode;
-  label: string;
-  title: string;
-  body: string;
-  flip: boolean;
-  dark?: boolean;
-}
-
-function Strip({ bg, icon, label, title, body, flip, dark }: StripProps) {
+/* ── Strip Diario ────────────────────────────────────────────────────────── */
+function StripDiario() {
   return (
-    <section className={styles.strip} style={{ background: bg }}>
-      <div className={`${styles.stripInner} ${flip ? styles.stripFlip : ''}`}>
-        <div className={`${styles.stripText} ${dark ? styles.stripDark : ''}`}>
-          <p className={styles.stripLabel}>{label}</p>
-          <h2 className={styles.stripTitle}>{title}</h2>
-          <p className={styles.stripBody}>{body}</p>
+    <section className={styles.strip} style={{ background: '#FAF6ED' }}>
+      <div className={styles.stripInner}>
+        <div className={styles.stripText}>
+          <p className={styles.stripEyebrow}>Diario de vida</p>
+          <h2 className={styles.stripTitle}>El diario que siempre quisiste llevar</h2>
+          <p className={styles.stripBody}>
+            Anota lo que pasó hoy. Un momento, una frase, una historia completa.
+            Cada nota queda fechada y organizada por hijo — nunca más pierdes un recuerdo.
+          </p>
+          <div className={styles.stripFeatures}>
+            <div className={styles.stripFeature}><BookOpen size={16} strokeWidth={2} /> Por hijo y por día</div>
+            <div className={styles.stripFeature}><BookOpen size={16} strokeWidth={2} /> Buscable en segundos</div>
+            <div className={styles.stripFeature}><BookOpen size={16} strokeWidth={2} /> Privado, solo tuyo</div>
+          </div>
         </div>
         <div className={styles.stripVisual}>
-          <div className={`${styles.stripIconBox} ${dark ? styles.stripIconBoxLight : ''}`}>
-            {icon}
+          <div className={styles.diarioMockup}>
+            <div className={styles.diarioHeader}>
+              <div className={styles.diarioMonth}>Junio 2026</div>
+              <div className={styles.diarioCount}>12 entradas</div>
+            </div>
+            {[
+              { day: 'Hoy', text: '"Primer día de baile. Entró sin mirar atrás."', tag: 'Hito' },
+              { day: 'Ayer', text: '"Quiere ser bailarina y veterinaria."', tag: null },
+              { day: 'Dom',  text: '"Se durmió en el auto cantando Moana."',  tag: null },
+            ].map((e) => (
+              <div key={e.day} className={styles.diarioEntry}>
+                <div className={styles.diarioDay}>{e.day}</div>
+                <div className={styles.diarioText}>{e.text}</div>
+                {e.tag && <div className={styles.diarioTag}>{e.tag}</div>}
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -126,11 +142,156 @@ function Strip({ bg, icon, label, title, body, flip, dark }: StripProps) {
   );
 }
 
-/* ── Coming soon ─────────────────────────────────────────────────────────── */
-function ComingSoon() {
+/* ── Strip Fotos ─────────────────────────────────────────────────────────── */
+function StripFotos() {
+  return (
+    <section className={styles.strip} style={{ background: '#A6B1E7' }}>
+      <div className={`${styles.stripInner} ${styles.stripFlip}`}>
+        <div className={styles.stripText}>
+          <p className={styles.stripEyebrow}>Fotos</p>
+          <h2 className={styles.stripTitle}>Fotos con contexto, no solo imágenes</h2>
+          <p className={styles.stripBody}>
+            Sube una foto y cuéntale qué estaba pasando. La familia comenta.
+            En diez años verás la foto y sabrás exactamente cómo fue ese día.
+          </p>
+          <div className={styles.stripFeatures}>
+            <div className={styles.stripFeature}><Camera size={16} strokeWidth={2} /> Comentarios de la familia</div>
+            <div className={styles.stripFeature}><Camera size={16} strokeWidth={2} /> Organizadas por fecha</div>
+          </div>
+        </div>
+        <div className={styles.stripVisual}>
+          <div className={styles.fotosMockup}>
+            <div className={styles.fotosMainSlot}>
+              <Camera size={36} strokeWidth={1} className={styles.fotosIcon} />
+              <div className={styles.fotosCaption}>"Primer día en el mar"</div>
+              <div className={styles.fotosDate}>15 ene · 3 años</div>
+            </div>
+            <div className={styles.fotosComments}>
+              <div className={styles.fotosComment}>
+                <div className={styles.fotosCommentAvatar}>A</div>
+                <div className={styles.fotosCommentText}>Qué hermosa mi niña ❤</div>
+              </div>
+              <div className={styles.fotosComment}>
+                <div className={styles.fotosCommentAvatar} style={{background:'#C0D2C7', color:'#335B60'}}>P</div>
+                <div className={styles.fotosCommentText}>¡No le daba miedo el agua!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Strip Calendario ────────────────────────────────────────────────────── */
+function StripCalendario() {
+  return (
+    <section className={styles.strip} style={{ background: '#FAF6ED' }}>
+      <div className={styles.stripInner}>
+        <div className={styles.stripText}>
+          <p className={styles.stripEyebrow}>Calendario</p>
+          <h2 className={styles.stripTitle}>La rutina también es un recuerdo</h2>
+          <p className={styles.stripBody}>
+            El fútbol del martes, el taller de cerámica, el cumpleaños de la abuela —
+            todo queda registrado y se convierte en la historia de lo que vivían juntos.
+          </p>
+          <div className={styles.stripFeatures}>
+            <div className={styles.stripFeature}><CalendarDays size={16} strokeWidth={2} /> Talleres y deportes</div>
+            <div className={styles.stripFeature}><CalendarDays size={16} strokeWidth={2} /> Cumpleaños y hitos</div>
+            <div className={styles.stripFeature}><CalendarDays size={16} strokeWidth={2} /> Rutina semanal y mensual</div>
+          </div>
+        </div>
+        <div className={styles.stripVisual}>
+          <div className={styles.calMockup}>
+            <div className={styles.calHeader}>
+              <span className={styles.calMonth}>Junio 2026</span>
+            </div>
+            <div className={styles.calGrid}>
+              {['L','M','X','J','V','S','D'].map(d => (
+                <div key={d} className={styles.calDayName}>{d}</div>
+              ))}
+              {Array.from({length: 30}, (_, i) => i + 1).map(n => (
+                <div key={n} className={`${styles.calDay} ${[3,10,17,24].includes(n) ? styles.calDayEvent : ''} ${n === 24 ? styles.calDayToday : ''}`}>
+                  {n}
+                  {[3,10,17,24].includes(n) && <div className={styles.calDot} />}
+                </div>
+              ))}
+            </div>
+            <div className={styles.calEvents}>
+              <div className={styles.calEvent}><span className={styles.calEventDot} style={{background:'#A6B1E7'}} />Fútbol · Mar y Jue</div>
+              <div className={styles.calEvent}><span className={styles.calEventDot} style={{background:'#E5FE73'}} />Taller cerámica · Vie</div>
+              <div className={styles.calEvent}><span className={styles.calEventDot} style={{background:'#417178'}} />Cumple abuela · 30 jun</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Strip Familia ───────────────────────────────────────────────────────── */
+function StripFamilia() {
+  return (
+    <section className={styles.strip} style={{ background: '#417178' }}>
+      <div className={`${styles.stripInner} ${styles.stripFlip}`}>
+        <div className={`${styles.stripText} ${styles.stripTextDark}`}>
+          <p className={`${styles.stripEyebrow} ${styles.stripEyebrowDark}`}>Familia</p>
+          <h2 className={`${styles.stripTitle} ${styles.stripTitleDark}`}>La familia conectada, sin redes sociales</h2>
+          <p className={`${styles.stripBody} ${styles.stripBodyDark}`}>
+            Invita a los abuelos, los tíos, el papá. Cada uno ve y comenta
+            desde su propia cuenta. Privado, seguro, solo para los tuyos.
+          </p>
+          <div className={`${styles.stripFeatures} ${styles.stripFeaturesDark}`}>
+            <div className={styles.stripFeature}><Users size={16} strokeWidth={2} /> Hasta 10 familiares</div>
+            <div className={styles.stripFeature}><Users size={16} strokeWidth={2} /> Sin publicidad, sin datos</div>
+          </div>
+        </div>
+        <div className={styles.stripVisual}>
+          <div className={styles.familyMockup}>
+            <div className={styles.familyTitle}>Familia Martínez</div>
+            <div className={styles.familyMembers}>
+              {[
+                { init: 'M', name: 'Mamá', color: '#E5FE73', text: '#335B60' },
+                { init: 'P', name: 'Papá', color: '#C0D2C7', text: '#335B60' },
+                { init: 'A', name: 'Abuela', color: '#FAF6ED', text: '#417178' },
+                { init: 'T', name: 'Tía Laura', color: '#A6B1E7', text: '#1A1A1A' },
+              ].map(m => (
+                <div key={m.name} className={styles.familyMember}>
+                  <div className={styles.familyMemberAvatar} style={{background: m.color, color: m.text}}>{m.init}</div>
+                  <div className={styles.familyMemberName}>{m.name}</div>
+                </div>
+              ))}
+            </div>
+            <div className={styles.familyActivity}>
+              <div className={styles.familyActivityItem}>
+                <div className={styles.familyActivityAvatar} style={{background:'#FAF6ED', color:'#417178'}}>A</div>
+                <div className={styles.familyActivityText}>
+                  <strong>Abuela</strong> comentó una foto de Sofía
+                  <div className={styles.familyActivityTime}>hace 2 horas</div>
+                </div>
+              </div>
+              <div className={styles.familyActivityItem}>
+                <div className={styles.familyActivityAvatar} style={{background:'#C0D2C7', color:'#335B60'}}>P</div>
+                <div className={styles.familyActivityText}>
+                  <strong>Papá</strong> agregó una nota del parque
+                  <div className={styles.familyActivityTime}>ayer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Social Proof ────────────────────────────────────────────────────────── */
+function SocialProof() {
   const items = [
-    { Icon: Pen,     label: 'Dibujos de los hijos',     body: 'Un canvas donde dibujan directamente en la app. Cada trazo guardado con su nombre y su edad.' },
-    { Icon: Package, label: 'Imprime sus momentos',      body: 'Álbumes físicos, calendarios y postales hechos con sus propios recuerdos.' },
+    { Icon: Pen,     label: 'Dibujos de los hijos',
+      body: 'Un canvas donde dibujan directamente en la app. Cada trazo guardado con su nombre y su edad.' },
+    { Icon: Package, label: 'Imprime sus momentos',
+      body: 'Álbumes físicos, calendarios y postales hechos con sus propios recuerdos.' },
   ];
   return (
     <section className={styles.soon}>
@@ -149,7 +310,7 @@ function ComingSoon() {
   );
 }
 
-/* ── Quote / manifiesto ──────────────────────────────────────────────────── */
+/* ── Quote ───────────────────────────────────────────────────────────────── */
 function Quote() {
   return (
     <section className={styles.quote}>
