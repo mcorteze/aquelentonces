@@ -2,7 +2,7 @@
 Actualizado: 2026-06-26
 
 ## Tarea actual
-Perfil de hijo expandido completado. Próximo: Módulo Fotos comentadas.
+Módulo Fotos comentadas completado. Sistema en pausa para informe de coordinador.
 
 ## Decisiones tomadas (acumuladas)
 - 2026-06-26 Paleta definitiva: petróleo #417178, lima #E5FE73, crema #FAF6ED, lavanda #A6B1E7, petróleo oscuro #335B60, verde claro #C0D2C7
@@ -16,6 +16,7 @@ Perfil de hijo expandido completado. Próximo: Módulo Fotos comentadas.
 - 2026-06-26 Módulo Rutina Diaria: nuevo modelo TaskTemplate + DaySchedule + DayVariation + DailyInstance
 - 2026-06-26 "En este día": Firestore IN sobre array de fechas (10 años), lavanda como color de sección, agrupado por año
 - 2026-06-26 Perfil de hijo: /app/hijos/:id, ChildProfilePage lavanda + línea de tiempo de entradas propias
+- 2026-06-26 Fotos: mock-first — imageUrl vacío hasta Storage; galería por meses, grid 3 col
 
 ## Concepto Rutina Diaria (CRÍTICO)
 - TaskTemplate: tarea base con días asignados y variaciones por día
@@ -28,29 +29,29 @@ Perfil de hijo expandido completado. Próximo: Módulo Fotos comentadas.
 - Firebase Auth + Firestore: funcionando
 - Landing `/`: COMPLETA v4
 - Login `/login`: REDISEÑADO — layout 2 cols, panel petróleo + form, sin emoji
-- AppLayout sidebar: petróleo correcto, item activo lima, Lucide icons
-- HomePage `/app/inicio`: REDISEÑADO — cards marca, eyebrow, 4 módulos
-- DailyTasks `/app/tareas`: REDISEÑADO — tabs Hoy/Mi rutina, CRUD templates, asignación por días, variaciones + animación check
-- Diario `/app/diario`: COMPLETO — línea de tiempo + FAB global + "En este día" (sección lavanda)
-- Mis Hijos `/app/hijos`: lista + cards clicables al perfil
-- Perfil de hijo `/app/hijos/:id`: COMPLETO — header lavanda, "El libro de [nombre]", línea de tiempo propia
+- AppLayout sidebar: 6 ítems (Inicio, Diario, Fotos, Rutina, Mis hijos, Mi perfil)
+- HomePage `/app/inicio`: 5 módulos (incluye Fotos)
+- DailyTasks `/app/tareas`: COMPLETO — tabs Hoy/Mi rutina, CRUD templates, animación check
+- Diario `/app/diario`: COMPLETO — timeline + FAB global + "En este día"
+- Fotos `/app/fotos`: COMPLETO (mock-first) — galería por meses, PhotoSheet, Firestore listo
+- Mis Hijos `/app/hijos`: lista clicable → perfil
+- Perfil de hijo `/app/hijos/:id`: "El libro de [nombre]" con timeline de entradas
 - Mi Perfil `/app/perfil`: funcional
 
 ## Pendiente (orden de prioridad)
-- [ ] Módulo Fotos comentadas — subir foto con pie de foto, fecha, hijo asociado
+- [ ] Firebase Storage para Fotos — integrar subida real de imágenes (DIFERIDO)
 - [ ] Módulo Muro familiar
 - [ ] Módulo Calendario
 - [ ] Resumen mensual generado (diferido)
 
 ## Completado esta sesión
-- ✅ Módulo Diario completo: tipos + Firestore + hooks + DiaryPage (línea de tiempo)
-- ✅ FAB global: botón + desde cualquier pantalla, EntrySheet animado, 5 tipos con prompts
-- ✅ Selector de hijo activo (Zustand store)
-- ✅ Sidebar actualizado: enlace a Diario con BookOpen icon
-- ✅ Vista "En este día": hook useThisDayEntries + sección lavanda en DiaryPage + agrupado por año
-- ✅ Animación check pop (scale spring) en cards de rutina
-- ✅ Perfil de hijo expandido: ChildProfilePage, ruta :id, cards ChildrenList navegables
-- ✅ Push a GitHub: commits fdc6bd9 + acf0f00
+- ✅ Vista "En este día" (hook + sección lavanda)
+- ✅ Animación check pop en rutina
+- ✅ Perfil de hijo expandido (ChildProfilePage)
+- ✅ Módulo Fotos comentadas (tipos + Firestore + hooks + galería + PhotoSheet)
+- ✅ Sidebar actualizado con Camera + Fotos
+- ✅ HomePage con 5 módulos
+- ✅ Push a GitHub: commits fdc6bd9 + acf0f00 + 079c33d
 
 ## Contexto crítico
 - Zustand: selectores individuales `(s) => s.field` — NUNCA destructuring
@@ -59,8 +60,9 @@ Perfil de hijo expandido completado. Próximo: Módulo Fotos comentadas.
 - Firebase project ID: aquelentonces-32783
 - Puerto dev: 5173 (bat en Escritorio)
 - GitHub: https://github.com/mcorteze/aquelentonces
+- Firebase Storage: DIFERIDO — imageUrl queda vacío hasta integrar
 
 ## Historial
 - Sesión anterior: landing v1→v4, sistema tokens 4 capas, paletas, providers fix
 - Sesión previa: identidad interior, módulo Rutina Diaria completo, memoria corregida
-- Sesión actual: Diario + FAB + "En este día" + animación check + perfil de hijo
+- Sesión actual: Diario + FAB + "En este día" + animación check + perfil hijo + Fotos
