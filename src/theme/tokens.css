@@ -1,0 +1,66 @@
+/* ============================================================================
+   TOKENS DE COLOR — Tema KELVAR (Dojo tema-15)
+   Azul medianoche profundo + acento azul eléctrico.
+   Los componentes usan var(--sofia-*) siempre, nunca hex directos.
+   ============================================================================ */
+
+:root {
+  /* Superficies */
+  --sofia-bg:         #080E18;   /* shell principal — azul noche */
+  --sofia-bg-2:       #101C30;   /* superficie hover / inputs */
+  --sofia-card:       #0E1828;   /* tarjetas, contenedores */
+  --sofia-card-suave: #0A1220;   /* zonas tenues dentro de cards */
+
+  /* Texto */
+  --sofia-texto:        #EAF0FC;   /* texto principal */
+  --sofia-texto-fuerte: #FFFFFF;   /* títulos */
+  --sofia-texto-suave:  #C0D0EC;   /* secundario */
+  --sofia-texto-tenue:  #90A8D4;   /* terciario */
+
+  /* Acento principal — azul eléctrico */
+  --sofia-acento:           #1A7AE0;
+  --sofia-acento-hover:     #2E90F8;
+  --sofia-acento-suave:     rgba(26, 122, 224, 0.15);
+  --sofia-acento-borde:     rgba(26, 122, 224, 0.45);
+  --sofia-acento-contraste: #FFFFFF;
+  --sofia-acento-texto:     #4A9AF0;
+
+  /* Acción / CTA */
+  --sofia-accion:       #0A4A9A;
+  --sofia-accion-texto: #4A9AF0;
+  --sofia-accion-suave: rgba(10, 74, 154, 0.18);
+  --sofia-accion-borde: rgba(10, 74, 154, 0.50);
+
+  /* Bordes */
+  --sofia-borde:       #1A2E50;
+  --sofia-borde-suave: #142240;
+  --sofia-borde-debil: #101A30;
+
+  /* Estados */
+  --sofia-exito:    #2A9A6A;
+  --sofia-exito-bg: rgba(42, 154, 106, 0.14);
+  --sofia-error:    #C03040;
+  --sofia-aviso:    #C89020;
+
+  /* Tareas: done vs pending */
+  --sofia-done:    #2A9A6A;      /* verde suave — completada */
+  --sofia-pending: #607098;      /* azul gris — pendiente */
+
+  /* ── Espaciado y tipografía ─────────────────────────────── */
+  --sofia-font: 'Nunito', 'Segoe UI', system-ui, sans-serif;
+
+  /* Radios — infantil = bordes más redondeados que Dojo */
+  --sofia-radio:      16px;   /* cards, botones principales */
+  --sofia-radio-sm:   10px;   /* elementos secundarios */
+  --sofia-radio-pill: 9999px; /* badges */
+
+  /* Tipografía tablet-first */
+  --sofia-fs-title:  36px;   /* título de página / nombre de actividad */
+  --sofia-fs-task:   24px;   /* texto de tarea en tarjeta */
+  --sofia-fs-label:  16px;   /* labels secundarios */
+  --sofia-fs-small:  14px;   /* metadatos */
+
+  /* Tamaños de toque (elementos interactivos) */
+  --sofia-touch:     64px;   /* mínimo para un dedo infantil */
+  --sofia-touch-lg:  80px;   /* control de estado en tarjeta de tarea */
+}

@@ -1,0 +1,27 @@
+.control {
+  width: var(--sofia-touch-lg);
+  height: var(--sofia-touch-lg);
+  border-radius: 50%;
+  border: 3px solid var(--sofia-borde);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 36px;
+  transition: background 0.2s, border-color 0.2s, transform 0.1s;
+  background: var(--sofia-card-suave);
+  cursor: pointer;
+}
+
+.control:active {
+  transform: scale(0.92);
+}
+
+.done {
+  background: var(--sofia-exito-bg);
+  border-color: var(--sofia-exito);
+}
+
+.pending {
+  border-color: var(--sofia-borde);
+}

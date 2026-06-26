@@ -1,0 +1,66 @@
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--sofia-bg);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 64px;
+  background: var(--sofia-card);
+  border-bottom: 1px solid var(--sofia-borde);
+  flex-shrink: 0;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--sofia-acento-texto);
+  letter-spacing: -0.5px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--sofia-borde);
+  object-fit: cover;
+}
+
+.logoutBtn {
+  font-size: 14px;
+  color: var(--sofia-texto-tenue);
+  padding: 8px 14px;
+  border-radius: var(--sofia-radio-sm);
+  font-family: var(--sofia-font);
+  transition: background 0.2s, color 0.2s;
+}
+
+.logoutBtn:hover {
+  background: var(--sofia-bg-2);
+  color: var(--sofia-texto);
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+@media (max-width: 480px) {
+  .topbar {
+    padding: 0 16px;
+  }
+  .logo {
+    font-size: 18px;
+  }
+}
