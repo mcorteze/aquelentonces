@@ -1,14 +1,18 @@
 import { useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { Home, Users, CheckSquare, User, Menu, X } from 'lucide-react';
+import { useChildren } from '../modules/children/hooks/useChildren';
+import { useDiary } from '../modules/diary/hooks/useDiary';
+import { DiaryFAB } from '../components/diary/DiaryFAB';
+import { Home, Users, CheckSquare, User, BookOpen, Menu, X } from 'lucide-react';
 import styles from './AppLayout.module.css';
 
 const NAV_ITEMS = [
-  { to: '/app/inicio', label: 'Inicio',        Icon: Home        },
-  { to: '/app/hijos',  label: 'Mis hijos',     Icon: Users       },
-  { to: '/app/tareas', label: 'Tareas del día', Icon: CheckSquare },
-  { to: '/app/perfil', label: 'Mi perfil',     Icon: User        },
+  { to: '/app/inicio',  label: 'Inicio',        Icon: Home        },
+  { to: '/app/diario',  label: 'Diario',         Icon: BookOpen    },
+  { to: '/app/tareas',  label: 'Rutina',         Icon: CheckSquare },
+  { to: '/app/hijos',   label: 'Mis hijos',      Icon: Users       },
+  { to: '/app/perfil',  label: 'Mi perfil',      Icon: User        },
 ];
 
 function NavItems({ onNavigate }: { onNavigate?: () => void }) {
@@ -32,9 +36,21 @@ function NavItems({ onNavigate }: { onNavigate?: () => void }) {
 }
 
 export function AppLayout() {
-  const { user } = useAuth();
+  const { user }                    = useAuth();
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const closeDrawer = () => setDrawerOpen(false);
+  const closeDrawer                 = () => setDrawerOpen(false);
+  const navigate                    = useNavigate();
+
+  // Carga hijos una vez — se pasa al FAB para saber a quién asignar entradas
+  const { children } = useChildren();
+
+  // reload del diario — se pasa al FAB para refrescar la línea de tiempo tras guardar
+  const { reload: reloadDiary } = useDiary();
+
+  const handleFABSaved = () => {
+    reloadDiary();
+    navigate('/app/diario');
+  };
 
   return (
     <div className={styles.shell}>
@@ -94,8 +110,12 @@ export function AppLayout() {
             )}
           </NavLink>
         </header>
+
         <Outlet />
       </div>
+
+      {/* FAB global — accesible desde cualquier pantalla */}
+      <DiaryFAB children={children} onSaved={handleFABSaved} />
 
       {/* Overlay + Drawer móvil */}
       <div

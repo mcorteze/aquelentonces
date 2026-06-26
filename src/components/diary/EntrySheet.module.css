@@ -1,0 +1,273 @@
+/* ── Overlay ─────────────────────────────────────────────────────────────── */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 26, 26, 0.50);
+  z-index: 300;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  backdrop-filter: blur(3px);
+  animation: fadeIn 0.18s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@media (min-width: 640px) {
+  .overlay { align-items: center; }
+}
+
+/* ── Sheet ───────────────────────────────────────────────────────────────── */
+
+.sheet {
+  width: 100%;
+  max-width: 600px;
+  background: var(--aq-s-bg);
+  border-radius: var(--aq-radio-lg) var(--aq-radio-lg) 0 0;
+  padding: 0 0 env(safe-area-inset-bottom, 0);
+  max-height: 92vh;
+  overflow-y: auto;
+  animation: slideUp 0.22s cubic-bezier(0.34, 1.25, 0.64, 1);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(32px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@media (min-width: 640px) {
+  .sheet {
+    border-radius: var(--aq-radio-lg);
+    max-height: 88vh;
+  }
+}
+
+/* ── Selector de tipo (cabecera de color) ────────────────────────────────── */
+
+.typeBar {
+  display: flex;
+  gap: 0;
+  border-radius: var(--aq-radio-lg) var(--aq-radio-lg) 0 0;
+  overflow: hidden;
+}
+
+.typeBtn {
+  flex: 1;
+  padding: 16px 4px 14px;
+  border: none;
+  background: var(--aq-s-bg-2);
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--aq-font);
+  color: var(--aq-s-texto-tenue);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.typeBtn:hover {
+  color: var(--aq-s-texto-suave);
+}
+
+.typeBtnActive {
+  color: var(--aq-s-texto-fuerte);
+  font-weight: 900;
+}
+
+/* Indicador de color bajo cada tipo */
+.typeBtnActive::after {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 3px;
+  border-radius: 2px;
+  background: currentColor;
+  margin: 6px auto 0;
+}
+
+/* ── Cuerpo ──────────────────────────────────────────────────────────────── */
+
+.body {
+  padding: 24px 24px 0;
+}
+
+/* Prompt animado */
+.prompt {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--aq-s-texto-tenue);
+  font-family: var(--aq-font);
+  margin-bottom: 14px;
+  font-style: italic;
+  transition: opacity 0.2s ease;
+}
+
+/* Textarea principal */
+.textarea {
+  width: 100%;
+  min-height: 160px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: var(--aq-font);
+  color: var(--aq-s-texto-fuerte);
+  line-height: 1.55;
+  letter-spacing: -0.3px;
+  resize: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.textarea::placeholder {
+  color: var(--aq-s-borde);
+  font-weight: 500;
+}
+
+/* ── Barra inferior: mood + acciones ─────────────────────────────────────── */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px 24px;
+  gap: 12px;
+  border-top: 1px solid var(--aq-s-borde-debil);
+  margin-top: 16px;
+}
+
+.moodRow {
+  display: flex;
+  gap: 6px;
+}
+
+.moodBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--aq-s-borde);
+  background: none;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--aq-s-texto-tenue);
+  font-family: var(--aq-font);
+  font-weight: 700;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  line-height: 1;
+}
+
+.moodBtn:hover {
+  border-color: var(--aq-s-acento);
+  color: var(--aq-s-acento);
+}
+
+.moodBtnActive {
+  background: var(--aq-s-acento);
+  border-color: var(--aq-s-acento);
+  color: #FFFFFF;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.cancelBtn {
+  height: 40px;
+  padding: 0 16px;
+  border: none;
+  background: none;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--aq-font);
+  color: var(--aq-s-texto-tenue);
+  cursor: pointer;
+  border-radius: var(--aq-radio-pill);
+  transition: color 0.15s;
+}
+
+.cancelBtn:hover {
+  color: var(--aq-s-texto-suave);
+}
+
+.saveBtn {
+  height: 44px;
+  padding: 0 24px;
+  border: none;
+  background: var(--aq-s-acento);
+  color: #FFFFFF;
+  border-radius: var(--aq-radio-pill);
+  font-size: 15px;
+  font-weight: 800;
+  font-family: var(--aq-font);
+  cursor: pointer;
+  transition: opacity 0.15s;
+  white-space: nowrap;
+}
+
+.saveBtn:hover:not(:disabled) { opacity: 0.88; }
+.saveBtn:disabled { opacity: 0.40; cursor: not-allowed; }
+
+/* ── Selector de hijo (cuando hay más de uno) ────────────────────────────── */
+
+.childRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 24px 16px;
+  flex-wrap: wrap;
+}
+
+.childLabel {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--aq-s-texto-tenue);
+  font-family: var(--aq-font);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.childBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--aq-radio-pill);
+  border: 1.5px solid var(--aq-s-borde);
+  background: none;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--aq-font);
+  color: var(--aq-s-texto-suave);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.childBtn:hover {
+  border-color: var(--aq-s-acento);
+  color: var(--aq-s-acento);
+}
+
+.childBtnActive {
+  background: var(--aq-s-acento-suave);
+  border-color: var(--aq-s-acento);
+  color: var(--aq-s-acento);
+}
+
+.childEmoji {
+  font-size: 15px;
+  line-height: 1;
+}
