@@ -1,36 +1,41 @@
 ﻿/* ============================================================================
    TOKENS — Aquelentonces
-   Paleta oficial: #417178 / #E5FE73 / #FAF6ED / #A6B1E7
+   Tipografia: Lexend Deca (igual que BackThen, toda la escala)
+   Paleta exacta BackThen: #417178 / #E5FE73 / #FAF6ED / #A6B1E7
+   Variante oscura: #335B60
    ============================================================================ */
 
 :root {
   /* Superficies */
   --aq-bg:         #FAF6ED;
-  --aq-bg-2:       #F0EAD8;
+  --aq-bg-2:       #EDE8DC;
   --aq-card:       #FFFFFF;
-  --aq-card-suave: #F7F3E8;
+  --aq-card-suave: #F5F0E6;
 
   /* Texto */
-  --aq-texto:        #2A2A2A;
-  --aq-texto-fuerte: #111111;
+  --aq-texto:        #333333;
+  --aq-texto-fuerte: #1A1A1A;
   --aq-texto-suave:  #555555;
   --aq-texto-tenue:  #888888;
 
-  /* Paleta de marca */
+  /* Paleta de marca — exacta BackThen */
   --aq-petroleo:        #417178;
-  --aq-petroleo-oscuro: #2E5259;
+  --aq-petroleo-oscuro: #335B60;
   --aq-lima:            #E5FE73;
   --aq-lima-hover:      #D4EE60;
   --aq-lavanda:         #A6B1E7;
+  --aq-verde-claro:     #C0D2C7;
   --aq-crema:           #FAF6ED;
+  --aq-negro:           #000000;
+  --aq-gris:            #333333;
 
-  /* Acento principal — lima sobre petroleo */
+  /* Acento — lima sobre petroleo */
   --aq-acento:           #E5FE73;
   --aq-acento-hover:     #D4EE60;
-  --aq-acento-suave:     rgba(229, 254, 115, 0.18);
-  --aq-acento-borde:     rgba(229, 254, 115, 0.40);
-  --aq-acento-contraste: #1C2A1C;
-  --aq-acento-texto:     #2E5259;
+  --aq-acento-suave:     rgba(229,254,115,0.18);
+  --aq-acento-borde:     rgba(229,254,115,0.40);
+  --aq-acento-contraste: #1A1A1A;
+  --aq-acento-texto:     #335B60;
 
   /* Bordes */
   --aq-borde:       #DDD8CC;
@@ -39,40 +44,34 @@
 
   /* Estados */
   --aq-exito:    #417178;
-  --aq-exito-bg: rgba(65, 113, 120, 0.12);
+  --aq-exito-bg: rgba(65,113,120,0.12);
   --aq-error:    #B83020;
   --aq-aviso:    #B87020;
 
-  /* Dark surfaces — petroleo */
+  /* Superficies oscuras */
   --aq-dark:        #417178;
+  --aq-dark-oscuro: #335B60;
   --aq-dark-texto:  #FAF6ED;
-  --aq-dark-hover:  rgba(229, 254, 115, 0.14);
-  --aq-dark-borde:  rgba(250, 246, 237, 0.12);
+  --aq-dark-hover:  rgba(229,254,115,0.14);
+  --aq-dark-borde:  rgba(250,246,237,0.12);
 
-  /* Secciones landing */
-  --aq-strip-petroleo: #417178;
-  --aq-strip-lavanda:  #A6B1E7;
-  --aq-strip-crema:    #FAF6ED;
-  --aq-strip-lima:     #E5FE73;
-  --aq-hero-bg:        #417178;
-
-  /* Tipografia */
-  --aq-font-display: 'Playfair Display', Georgia, serif;
-  --aq-font:         'Plus Jakarta Sans', system-ui, sans-serif;
+  /* Tipografia — Lexend Deca para todo */
+  --aq-font-display: 'Lexend Deca', system-ui, sans-serif;
+  --aq-font:         'Lexend Deca', system-ui, sans-serif;
 
   /* Radios */
   --aq-radio:      20px;
   --aq-radio-sm:   12px;
   --aq-radio-pill: 9999px;
 
-  /* Tamanos tipograficos */
-  --aq-fs-hero:  clamp(48px, 6vw, 80px);
-  --aq-fs-title: clamp(28px, 3.5vw, 44px);
-  --aq-fs-task:  22px;
+  /* Escala tipografica */
+  --aq-fs-hero:  clamp(44px, 6vw, 80px);
+  --aq-fs-title: clamp(26px, 3.2vw, 42px);
+  --aq-fs-task:  20px;
   --aq-fs-label: 16px;
   --aq-fs-small: 14px;
 
-  /* Aliases para compatibilidad con componentes internos */
+  /* Aliases para componentes internos (--sofia-*) */
   --sofia-bg:           var(--aq-bg);
   --sofia-bg-2:         var(--aq-bg-2);
   --sofia-card:         var(--aq-card);
@@ -87,10 +86,10 @@
   --sofia-acento-borde:     rgba(65,113,120,0.28);
   --sofia-acento-contraste: #FFFFFF;
   --sofia-acento-texto:     var(--aq-petroleo);
-  --sofia-accion:           var(--aq-petroleo);
-  --sofia-accion-texto:     var(--aq-petroleo);
-  --sofia-accion-suave:     rgba(65,113,120,0.10);
-  --sofia-accion-borde:     rgba(65,113,120,0.28);
+  --sofia-accion:       var(--aq-petroleo);
+  --sofia-accion-texto: var(--aq-petroleo);
+  --sofia-accion-suave: rgba(65,113,120,0.10);
+  --sofia-accion-borde: rgba(65,113,120,0.28);
   --sofia-borde:        var(--aq-borde);
   --sofia-borde-suave:  var(--aq-borde-suave);
   --sofia-borde-debil:  var(--aq-borde-debil);
@@ -113,9 +112,9 @@
   --sofia-fs-small:     var(--aq-fs-small);
   --sofia-touch:        56px;
   --sofia-touch-lg:     72px;
-  --sofia-section-verde:   #C8DCD8;
+  --sofia-section-verde:   var(--aq-verde-claro);
   --sofia-section-lavanda: var(--aq-lavanda);
-  --sofia-section-celeste: #C8DCD8;
+  --sofia-section-celeste: var(--aq-verde-claro);
   --sofia-section-salmon:  #F0DDD4;
-  --sofia-section-amarillo:var(--aq-strip-lima);
+  --sofia-section-amarillo:var(--aq-lima);
 }
