@@ -1,66 +1,79 @@
 /* ============================================================================
-   TOKENS DE COLOR — Tema KELVAR (Dojo tema-15)
-   Azul medianoche profundo + acento azul eléctrico.
-   Los componentes usan var(--sofia-*) siempre, nunca hex directos.
+   TOKENS — Aquelentonces
+   Default: Aurora (crema cálido + rosa coral + texto negro expresivo)
+   Inspiración: BackThen — familiar, humano, cálido, nada de dark por default.
    ============================================================================ */
 
 :root {
   /* Superficies */
-  --sofia-bg:         #080E18;   /* shell principal — azul noche */
-  --sofia-bg-2:       #101C30;   /* superficie hover / inputs */
-  --sofia-card:       #0E1828;   /* tarjetas, contenedores */
-  --sofia-card-suave: #0A1220;   /* zonas tenues dentro de cards */
+  --sofia-bg:         #FDFAF6;   /* crema base */
+  --sofia-bg-2:       #F5EFE6;   /* crema más profunda */
+  --sofia-card:       #FFFFFF;
+  --sofia-card-suave: #FDF6EE;
 
   /* Texto */
-  --sofia-texto:        #EAF0FC;   /* texto principal */
-  --sofia-texto-fuerte: #FFFFFF;   /* títulos */
-  --sofia-texto-suave:  #C0D0EC;   /* secundario */
-  --sofia-texto-tenue:  #90A8D4;   /* terciario */
+  --sofia-texto:        #3D2B1F;
+  --sofia-texto-fuerte: #1A0F0A;
+  --sofia-texto-suave:  #6B4F3A;
+  --sofia-texto-tenue:  #A0806A;
 
-  /* Acento principal — azul eléctrico */
-  --sofia-acento:           #1A7AE0;
-  --sofia-acento-hover:     #2E90F8;
-  --sofia-acento-suave:     rgba(26, 122, 224, 0.15);
-  --sofia-acento-borde:     rgba(26, 122, 224, 0.45);
+  /* Acento principal — rosa coral */
+  --sofia-acento:           #E8594A;
+  --sofia-acento-hover:     #D14234;
+  --sofia-acento-suave:     rgba(232, 89, 74, 0.10);
+  --sofia-acento-borde:     rgba(232, 89, 74, 0.35);
   --sofia-acento-contraste: #FFFFFF;
-  --sofia-acento-texto:     #4A9AF0;
+  --sofia-acento-texto:     #C03030;
 
-  /* Acción / CTA */
-  --sofia-accion:       #0A4A9A;
-  --sofia-accion-texto: #4A9AF0;
-  --sofia-accion-suave: rgba(10, 74, 154, 0.18);
-  --sofia-accion-borde: rgba(10, 74, 154, 0.50);
+  /* Acción secundaria — verde salvia (como BackThen) */
+  --sofia-accion:       #3D8C6A;
+  --sofia-accion-texto: #2A6A50;
+  --sofia-accion-suave: rgba(61, 140, 106, 0.10);
+  --sofia-accion-borde: rgba(61, 140, 106, 0.35);
 
   /* Bordes */
-  --sofia-borde:       #1A2E50;
-  --sofia-borde-suave: #142240;
-  --sofia-borde-debil: #101A30;
+  --sofia-borde:       #E8DDD4;
+  --sofia-borde-suave: #F0E8E0;
+  --sofia-borde-debil: #F5EFE8;
 
   /* Estados */
-  --sofia-exito:    #2A9A6A;
-  --sofia-exito-bg: rgba(42, 154, 106, 0.14);
-  --sofia-error:    #C03040;
-  --sofia-aviso:    #C89020;
+  --sofia-exito:    #2A8A5A;
+  --sofia-exito-bg: rgba(42, 138, 90, 0.10);
+  --sofia-error:    #C03030;
+  --sofia-aviso:    #C87820;
 
-  /* Tareas: done vs pending */
-  --sofia-done:    #2A9A6A;      /* verde suave — completada */
-  --sofia-pending: #607098;      /* azul gris — pendiente */
+  /* Tareas */
+  --sofia-done:    #2A8A5A;
+  --sofia-pending: #A0806A;
 
-  /* ── Espaciado y tipografía ─────────────────────────────── */
-  --sofia-font: 'Nunito', 'Segoe UI', system-ui, sans-serif;
+  /* Sidebar */
+  --sofia-sidebar-bg:    #1A0F0A;
+  --sofia-sidebar-texto: rgba(253, 250, 246, 0.90);
+  --sofia-sidebar-hover: rgba(232, 89, 74, 0.14);
 
-  /* Radios — infantil = bordes más redondeados que Dojo */
-  --sofia-radio:      16px;   /* cards, botones principales */
-  --sofia-radio-sm:   10px;   /* elementos secundarios */
-  --sofia-radio-pill: 9999px; /* badges */
+  /* ── Tipografía ─────────────────────────────────────────────── */
+  --sofia-font:         'Plus Jakarta Sans', 'Nunito', system-ui, sans-serif;
+  --sofia-font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
 
-  /* Tipografía tablet-first */
-  --sofia-fs-title:  36px;   /* título de página / nombre de actividad */
-  --sofia-fs-task:   24px;   /* texto de tarea en tarjeta */
-  --sofia-fs-label:  16px;   /* labels secundarios */
-  --sofia-fs-small:  14px;   /* metadatos */
+  /* Radios — amigables y redondos */
+  --sofia-radio:      20px;
+  --sofia-radio-sm:   12px;
+  --sofia-radio-pill: 9999px;
 
-  /* Tamaños de toque (elementos interactivos) */
-  --sofia-touch:     64px;   /* mínimo para un dedo infantil */
-  --sofia-touch-lg:  80px;   /* control de estado en tarjeta de tarea */
+  /* Tipografía */
+  --sofia-fs-title:  40px;
+  --sofia-fs-task:   24px;
+  --sofia-fs-label:  16px;
+  --sofia-fs-small:  14px;
+
+  /* Toque */
+  --sofia-touch:    56px;
+  --sofia-touch-lg: 72px;
+
+  /* Secciones con fondo de color (estilo BackThen) */
+  --sofia-section-verde:   #D4EDE0;
+  --sofia-section-lavanda: #E4DCF4;
+  --sofia-section-celeste: #D0E8F8;
+  --sofia-section-salmon:  #FAE0DA;
+  --sofia-section-amarillo:#FFF3D0;
 }

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+﻿import { useEffect } from 'react';
 import { onAuthChanged } from '../services/firebase/auth';
 import { useAuthStore } from '../stores/authStore';
 import { applyPalette, usePaletteStore } from '../stores/paletteStore';
@@ -11,7 +11,7 @@ export function FirebaseAuthProvider({ children }: { children: React.ReactNode }
   const setPalette = usePaletteStore((s) => s.setPalette);
 
   useEffect(() => {
-    applyPalette('kelvar');
+    applyPalette('aurora');
 
     const unsubscribe = onAuthChanged(async (firebaseUser) => {
       if (firebaseUser) {
@@ -32,15 +32,15 @@ export function FirebaseAuthProvider({ children }: { children: React.ReactNode }
               displayName: firebaseUser.displayName ?? '',
               email: firebaseUser.email ?? '',
               photoURL: firebaseUser.photoURL ?? '',
-              paletteId: 'kelvar',
+              paletteId: 'aurora',
             });
           }
         } catch {
-          // silencioso — no bloquear la app si Firestore falla
+          // silencioso â€” no bloquear la app si Firestore falla
         }
       } else {
         setUser(null);
-        applyPalette('kelvar');
+        applyPalette('aurora');
       }
       setLoading(false);
     });

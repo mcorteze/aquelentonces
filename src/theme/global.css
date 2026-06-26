@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
 @import './tokens.css';
 @import './palettes.css';
 
@@ -18,7 +18,7 @@ body {
   background: var(--sofia-bg);
   color: var(--sofia-texto);
   font-size: var(--sofia-fs-label);
-  line-height: 1.5;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
 

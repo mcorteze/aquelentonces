@@ -3,18 +3,12 @@ import { signInWithGoogle } from '../../services/firebase/auth';
 import styles from './LoginScreen.module.css';
 
 const AUTH_ERROR_MESSAGES: Record<string, string> = {
-  'auth/popup-blocked':
-    'Tu navegador bloqueó la ventana de inicio de sesión. Permite ventanas emergentes para este sitio e intenta de nuevo.',
-  'auth/cancelled-popup-request':
-    'La sesión fue cancelada. Haz clic en "Entrar con Google" de nuevo.',
-  'auth/popup-closed-by-user':
-    'Cerraste la ventana antes de terminar. Intenta de nuevo cuando quieras.',
-  'auth/network-request-failed':
-    'No hay conexión a internet. Verifica tu red e intenta de nuevo.',
-  'auth/too-many-requests':
-    'Demasiados intentos seguidos. Espera unos minutos e intenta de nuevo.',
-  'auth/user-disabled':
-    'Esta cuenta fue desactivada. Contacta soporte si crees que es un error.',
+  'auth/popup-blocked':       'Tu navegador bloqueó la ventana de inicio. Permite ventanas emergentes e intenta de nuevo.',
+  'auth/cancelled-popup-request': 'La sesión fue cancelada. Haz clic en "Entrar con Google" de nuevo.',
+  'auth/popup-closed-by-user':    'Cerraste la ventana antes de terminar. Intenta de nuevo cuando quieras.',
+  'auth/network-request-failed':  'Sin conexión a internet. Verifica tu red e intenta de nuevo.',
+  'auth/too-many-requests':       'Demasiados intentos. Espera unos minutos e intenta de nuevo.',
+  'auth/user-disabled':           'Esta cuenta fue desactivada. Contacta soporte si crees que es un error.',
 };
 
 function getErrorMessage(error: unknown): string {
@@ -44,11 +38,14 @@ export function LoginScreen() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.card} role="main">
-        <div className={styles.star} aria-hidden="true">⭐</div>
+        <div className={styles.illustration} aria-hidden="true">⭐</div>
+        <p className={styles.brand}>Aquelentonces</p>
 
-        <h1 className={styles.title}>Aquelentonces</h1>
+        <h1 className={styles.title}>
+          El espacio de<br />tu familia
+        </h1>
         <p className={styles.subtitle}>
-          Tu espacio para acompañar el día a día<br />de tus hijos e hijas.
+          Guarda y vive los momentos del día a día de tus hijos.
         </p>
 
         {error && (
@@ -64,11 +61,7 @@ export function LoginScreen() {
           disabled={loading}
           aria-label="Iniciar sesión con tu cuenta de Google"
         >
-          {loading ? (
-            <span className={styles.spinner} aria-hidden="true" />
-          ) : (
-            <GoogleIcon />
-          )}
+          {loading ? <span className={styles.spinner} aria-hidden="true" /> : <GoogleIcon />}
           {loading ? 'Entrando...' : 'Entrar con Google'}
         </button>
 

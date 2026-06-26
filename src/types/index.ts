@@ -6,12 +6,12 @@ export interface AppUser {
 }
 
 export type PaletteId =
-  | 'kelvar'
-  | 'sorin'
+  | 'aurora'
+  | 'lirel'
   | 'merali'
   | 'ferith'
+  | 'kelvar'
   | 'vakoun'
-  | 'lirel'
   | 'grafito';
 
 export interface UserProfile {

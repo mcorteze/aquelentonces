@@ -1,5 +1,5 @@
-.page {
-  padding: 40px 48px;
+﻿.page {
+  padding: 48px 48px 64px;
   max-width: 720px;
   margin: 0 auto;
 }
@@ -7,31 +7,31 @@
 .section {
   background: var(--sofia-card);
   border: 1.5px solid var(--sofia-borde);
-  border-radius: 16px;
-  padding: 32px;
-  margin-bottom: 24px;
-}
-
-.sectionTitle {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--sofia-texto-tenue);
+  border-radius: 24px;
+  padding: 36px;
   margin-bottom: 20px;
 }
 
-/* ── Avatar + nombre ─────────────────────── */
+.sectionTitle {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sofia-texto-tenue);
+  margin-bottom: 24px;
+}
+
+/* Avatar + nombre */
 .avatarRow {
   display: flex;
   align-items: center;
   gap: 24px;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .avatar {
-  width: 88px;
-  height: 88px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   border: 3px solid var(--sofia-borde);
   object-fit: cover;
@@ -40,14 +40,14 @@
 }
 
 .avatarPlaceholder {
-  width: 88px;
-  height: 88px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
-  background: var(--sofia-acento-suave);
+  background: var(--sofia-section-salmon);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 40px;
+  font-size: 44px;
   flex-shrink: 0;
 }
 
@@ -56,111 +56,120 @@
 }
 
 .userName {
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 26px;
+  font-weight: 900;
   color: var(--sofia-texto-fuerte);
   margin-bottom: 4px;
+  letter-spacing: -0.5px;
 }
 
 .userEmail {
   font-size: 15px;
   color: var(--sofia-texto-tenue);
+  font-weight: 500;
 }
 
-/* ── Nombre editable ─────────────────────── */
+/* Campo editable */
 .fieldLabel {
   font-size: 14px;
-  font-weight: 600;
-  color: var(--sofia-texto-suave);
+  font-weight: 800;
+  color: var(--sofia-texto-fuerte);
   margin-bottom: 8px;
   display: block;
+  letter-spacing: -0.1px;
 }
 
 .fieldHint {
   font-size: 12px;
   color: var(--sofia-texto-tenue);
-  margin-top: 4px;
+  margin-top: 6px;
+  font-weight: 500;
 }
 
 .input {
   width: 100%;
-  background: var(--sofia-bg-2);
+  background: var(--sofia-bg);
   border: 1.5px solid var(--sofia-borde);
-  border-radius: 10px;
-  padding: 14px 16px;
+  border-radius: 14px;
+  padding: 14px 18px;
   font-size: 17px;
   font-family: var(--sofia-font);
+  font-weight: 600;
   color: var(--sofia-texto-fuerte);
-  transition: border-color 0.2s;
+  transition: border-color 0.18s, box-shadow 0.18s;
   outline: none;
 }
 
 .input:focus {
   border-color: var(--sofia-acento);
+  box-shadow: 0 0 0 3px var(--sofia-acento-suave);
 }
 
 .input::placeholder {
   color: var(--sofia-texto-tenue);
+  font-weight: 400;
 }
 
 .saveRow {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-top: 12px;
+  gap: 14px;
+  margin-top: 14px;
 }
 
 .saveBtn {
-  background: var(--sofia-acento);
-  color: var(--sofia-acento-contraste);
-  border-radius: 10px;
-  padding: 11px 24px;
+  background: var(--sofia-texto-fuerte);
+  color: var(--sofia-bg);
+  border-radius: var(--sofia-radio-pill);
+  padding: 12px 28px;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 800;
   font-family: var(--sofia-font);
-  transition: background 0.2s, opacity 0.2s;
+  transition: opacity 0.18s;
+  letter-spacing: -0.1px;
 }
 
 .saveBtn:hover:not(:disabled) {
-  background: var(--sofia-acento-hover);
+  opacity: 0.85;
 }
 
 .saveBtn:disabled {
-  opacity: 0.6;
+  opacity: 0.50;
   cursor: not-allowed;
 }
 
 .saveStatus {
   font-size: 14px;
   color: var(--sofia-exito);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .saveError {
   font-size: 14px;
   color: var(--sofia-error);
+  font-weight: 700;
 }
 
-/* ── Paleta de colores ───────────────────── */
+/* Paleta */
 .palettesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 12px;
 }
 
 .paletteCard {
-  border-radius: 12px;
+  border-radius: 16px;
   border: 2.5px solid transparent;
   overflow: hidden;
   cursor: pointer;
-  transition: border-color 0.2s, transform 0.1s;
+  transition: border-color 0.18s, transform 0.12s;
   background: none;
   padding: 0;
   text-align: left;
 }
 
 .paletteCard:hover {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
 .paletteCard:focus-visible {
@@ -169,7 +178,7 @@
 }
 
 .paletteCardActive {
-  border-color: var(--sofia-acento);
+  border-color: var(--sofia-texto-fuerte);
 }
 
 .palettePreview {
@@ -177,14 +186,15 @@
   position: relative;
   display: flex;
   align-items: flex-end;
-  padding: 8px;
+  padding: 10px;
 }
 
 .paletteAccentDot {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.4);
+  border: 2px solid rgba(255,255,255,0.50);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
 .paletteName {
@@ -196,56 +206,57 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  letter-spacing: -0.1px;
 }
 
 .paletteCheck {
-  color: var(--sofia-acento);
-  font-size: 15px;
+  color: var(--sofia-texto-fuerte);
+  font-size: 14px;
+  font-weight: 900;
 }
 
-/* ── Logout ──────────────────────────────── */
+/* Logout */
 .logoutSection {
-  border-top: 1px solid var(--sofia-borde-suave);
-  padding-top: 20px;
+  border-top: 1.5px solid var(--sofia-borde);
+  padding-top: 24px;
   margin-top: 8px;
 }
 
 .logoutBtn {
   background: transparent;
   border: 1.5px solid var(--sofia-borde);
-  border-radius: 10px;
-  padding: 12px 24px;
+  border-radius: var(--sofia-radio-pill);
+  padding: 12px 28px;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
   font-family: var(--sofia-font);
   color: var(--sofia-texto-tenue);
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  transition: border-color 0.18s, color 0.18s, background 0.18s;
 }
 
 .logoutBtn:hover {
   border-color: var(--sofia-error);
   color: var(--sofia-error);
-  background: rgba(192,48,64,0.06);
+  background: rgba(192,48,48,0.06);
 }
 
 .logoutBtnConfirm {
   background: var(--sofia-error);
   border-color: var(--sofia-error);
-  color: #fff;
+  color: #FFFFFF;
+  font-weight: 800;
 }
 
 .logoutBtnConfirm:hover {
-  opacity: 0.9;
+  opacity: 0.88;
 }
 
-@media (max-width: 600px) {
-  .page {
-    padding: 20px 16px;
-  }
-  .section {
-    padding: 24px 18px;
-  }
-  .palettesGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+@media (max-width: 768px) {
+  .page { padding: 24px 20px 48px; }
+  .section { padding: 24px 20px; border-radius: 20px; }
+  .palettesGrid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .palettesGrid { grid-template-columns: repeat(2, 1fr); }
 }

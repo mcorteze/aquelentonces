@@ -1,28 +1,31 @@
-.page {
-  padding: 40px 48px;
-  max-width: 860px;
+﻿.page {
+  padding: 48px 48px 64px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
 .welcome {
-  margin-bottom: 40px;
+  margin-bottom: 48px;
 }
 
 .greeting {
-  font-size: 30px;
-  font-weight: 800;
+  font-size: 48px;
+  font-weight: 900;
   color: var(--sofia-texto-fuerte);
-  margin-bottom: 6px;
+  letter-spacing: -1.5px;
+  line-height: 1.05;
+  margin-bottom: 10px;
 }
 
 .subgreeting {
-  font-size: 17px;
-  color: var(--sofia-texto-tenue);
+  font-size: 20px;
+  color: var(--sofia-texto-suave);
+  font-weight: 500;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 20px;
 }
 
@@ -30,44 +33,59 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background: var(--sofia-card);
-  border: 1.5px solid var(--sofia-borde);
-  border-radius: 16px;
-  padding: 28px 24px;
+  border-radius: 24px;
+  padding: 32px 28px;
   text-decoration: none;
-  color: inherit;
-  transition: border-color 0.2s, transform 0.15s;
+  color: var(--sofia-texto-fuerte);
+  transition: transform 0.18s, box-shadow 0.18s;
   cursor: pointer;
+  min-height: 200px;
+  position: relative;
+  overflow: hidden;
 }
 
 .moduleCard:hover {
-  border-color: var(--sofia-acento-borde);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.10);
 }
 
+.moduleCard:nth-child(1) { background: var(--sofia-section-salmon); }
+.moduleCard:nth-child(2) { background: var(--sofia-section-verde); }
+.moduleCard:nth-child(3) { background: var(--sofia-section-lavanda); }
+.moduleCard:nth-child(4) { background: var(--sofia-section-celeste); }
+
 .moduleIcon {
-  font-size: 48px;
-  margin-bottom: 16px;
+  font-size: 52px;
+  margin-bottom: 20px;
   line-height: 1;
+  display: block;
 }
 
 .moduleLabel {
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--sofia-texto-fuerte);
+  font-size: 20px;
+  font-weight: 800;
   margin-bottom: 6px;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
 }
 
 .moduleDesc {
   font-size: 14px;
-  color: var(--sofia-texto-tenue);
+  color: var(--sofia-texto-suave);
   line-height: 1.5;
+  font-weight: 500;
 }
 
-@media (max-width: 600px) {
-  .page { padding: 20px 14px; }
-  .greeting { font-size: 24px; }
+@media (max-width: 768px) {
+  .page { padding: 32px 20px 48px; }
+  .greeting { font-size: 34px; letter-spacing: -1px; }
+  .subgreeting { font-size: 17px; }
   .grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-  .moduleCard { padding: 20px 16px; }
-  .moduleIcon { font-size: 36px; }
+  .moduleCard { padding: 24px 20px; min-height: 160px; border-radius: 20px; }
+  .moduleIcon { font-size: 40px; margin-bottom: 14px; }
+  .moduleLabel { font-size: 17px; }
+}
+
+@media (max-width: 440px) {
+  .grid { grid-template-columns: 1fr; }
 }

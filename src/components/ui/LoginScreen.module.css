@@ -1,46 +1,53 @@
-.wrapper {
+﻿.wrapper {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--sofia-bg);
-  padding: 24px;
+  padding: 32px 20px;
 }
 
 .card {
-  background: var(--sofia-card);
-  border: 1.5px solid var(--sofia-borde);
-  border-radius: 24px;
-  padding: 56px 48px 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0;
   width: 100%;
-  max-width: 460px;
+  max-width: 420px;
 }
 
-.star {
-  font-size: 64px;
-  margin-bottom: 20px;
+.illustration {
+  font-size: 96px;
   line-height: 1;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 8px 24px rgba(232,89,74,0.18));
+}
+
+.brand {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sofia-acento);
+  margin-bottom: 20px;
 }
 
 .title {
-  font-size: 32px;
-  font-weight: 800;
+  font-size: 42px;
+  font-weight: 900;
   color: var(--sofia-texto-fuerte);
   text-align: center;
-  margin-bottom: 12px;
-  line-height: 1.2;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 14px;
 }
 
 .subtitle {
-  font-size: 17px;
+  font-size: 18px;
   color: var(--sofia-texto-suave);
   text-align: center;
   line-height: 1.6;
-  margin-bottom: 40px;
+  margin-bottom: 44px;
+  max-width: 320px;
 }
 
 .btn {
@@ -49,21 +56,22 @@
   justify-content: center;
   gap: 14px;
   width: 100%;
-  min-height: 60px;
-  background: var(--sofia-acento);
-  color: var(--sofia-acento-contraste);
-  border-radius: 14px;
-  font-size: 19px;
-  font-weight: 700;
+  min-height: 64px;
+  background: var(--sofia-texto-fuerte);
+  color: var(--sofia-bg);
+  border-radius: var(--sofia-radio-pill);
+  font-size: 18px;
+  font-weight: 800;
   font-family: var(--sofia-font);
   border: none;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s, opacity 0.2s;
-  margin-bottom: 16px;
+  transition: opacity 0.18s, transform 0.12s;
+  margin-bottom: 20px;
+  letter-spacing: -0.2px;
 }
 
 .btn:hover:not(:disabled) {
-  background: var(--sofia-acento-hover);
+  opacity: 0.88;
 }
 
 .btn:active:not(:disabled) {
@@ -71,26 +79,26 @@
 }
 
 .btn:disabled {
-  opacity: 0.65;
+  opacity: 0.55;
   cursor: not-allowed;
 }
 
 .btn:focus-visible {
   outline: 3px solid var(--sofia-acento);
-  outline-offset: 3px;
+  outline-offset: 4px;
 }
 
 .googleIcon {
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   flex-shrink: 0;
 }
 
 .spinner {
-  width: 22px;
-  height: 22px;
-  border: 3px solid rgba(255,255,255,0.3);
-  border-top-color: #fff;
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255,255,255,0.25);
+  border-top-color: currentColor;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
   flex-shrink: 0;
@@ -105,9 +113,9 @@
   align-items: flex-start;
   gap: 10px;
   width: 100%;
-  background: rgba(192, 48, 64, 0.10);
-  border: 1px solid var(--sofia-error);
-  border-radius: 12px;
+  background: rgba(192,48,48,0.07);
+  border: 1.5px solid var(--sofia-error);
+  border-radius: var(--sofia-radio-sm);
   padding: 14px 16px;
   margin-bottom: 16px;
   font-size: 15px;
@@ -125,27 +133,16 @@
   font-size: 13px;
   color: var(--sofia-texto-tenue);
   text-align: center;
-  line-height: 1.5;
-  margin-top: 8px;
+  line-height: 1.6;
 }
 
 .privacyIcon {
   margin-right: 4px;
 }
 
-@media (max-width: 520px) {
-  .card {
-    padding: 40px 24px 36px;
-    border-radius: 20px;
-  }
-  .title {
-    font-size: 26px;
-  }
-  .subtitle {
-    font-size: 15px;
-  }
-  .btn {
-    font-size: 17px;
-    min-height: 56px;
-  }
+@media (max-width: 480px) {
+  .illustration { font-size: 72px; }
+  .title { font-size: 32px; }
+  .subtitle { font-size: 16px; margin-bottom: 32px; }
+  .btn { min-height: 58px; font-size: 16px; }
 }

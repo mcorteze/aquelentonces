@@ -1,6 +1,6 @@
-.page {
-  padding: 40px 48px;
-  max-width: 800px;
+﻿.page {
+  padding: 48px 48px 64px;
+  max-width: 820px;
   margin: 0 auto;
 }
 
@@ -8,62 +8,66 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
   gap: 16px;
 }
 
 .title {
-  font-size: 32px;
-  font-weight: 800;
+  font-size: 42px;
+  font-weight: 900;
   color: var(--sofia-texto-fuerte);
+  letter-spacing: -1.2px;
+  line-height: 1.05;
 }
 
 .addBtn {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: var(--sofia-acento);
-  color: var(--sofia-acento-contraste);
-  border-radius: 12px;
-  padding: 13px 22px;
-  font-size: 16px;
-  font-weight: 700;
+  background: var(--sofia-texto-fuerte);
+  color: var(--sofia-bg);
+  border-radius: var(--sofia-radio-pill);
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 800;
   font-family: var(--sofia-font);
   white-space: nowrap;
-  transition: background 0.2s;
+  transition: opacity 0.18s, transform 0.12s;
   flex-shrink: 0;
+  letter-spacing: -0.1px;
 }
 
 .addBtn:hover {
-  background: var(--sofia-acento-hover);
+  opacity: 0.85;
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
-/* ── Child card ── */
+/* Child card */
 .childCard {
   display: flex;
   align-items: center;
   gap: 20px;
   background: var(--sofia-card);
   border: 1.5px solid var(--sofia-borde);
-  border-radius: 16px;
+  border-radius: 20px;
   padding: 22px 24px;
-  transition: border-color 0.2s;
+  transition: border-color 0.18s, box-shadow 0.18s;
 }
 
 .childCard:hover {
   border-color: var(--sofia-acento-borde);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
 }
 
 .childEmoji {
-  font-size: 48px;
+  font-size: 52px;
   line-height: 1;
-  width: 60px;
+  width: 64px;
   text-align: center;
   flex-shrink: 0;
 }
@@ -75,14 +79,16 @@
 
 .childName {
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--sofia-texto-fuerte);
   margin-bottom: 4px;
+  letter-spacing: -0.4px;
 }
 
 .childAge {
   font-size: 15px;
   color: var(--sofia-texto-tenue);
+  font-weight: 500;
 }
 
 .childActions {
@@ -93,14 +99,14 @@
 
 .editBtn {
   background: var(--sofia-bg-2);
-  border: 1px solid var(--sofia-borde);
-  border-radius: 8px;
-  padding: 9px 16px;
+  border: 1.5px solid var(--sofia-borde);
+  border-radius: 12px;
+  padding: 10px 18px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   font-family: var(--sofia-font);
   color: var(--sofia-texto-suave);
-  transition: background 0.2s, border-color 0.2s;
+  transition: background 0.15s, border-color 0.15s;
 }
 
 .editBtn:hover {
@@ -111,50 +117,52 @@
 
 .deleteBtn {
   background: transparent;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  padding: 9px 14px;
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  padding: 10px 14px;
   font-size: 14px;
   font-family: var(--sofia-font);
   color: var(--sofia-texto-tenue);
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 
 .deleteBtn:hover {
   color: var(--sofia-error);
-  background: rgba(192,48,64,0.07);
+  background: rgba(192,48,48,0.07);
+  border-color: rgba(192,48,48,0.20);
 }
 
-/* ── Empty state ── */
+/* Empty state */
 .empty {
   text-align: center;
   padding: 80px 24px;
 }
 
 .emptyIcon {
-  font-size: 72px;
-  margin-bottom: 20px;
+  font-size: 80px;
+  margin-bottom: 24px;
   line-height: 1;
 }
 
 .emptyTitle {
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 26px;
+  font-weight: 900;
   color: var(--sofia-texto-fuerte);
   margin-bottom: 10px;
+  letter-spacing: -0.5px;
 }
 
 .emptyText {
-  font-size: 16px;
+  font-size: 17px;
   color: var(--sofia-texto-tenue);
-  margin-bottom: 32px;
+  margin-bottom: 36px;
   line-height: 1.6;
 }
 
-/* ── Loading skeleton ── */
+/* Skeleton */
 .skeleton {
   height: 96px;
-  border-radius: 16px;
+  border-radius: 20px;
   background: linear-gradient(90deg, var(--sofia-card) 25%, var(--sofia-bg-2) 50%, var(--sofia-card) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.4s infinite;
@@ -165,15 +173,15 @@
   100% { background-position: -200% 0; }
 }
 
-/* ── Error ── */
+/* Error */
 .error {
-  background: rgba(192,48,64,0.08);
-  border: 1px solid var(--sofia-error);
-  border-radius: 12px;
-  padding: 18px 20px;
+  background: rgba(192,48,48,0.07);
+  border: 1.5px solid var(--sofia-error);
+  border-radius: 16px;
+  padding: 20px 24px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .errorText {
@@ -183,20 +191,20 @@
 }
 
 .retryBtn {
-  background: var(--sofia-acento);
-  color: var(--sofia-acento-contraste);
-  border-radius: 8px;
-  padding: 9px 18px;
+  background: var(--sofia-texto-fuerte);
+  color: var(--sofia-bg);
+  border-radius: var(--sofia-radio-pill);
+  padding: 10px 20px;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 800;
   font-family: var(--sofia-font);
 }
 
-@media (max-width: 600px) {
-  .page { padding: 20px 14px; }
-  .title { font-size: 24px; }
-  .addBtn { padding: 11px 16px; font-size: 14px; }
-  .childCard { padding: 16px; gap: 14px; }
+@media (max-width: 768px) {
+  .page { padding: 24px 20px 48px; }
+  .title { font-size: 30px; }
+  .addBtn { padding: 12px 18px; font-size: 14px; }
+  .childCard { padding: 16px 18px; gap: 14px; border-radius: 16px; }
   .childName { font-size: 18px; }
-  .childEmoji { font-size: 40px; width: 48px; }
+  .childEmoji { font-size: 42px; width: 52px; }
 }
