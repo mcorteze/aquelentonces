@@ -46,7 +46,7 @@ export function LoginScreen() {
       <div className={styles.card} role="main">
         <div className={styles.star} aria-hidden="true">⭐</div>
 
-        <h1 className={styles.title}>Bienvenida</h1>
+        <h1 className={styles.title}>Aquelentonces</h1>
         <p className={styles.subtitle}>
           Tu espacio para acompañar el día a día<br />de tus hijos e hijas.
         </p>

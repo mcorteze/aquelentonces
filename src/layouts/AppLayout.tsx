@@ -42,7 +42,7 @@ export function AppLayout() {
       <aside className={styles.sidebar} aria-label="Navegación principal">
         <div className={styles.sidebarLogo}>
           <span className={styles.logoMark} aria-hidden="true">⭐</span>
-          <span className={styles.logoText}>Sofía</span>
+          <span className={styles.logoText}>Aquelentonces</span>
         </div>
 
         <nav className={styles.sidebarNav}>
@@ -79,7 +79,7 @@ export function AppLayout() {
           >
             ☰
           </button>
-          <span className={styles.topbarLogo}>⭐ Sofía</span>
+          <span className={styles.topbarLogo}>⭐ Aquelentonces</span>
           <NavLink to="/app/perfil" aria-label="Mi perfil">
             {user?.photoURL ? (
               <img
@@ -113,7 +113,7 @@ export function AppLayout() {
         </button>
         <div className={styles.sidebarLogo} style={{ marginTop: 12 }}>
           <span className={styles.logoMark} aria-hidden="true">⭐</span>
-          <span className={styles.logoText}>Sofía</span>
+          <span className={styles.logoText}>Aquelentonces</span>
         </div>
         <div className={styles.sidebarNav}>
           <NavItems onNavigate={closeDrawer} />
