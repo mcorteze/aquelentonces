@@ -11,7 +11,7 @@ export function LandingPage() {
       <Nav onLogin={goLogin} />
       <Hero onCta={goLogin} />
       <Strip
-        bg="var(--aq-strip-sage)"
+        bg="#FAF6ED"
         icon={<BookOpen size={40} strokeWidth={1.5} />}
         label="Diario de vida"
         title="El diario que siempre quisiste llevar"
@@ -19,7 +19,7 @@ export function LandingPage() {
         flip={false}
       />
       <Strip
-        bg="var(--aq-strip-cream)"
+        bg="#A6B1E7"
         icon={<Camera size={40} strokeWidth={1.5} />}
         label="Fotos"
         title="Fotos con contexto, no solo imágenes"
@@ -27,7 +27,7 @@ export function LandingPage() {
         flip={true}
       />
       <Strip
-        bg="var(--aq-strip-lavender)"
+        bg="#FAF6ED"
         icon={<CalendarDays size={40} strokeWidth={1.5} />}
         label="Calendario"
         title="La rutina también es un recuerdo"
@@ -35,12 +35,13 @@ export function LandingPage() {
         flip={false}
       />
       <Strip
-        bg="var(--aq-strip-cream)"
+        bg="#417178"
         icon={<Users size={40} strokeWidth={1.5} />}
         label="Familia"
         title="La familia conectada, sin redes sociales"
         body="Invita a los abuelos, los tíos, el papá. Cada uno ve y comenta desde su propia cuenta. Privado, seguro, solo para los tuyos."
         flip={true}
+        dark={true}
       />
       <ComingSoon />
       <Quote />
@@ -103,19 +104,20 @@ interface StripProps {
   title: string;
   body: string;
   flip: boolean;
+  dark?: boolean;
 }
 
-function Strip({ bg, icon, label, title, body, flip }: StripProps) {
+function Strip({ bg, icon, label, title, body, flip, dark }: StripProps) {
   return (
     <section className={styles.strip} style={{ background: bg }}>
       <div className={`${styles.stripInner} ${flip ? styles.stripFlip : ''}`}>
-        <div className={styles.stripText}>
+        <div className={`${styles.stripText} ${dark ? styles.stripDark : ''}`}>
           <p className={styles.stripLabel}>{label}</p>
           <h2 className={styles.stripTitle}>{title}</h2>
           <p className={styles.stripBody}>{body}</p>
         </div>
         <div className={styles.stripVisual}>
-          <div className={styles.stripIconBox}>
+          <div className={`${styles.stripIconBox} ${dark ? styles.stripIconBoxLight : ''}`}>
             {icon}
           </div>
         </div>
