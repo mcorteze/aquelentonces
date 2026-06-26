@@ -2,20 +2,20 @@ import { useNavigate } from 'react-router-dom';
 import { BookOpen, Camera, CalendarDays, Users, Pen, Package, Heart, MessageCircle, Lock, Star } from 'lucide-react';
 import styles from './LandingPage.module.css';
 
+/* Seeds fijos — misma imagen siempre, sin archivos locales */
 const IMG = {
-  hero:    'https://picsum.photos/seed/aqkid01/600/800',
-  niña:    'https://picsum.photos/seed/aqbeach/800/500',
-  familia: 'https://picsum.photos/seed/aqfam22/1600/700',
-  t1:      'https://picsum.photos/seed/aqth1/200/200',
-  t2:      'https://picsum.photos/seed/aqth2/200/200',
-  t3:      'https://picsum.photos/seed/aqth3/200/200',
-  t4:      'https://picsum.photos/seed/aqth4/200/200',
+  hero:    'https://picsum.photos/seed/aqkid07/600/900',
+  foto:    'https://picsum.photos/seed/aqbeach9/800/520',
+  familia: 'https://picsum.photos/seed/aqfam44/1600/700',
+  t1:      'https://picsum.photos/seed/aqt11/220/220',
+  t2:      'https://picsum.photos/seed/aqt22/220/220',
+  t3:      'https://picsum.photos/seed/aqt33/220/220',
+  t4:      'https://picsum.photos/seed/aqt44/220/220',
 };
 
 export function LandingPage() {
   const navigate = useNavigate();
   const goLogin = () => navigate('/login');
-
   return (
     <div className={styles.page}>
       <Nav onLogin={goLogin} />
@@ -53,7 +53,7 @@ function Nav({ onLogin }: { onLogin: () => void }) {
 function Hero({ onCta }: { onCta: () => void }) {
   return (
     <section className={styles.hero}>
-      {/* Contenido izquierdo */}
+      {/* Columna texto */}
       <div className={styles.heroContent}>
         <h1 className={styles.heroTitle}>
           El espacio seguro para guardar y compartir
@@ -68,25 +68,23 @@ function Hero({ onCta }: { onCta: () => void }) {
           <span className={styles.heroNote}>Sin tarjeta. Sin compromisos.</span>
         </div>
         <div className={styles.heroBadges}>
-          <div className={styles.heroBadge}><Lock size={12} /> Privado 100%</div>
-          <div className={styles.heroBadge}><Heart size={12} /> Para toda la familia</div>
+          <div className={styles.heroBadge}><Lock size={11} /> Privado 100%</div>
+          <div className={styles.heroBadge}><Heart size={11} /> Para toda la familia</div>
         </div>
       </div>
 
-      {/* Visual derecho: mockup teléfono real */}
+      {/* Columna teléfono inclinado */}
       <div className={styles.heroVisual}>
-        {/* Decoraciones flotantes */}
-        <Heart size={22} className={`${styles.heroDecor} ${styles.heroDecorHeart1}`} fill="currentColor" />
-        <Heart size={14} className={`${styles.heroDecor} ${styles.heroDecorHeart2}`} fill="currentColor" />
-        <Star  size={18} className={`${styles.heroDecor} ${styles.heroDecorStar}`}  fill="currentColor" />
+        {/* Decoraciones flotantes libres */}
+        <Heart size={20} className={`${styles.heroDecor} ${styles.heroDecorHeart1}`} fill="currentColor" />
+        <Heart size={13} className={`${styles.heroDecor} ${styles.heroDecorHeart2}`} fill="currentColor" />
+        <Star  size={16} className={`${styles.heroDecor} ${styles.heroDecorStar}`}   fill="currentColor" />
 
+        {/* Teléfono con imagen real y overlay en la parte baja */}
         <div className={styles.heroPhone}>
-          <div className={styles.heroPhoneBar}>
-            <div className={styles.heroPhoneDot} />
-            <div className={styles.heroPhoneDot} />
-            <div className={styles.heroPhoneDot} />
-          </div>
-          <img src={IMG.hero} alt="Diario de Sofía" className={styles.heroPhoneImg} />
+          {/* Notch pill — sin barra negra, solo el pill flotante */}
+          <div className={styles.heroPhoneNotch} />
+          <img src={IMG.hero} alt="" className={styles.heroPhoneImg} />
           <div className={styles.heroPhoneOverlay}>
             <div className={styles.heroPhoneName}>Sofía · 4 años</div>
             <div className={styles.heroPhoneEntry}>"Hoy fue su primer día de baile."</div>
@@ -94,9 +92,9 @@ function Hero({ onCta }: { onCta: () => void }) {
           </div>
         </div>
 
-        {/* Tarjetas flotantes */}
+        {/* Tarjetas flotantes posicionadas alrededor del teléfono */}
         <div className={styles.floatCard1}>
-          <Heart size={13} style={{color:'#B83020'}} fill="currentColor" />
+          <Heart size={12} fill="currentColor" style={{color:'#B83020', flexShrink:0}} />
           <span>Abuela comentó tu foto</span>
         </div>
         <div className={styles.floatCard2}>
@@ -144,29 +142,34 @@ function FeatureSave() {
             solo tus palabras y la fecha.
           </p>
           <ul className={styles.featureList}>
-            <li><BookOpen size={14} strokeWidth={2} /> Notas de cualquier largo</li>
-            <li><BookOpen size={14} strokeWidth={2} /> Organizadas por hijo y fecha</li>
-            <li><BookOpen size={14} strokeWidth={2} /> Buscables en segundos</li>
+            <li><BookOpen size={13} strokeWidth={2.2} /> Notas de cualquier largo</li>
+            <li><BookOpen size={13} strokeWidth={2.2} /> Organizadas por hijo y fecha</li>
+            <li><BookOpen size={13} strokeWidth={2.2} /> Buscables en segundos</li>
           </ul>
         </div>
         <div className={styles.featureImgCol}>
-          <div className={styles.diarioStack}>
-            <div className={`${styles.diarioCard} ${styles.dc1}`}>
-              <div className={styles.diarioCardDate}>Dom 22 jun</div>
-              <div className={styles.diarioCardText}>"Se durmió en el auto cantando Moana."</div>
-            </div>
-            <div className={`${styles.diarioCard} ${styles.dc2}`}>
-              <div className={styles.diarioCardDate}>Lun 23 jun</div>
-              <div className={styles.diarioCardText}>"Quiere ser bailarina y veterinaria a la vez."</div>
-            </div>
-            <div className={`${styles.diarioCard} ${styles.dc3}`}>
-              <div className={styles.diarioCardDate}>
-                Mar 24 jun · <span style={{color:'#417178', fontWeight:900}}>Hoy</span>
+          <div className={styles.diarioWrap}>
+            {/* Sombra/carta decorativa detrás */}
+            <div className={styles.diarioBg} />
+            {/* Carta principal */}
+            <div className={styles.diarioCard}>
+              <div className={styles.diarioCardHeader}>
+                <span className={styles.diarioCardMonth}>Junio 2026</span>
+                <span className={styles.diarioCardCount}>12 entradas</span>
               </div>
-              <div className={styles.diarioCardText}>
-                "Hoy fue su primer día de baile. Entró sin mirar atrás. No volvió a buscarme con la mirada."
-              </div>
-              <div className={styles.diarioCardTag}>Hito</div>
+              {[
+                { day: 'Hoy', highlight: true, text: '"Hoy fue su primer día de baile. Entró sin mirar atrás. No volvió a buscarme con la mirada."', tag: 'Hito' },
+                { day: 'Ayer',               text: '"Quiere ser bailarina y veterinaria a la vez."' },
+                { day: 'Dom',                text: '"Se durmió en el auto cantando Moana."' },
+              ].map((e, i) => (
+                <div key={i} className={styles.diarioEntry}>
+                  <span className={`${styles.diarioEntryDay} ${e.highlight ? styles.diarioEntryDayHighlight : ''}`}>
+                    {e.day}
+                  </span>
+                  <div className={styles.diarioEntryText}>{e.text}</div>
+                  {e.tag && <div className={styles.diarioEntryTag}>{e.tag}</div>}
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -175,7 +178,7 @@ function FeatureSave() {
   );
 }
 
-/* ── Feature 2: ORDENAR / FOTOS ─────────────────────────────────────────── */
+/* ── Feature 2: FOTOS ────────────────────────────────────────────────────── */
 function FeatureSort() {
   return (
     <section className={styles.featureSection} style={{background:'#FAF6ED'}}>
@@ -191,18 +194,18 @@ function FeatureSort() {
             La familia comenta. El timelapse de crecimiento se construye solo.
           </p>
           <ul className={styles.featureList}>
-            <li><Camera size={14} strokeWidth={2} /> Contexto escrito en cada foto</li>
-            <li><Camera size={14} strokeWidth={2} /> Comentarios de la familia</li>
-            <li><Camera size={14} strokeWidth={2} /> Timelapse de crecimiento</li>
+            <li><Camera size={13} strokeWidth={2.2} /> Contexto escrito en cada foto</li>
+            <li><Camera size={13} strokeWidth={2.2} /> Comentarios de la familia</li>
+            <li><Camera size={13} strokeWidth={2.2} /> Timelapse de crecimiento</li>
           </ul>
         </div>
         <div className={styles.featureImgCol}>
           <div className={styles.fotosMockup}>
             <div className={styles.fotosImgWrap}>
-              <img src={IMG.niña} alt="foto" className={styles.fotosImg} />
+              <img src={IMG.foto} alt="" className={styles.fotosImg} />
               <div className={styles.fotosImgCaption}>
-                "Primer día en el mar"
-                <div className={styles.fotosImgDate}>15 ene · 3 años</div>
+                <span className={styles.fotosImgCaptionText}>"Primer día en el mar"</span>
+                <span className={styles.fotosImgCaptionDate}>15 ene · 3 años</span>
               </div>
             </div>
             <div className={styles.fotosComments}>
@@ -227,25 +230,25 @@ function FeatureSort() {
   );
 }
 
-/* ── Feature 3: COMPARTIR / FAMILIA ─────────────────────────────────────── */
+/* ── Feature 3: FAMILIA ─────────────────────────────────────────────────── */
 function FeatureShare() {
   return (
     <section className={styles.featureSection} style={{background:'#A6B1E7'}}>
       <div className={styles.featureWrap}>
         <div className={styles.featureTextCol}>
-          <p className={`${styles.featureEye} ${styles.featureEyeDark}`}>Comparte seguro</p>
+          <p className={styles.featureEye}>Comparte seguro</p>
           <h2 className={styles.featureTitle}>La familia conectada, sin redes sociales</h2>
           <p className={styles.featureBody}>
             Elige a quién invitar y qué pueden ver. La familia recibe
-            una notificación cada vez que agregas algo nuevo.
+            notificaciones cada vez que agregas algo nuevo.
           </p>
           <p className={styles.featureBody}>
             100% privado — sin anuncios, sin datos vendidos, sin publicaciones públicas.
           </p>
-          <ul className={`${styles.featureList}`}>
-            <li><Users size={14} strokeWidth={2} /> Invita a abuelos, tíos, papá</li>
-            <li><Lock size={14} strokeWidth={2} /> Solo quien tú elijas puede ver</li>
-            <li><MessageCircle size={14} strokeWidth={2} /> Comentarios en tiempo real</li>
+          <ul className={styles.featureList}>
+            <li><Users size={13} strokeWidth={2.2} /> Invita a abuelos, tíos, papá</li>
+            <li><Lock size={13} strokeWidth={2.2} /> Solo quien tú elijas puede ver</li>
+            <li><MessageCircle size={13} strokeWidth={2.2} /> Comentarios en tiempo real</li>
           </ul>
         </div>
         <div className={styles.featureImgCol}>
@@ -294,7 +297,7 @@ function FeaturePrint() {
       <img src={IMG.familia} alt="" className={styles.printBg} />
       <div className={styles.printOverlay} />
       <div className={styles.printContent}>
-        <div className={styles.printTextCol}>
+        <div>
           <p className={styles.printEye}>Imprime tus favoritos</p>
           <h2 className={styles.printTitle}>Convierte los recuerdos en objetos reales</h2>
         </div>
@@ -305,7 +308,7 @@ function FeaturePrint() {
             { Icon: Pen,          title: 'Postales y tarjetas',    body: 'Envía una postal con la foto favorita de los abuelos.' },
           ].map(({ Icon, title, body }) => (
             <div key={title} className={styles.printCard}>
-              <Icon size={20} strokeWidth={1.5} className={styles.printCardIcon} />
+              <Icon size={18} strokeWidth={1.8} className={styles.printCardIcon} />
               <div>
                 <div className={styles.printCardTitle}>{title}</div>
                 <div className={styles.printCardBody}>{body}</div>

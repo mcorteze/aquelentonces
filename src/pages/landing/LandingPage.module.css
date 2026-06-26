@@ -1,5 +1,5 @@
 /* ============================================================================
-   LANDING — Aquelentonces  |  Referencia: BackThen
+   LANDING — Aquelentonces  |  Referencia pixel-perfect: BackThen
    Lexend Deca · #417178 petroleo · #E5FE73 lima · #FAF6ED crema · #A6B1E7 lavanda
    ============================================================================ */
 
@@ -13,33 +13,34 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   NAV — fijo, petróleo translúcido, logo + links centrados + CTA derecha
+   NAV
    ═══════════════════════════════════════════════════════════════════════════ */
 .nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 200;
-  height: 64px;
+  height: 60px;
   display: flex;
   align-items: center;
   padding: 0 40px;
   background: #417178;
-  gap: 0;
 }
 
 .navBrand {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 900;
   color: #FAF6ED;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.2px;
   flex-shrink: 0;
   margin-right: auto;
 }
 
 .navLinks {
   display: flex;
-  gap: 28px;
-  margin: 0 auto;
+  gap: 24px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .navLink {
@@ -47,7 +48,6 @@
   font-weight: 600;
   color: rgba(250,246,237,0.60);
   text-decoration: none;
-  letter-spacing: 0.02em;
   transition: color 0.15s;
 }
 .navLink:hover { color: #FAF6ED; }
@@ -62,22 +62,21 @@
 .navLoginBtn {
   font-size: 13px;
   font-weight: 700;
-  color: rgba(250,246,237,0.70);
+  color: rgba(250,246,237,0.75);
   font-family: var(--aq-font);
-  padding: 8px 14px;
+  padding: 7px 14px;
   background: none;
-  border: 1.5px solid rgba(250,246,237,0.25);
-  border-radius: 9999px;
-  transition: color 0.15s, border-color 0.15s;
+  border: none;
   cursor: pointer;
+  transition: color 0.15s;
 }
-.navLoginBtn:hover { color: #FAF6ED; border-color: rgba(250,246,237,0.55); }
+.navLoginBtn:hover { color: #FAF6ED; }
 
 .navBtn {
   background: #E5FE73;
   color: #1A1A1A;
   border-radius: 9999px;
-  padding: 9px 20px;
+  padding: 8px 20px;
   font-size: 13px;
   font-weight: 800;
   font-family: var(--aq-font);
@@ -89,45 +88,35 @@
 .navBtn:hover { opacity: 0.86; }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   HERO — texto izquierda, teléfono derecha; fondo petróleo full height
+   HERO
    ═══════════════════════════════════════════════════════════════════════════ */
 .hero {
   background: #417178;
   min-height: 100vh;
-  padding-top: 64px;
+  padding-top: 60px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: stretch;
+  align-items: center;
   overflow: hidden;
   position: relative;
 }
 
-/* Elementos decorativos de fondo */
+/* Círculo decorativo fondo */
 .hero::before {
   content: '';
   position: absolute;
-  top: 10%;
-  right: 3%;
-  width: 300px;
-  height: 300px;
+  top: -80px;
+  right: -80px;
+  width: 480px;
+  height: 480px;
   border-radius: 50%;
-  background: rgba(229,254,115,0.06);
-  pointer-events: none;
-}
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: 5%;
-  left: 5%;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  background: rgba(250,246,237,0.04);
+  background: rgba(229,254,115,0.07);
   pointer-events: none;
 }
 
+/* ── Texto hero ─────────────────────────────────────────────────────────── */
 .heroContent {
-  padding: 72px 48px 72px 80px;
+  padding: 64px 40px 64px 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -136,27 +125,28 @@
 }
 
 .heroTitle {
-  font-size: clamp(40px, 4.6vw, 72px);
+  font-size: clamp(42px, 5vw, 76px);
   font-weight: 900;
   color: #FAF6ED;
-  line-height: 1.02;
-  letter-spacing: -2px;
+  line-height: 1.00;
+  letter-spacing: -2.5px;
   text-transform: uppercase;
   margin-bottom: 24px;
 }
 .heroTitle em {
+  display: block;
   font-style: italic;
   color: #E5FE73;
   text-transform: none;
-  display: block;
+  letter-spacing: -1.5px;
 }
 
 .heroSub {
-  font-size: 16px;
-  color: rgba(250,246,237,0.68);
-  line-height: 1.70;
-  margin-bottom: 40px;
-  max-width: 380px;
+  font-size: 15px;
+  color: rgba(250,246,237,0.62);
+  line-height: 1.72;
+  margin-bottom: 36px;
+  max-width: 360px;
   font-weight: 400;
 }
 
@@ -164,19 +154,18 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 40px;
-  flex-wrap: wrap;
+  margin-bottom: 32px;
 }
 
 .ctaHero {
   background: #E5FE73;
   color: #1A1A1A;
   border-radius: 9999px;
-  padding: 15px 36px;
-  font-size: 15px;
+  padding: 14px 32px;
+  font-size: 14px;
   font-weight: 800;
   font-family: var(--aq-font);
-  letter-spacing: -0.2px;
+  letter-spacing: -0.1px;
   transition: opacity 0.15s, transform 0.10s;
   border: none;
   cursor: pointer;
@@ -184,90 +173,92 @@
 .ctaHero:hover { opacity: 0.88; }
 .ctaHero:active { transform: scale(0.98); }
 
-.heroNote { font-size: 13px; color: rgba(250,246,237,0.38); }
+.heroNote { font-size: 12px; color: rgba(250,246,237,0.35); }
 
-.heroBadges {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
+.heroBadges { display: flex; gap: 8px; flex-wrap: wrap; }
 .heroBadge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 12px;
+  gap: 5px;
+  font-size: 11px;
   font-weight: 700;
-  color: rgba(250,246,237,0.50);
+  color: rgba(250,246,237,0.48);
   background: rgba(250,246,237,0.07);
-  border: 1px solid rgba(250,246,237,0.12);
+  border: 1px solid rgba(250,246,237,0.11);
   border-radius: 9999px;
-  padding: 5px 12px;
+  padding: 5px 11px;
 }
 
-/* Columna derecha del hero: imagen sangra desde arriba hasta abajo */
+/* ── Visual hero: teléfono inclinado ────────────────────────────────────── */
 .heroVisual {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 64px 80px 64px 32px;
+  padding: 60px 80px 60px 24px;
   z-index: 2;
 }
 
-/* Marco de teléfono real */
+/* Decoraciones flotantes */
+.heroDecor { position: absolute; pointer-events: none; }
+.heroDecorHeart1 { top: 12%; right: 6%; color: #E5FE73; opacity: 0.8; }
+.heroDecorHeart2 { bottom: 24%; left: 4%; color: rgba(250,246,237,0.30); }
+.heroDecorStar   { top: 58%; right: 5%; color: rgba(229,254,115,0.55); }
+
+/* Teléfono inclinado */
 .heroPhone {
   position: relative;
-  width: 100%;
-  max-width: 320px;
-  background: #111111;
-  border-radius: 40px;
+  width: 260px;
+  background: #0A0A0A;
+  border-radius: 36px;
   overflow: hidden;
+  transform: rotate(4deg);
   box-shadow:
-    0 0 0 8px #1A1A1A,
-    0 0 0 9px rgba(255,255,255,0.08),
-    0 48px 120px rgba(0,0,0,0.55);
+    0 0 0 2px rgba(255,255,255,0.10),
+    0 40px 120px rgba(0,0,0,0.60),
+    0 16px 40px rgba(0,0,0,0.40);
+  flex-shrink: 0;
 }
 
-.heroPhoneBar {
-  height: 28px;
-  background: #111111;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
+/* Notch pill — sin barra negra extra */
+.heroPhoneNotch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72px;
+  height: 20px;
+  background: #0A0A0A;
+  border-radius: 10px;
+  z-index: 10;
 }
-.heroPhoneDot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.18);
-}
-.heroPhoneDot:nth-child(2) { width: 40px; height: 7px; border-radius: 4px; }
 
 .heroPhoneImg {
   width: 100%;
-  aspect-ratio: 3/4;
+  aspect-ratio: 9/16;
   object-fit: cover;
   display: block;
 }
 
 .heroPhoneOverlay {
-  padding: 16px 20px 22px;
-  background: #FFFFFF;
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.60) 50%, transparent 100%);
+  padding: 40px 18px 20px;
 }
 .heroPhoneName {
   font-size: 10px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: #888888;
-  margin-bottom: 6px;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 5px;
 }
 .heroPhoneEntry {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
-  color: #1A1A1A;
-  line-height: 1.40;
+  color: #FFFFFF;
+  line-height: 1.38;
   font-style: italic;
   margin-bottom: 8px;
 }
@@ -275,47 +266,47 @@
   display: inline-block;
   background: #E5FE73;
   color: #335B60;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 800;
-  padding: 3px 10px;
+  padding: 3px 9px;
   border-radius: 9999px;
   letter-spacing: 0.06em;
 }
 
-/* Tarjetas flotantes */
+/* Tarjetas flotantes sobre el teléfono inclinado */
 .floatCard1 {
   position: absolute;
-  top: 22%;
-  left: -8px;
+  top: 26%;
+  left: 0;
   background: #FFFFFF;
-  border-radius: 14px;
-  padding: 10px 14px;
+  border-radius: 12px;
+  padding: 9px 14px;
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   color: #1A1A1A;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.16);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.14);
   white-space: nowrap;
-  z-index: 10;
+  z-index: 20;
 }
 
 .floatCard2 {
   position: absolute;
-  bottom: 22%;
-  left: -24px;
+  bottom: 24%;
+  left: -8px;
   background: #E5FE73;
-  border-radius: 14px;
-  padding: 14px 18px;
+  border-radius: 12px;
+  padding: 12px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.14);
-  z-index: 10;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  z-index: 20;
 }
 .floatNum {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 900;
   color: #335B60;
   line-height: 1;
@@ -326,26 +317,7 @@
   font-weight: 800;
   color: #335B60;
   white-space: nowrap;
-  margin-top: 3px;
-}
-
-/* Decoraciones flotantes sueltas */
-.heroDecor {
-  position: absolute;
-  pointer-events: none;
-}
-.heroDecorHeart1 {
-  top: 15%; right: 8%;
-  color: #E5FE73;
-  opacity: 0.7;
-}
-.heroDecorHeart2 {
-  bottom: 28%; left: 5%;
-  color: rgba(250,246,237,0.35);
-}
-.heroDecorStar {
-  top: 55%; right: 6%;
-  color: rgba(229,254,115,0.5);
+  margin-top: 2px;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -354,75 +326,50 @@
 .trust {
   background: #FAF6ED;
   border-bottom: 1.5px solid #DDD8CC;
-  padding: 24px 80px;
+  padding: 22px 80px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  gap: 36px;
   flex-wrap: wrap;
 }
 
-.trustItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-}
+.trustItem { display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .trustNum {
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 900;
   color: #1A1A1A;
   letter-spacing: -0.8px;
 }
-.trustLabel {
-  font-size: 12px;
-  color: #888888;
-  font-weight: 500;
-}
-.trustDivider {
-  width: 1px;
-  height: 36px;
-  background: #DDD8CC;
-  flex-shrink: 0;
-}
+.trustLabel { font-size: 11px; color: #888888; font-weight: 500; }
+.trustDivider { width: 1px; height: 32px; background: #DDD8CC; flex-shrink: 0; }
 .trustBadge {
   background: #E5FE73;
   color: #335B60;
   border-radius: 9999px;
-  padding: 7px 18px;
-  font-size: 13px;
+  padding: 6px 16px;
+  font-size: 12px;
   font-weight: 800;
 }
-.trustStars {
-  font-size: 16px;
-  color: #F5A623;
-  letter-spacing: 1px;
-}
+.trustStars { font-size: 15px; color: #F5A623; letter-spacing: 1px; }
 
 /* ═══════════════════════════════════════════════════════════════════════════
    FEATURE SECTIONS — base
-   Título centered en franja de color, luego subtítulo small, luego contenido
+   Padding generoso: 140px top/bottom. Max-width 1200px centrado.
    ═══════════════════════════════════════════════════════════════════════════ */
+.featureSection { width: 100%; padding: 140px 0; }
 
-.featureSection {
-  width: 100%;
-  padding: 100px 0;
-}
-
-/* Layout texto + visual, 45/55, alternado */
 .featureWrap {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 80px;
   display: grid;
-  grid-template-columns: 45fr 55fr;
+  grid-template-columns: 44fr 56fr;
   align-items: center;
-  gap: 80px;
+  gap: 88px;
 }
 
-.featureWrapFlip {
-  grid-template-columns: 55fr 45fr;
-}
+.featureWrapFlip { grid-template-columns: 56fr 44fr; }
 .featureWrapFlip .featureTextCol { order: 2; }
 .featureWrapFlip .featureImgCol  { order: 1; }
 
@@ -437,18 +384,14 @@
   margin-bottom: 14px;
 }
 
-.featureEyeDark { color: #1A1A1A; }
-
 .featureTitle {
-  font-size: clamp(30px, 2.8vw, 44px);
+  font-size: clamp(28px, 2.6vw, 40px);
   font-weight: 900;
   color: #1A1A1A;
-  line-height: 1.06;
+  line-height: 1.05;
   letter-spacing: -1.2px;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
-
-.featureTitleDark { color: #FAF6ED; }
 
 .featureBody {
   font-size: 15px;
@@ -458,14 +401,13 @@
   max-width: 400px;
   font-weight: 400;
 }
-.featureBodyDark { color: rgba(250,246,237,0.65); }
 
 .featureList {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 9px;
-  margin-top: 4px;
+  gap: 8px;
+  margin-top: 6px;
 }
 .featureList li {
   display: flex;
@@ -475,7 +417,6 @@
   font-weight: 700;
   color: #417178;
 }
-.featureListDark li { color: rgba(250,246,237,0.60); }
 
 .featureImgCol {
   display: flex;
@@ -483,105 +424,147 @@
   justify-content: center;
 }
 
-/* ── Visual 1: Diario — cartas apiladas ─────────────────────────────────── */
-.diarioStack {
-  position: relative;
+/* ═══════════════════════════════════════════════════════════════════════════
+   VISUAL 1 — DIARIO: una sola carta protagonista con sombra fuerte
+   ═══════════════════════════════════════════════════════════════════════════ */
+.diarioWrap {
   width: 100%;
-  max-width: 400px;
-  height: 340px;
+  max-width: 420px;
+  position: relative;
 }
 
-.diarioCard {
+/* Carta de fondo (decorativa, desplazada) */
+.diarioBg {
   position: absolute;
+  top: 20px;
+  left: 12px;
+  right: -12px;
+  bottom: -16px;
+  background: rgba(65,113,120,0.12);
+  border-radius: 20px;
+}
+
+/* Carta principal */
+.diarioCard {
+  position: relative;
   background: #FFFFFF;
-  border-radius: 18px;
-  padding: 22px 26px;
-  width: 320px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
-  border: 1.5px solid #EEEBE3;
+  border-radius: 20px;
+  padding: 28px 32px;
+  box-shadow: 0 20px 80px rgba(65,113,120,0.18), 0 4px 16px rgba(0,0,0,0.06);
+  border: 1.5px solid #EDE8DC;
+  z-index: 2;
 }
 
-.dc1 { bottom: 0; left: 50%; transform: translateX(-50%) rotate(-3deg); z-index: 1; }
-.dc2 { bottom: 24px; left: 50%; transform: translateX(-46%) rotate(1.5deg); z-index: 2; }
-.dc3 {
-  bottom: 48px; left: 50%; transform: translateX(-52%);
-  z-index: 3;
-  box-shadow: 0 16px 60px rgba(65,113,120,0.18);
-  border-color: #DDD8CC;
+.diarioCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #F0EDE4;
+}
+.diarioCardMonth {
+  font-size: 13px;
+  font-weight: 900;
+  color: #1A1A1A;
+  letter-spacing: -0.2px;
+}
+.diarioCardCount {
+  font-size: 11px;
+  color: #888888;
+  font-weight: 600;
 }
 
-.diarioCardDate {
+.diarioEntry {
+  padding: 12px 0;
+  border-bottom: 1px solid #F5F2EC;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.diarioEntry:last-of-type { border-bottom: none; padding-bottom: 0; }
+
+.diarioEntryDay {
   font-size: 10px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: #888888;
-  margin-bottom: 10px;
 }
-.diarioCardText {
-  font-size: 14px;
+.diarioEntryDayHighlight { color: #417178; }
+
+.diarioEntryText {
+  font-size: 13px;
   font-weight: 500;
   color: #1A1A1A;
-  line-height: 1.60;
+  line-height: 1.58;
   font-style: italic;
 }
-.diarioCardTag {
+
+.diarioEntryTag {
   display: inline-block;
   background: #E5FE73;
   color: #335B60;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 800;
-  padding: 3px 10px;
+  padding: 2px 9px;
   border-radius: 9999px;
-  margin-top: 12px;
   letter-spacing: 0.05em;
+  align-self: flex-start;
+  margin-top: 3px;
 }
 
-/* ── Visual 2: Fotos — foto + comentarios ────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════════════════
+   VISUAL 2 — FOTOS: imagen que sangra + comentarios
+   ═══════════════════════════════════════════════════════════════════════════ */
 .fotosMockup {
   width: 100%;
-  max-width: 440px;
+  max-width: 460px;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 20px 80px rgba(65,113,120,0.22);
+  box-shadow: 0 24px 80px rgba(65,113,120,0.22);
 }
 
-.fotosImgWrap { position: relative; }
+.fotosImgWrap { position: relative; overflow: hidden; }
 .fotosImg {
   width: 100%;
-  height: 240px;
+  height: 260px;
   object-fit: cover;
   display: block;
+  transition: transform 0.4s ease;
 }
+.fotosMockup:hover .fotosImg { transform: scale(1.02); }
+
+/* Caption sobre la imagen con gradiente */
 .fotosImgCaption {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%);
-  padding: 32px 18px 14px;
+  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.30) 60%, transparent 100%);
+  padding: 36px 18px 14px;
+}
+.fotosImgCaptionText {
   color: #FFFFFF;
   font-size: 14px;
   font-weight: 700;
   font-style: italic;
+  display: block;
 }
-.fotosImgDate {
+.fotosImgCaptionDate {
   font-size: 11px;
   font-weight: 600;
-  color: rgba(255,255,255,0.65);
-  margin-top: 2px;
+  color: rgba(255,255,255,0.60);
+  margin-top: 3px;
+  display: block;
 }
 
 .fotosComments {
   background: #FFFFFF;
-  padding: 16px 18px 20px;
+  padding: 14px 18px 18px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.fotosComment {
-  display: flex;
-  align-items: flex-end;
-  gap: 8px;
-}
+.fotosComment { display: flex; align-items: flex-end; gap: 8px; }
 .fotosAvatar {
   width: 28px;
   height: 28px;
@@ -596,7 +579,7 @@
 .fotosBubble {
   background: #F5F0E6;
   border-radius: 14px 14px 14px 4px;
-  padding: 8px 12px;
+  padding: 7px 12px;
   font-size: 13px;
   color: #333333;
   line-height: 1.40;
@@ -615,62 +598,44 @@
   display: block;
 }
 
-/* ── Visual 3: Familia — panel ───────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════════════════
+   VISUAL 3 — FAMILIA: panel blanco elevado
+   ═══════════════════════════════════════════════════════════════════════════ */
 .familiaPanel {
   background: #FFFFFF;
   border-radius: 20px;
-  padding: 26px;
+  padding: 24px 26px;
   width: 100%;
   max-width: 380px;
   box-shadow: 0 16px 60px rgba(100,120,200,0.14);
 }
 
 .familiaPanelTitle {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 900;
   color: #1A1A1A;
   letter-spacing: -0.2px;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   padding-bottom: 14px;
   border-bottom: 1.5px solid #EDE8DC;
 }
 
-.familiaAvatars {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-.familiaAvatarCol {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-}
+.familiaAvatars { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
+.familiaAvatarCol { display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .familiaAvatar {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 900;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid rgba(255,255,255,0.6);
   box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
-.familiaAvatarName {
-  font-size: 10px;
-  font-weight: 600;
-  color: #888888;
-  text-align: center;
-}
+.familiaAvatarName { font-size: 10px; font-weight: 600; color: #888888; text-align: center; }
 
-.familiaFeed {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+.familiaFeed { display: flex; flex-direction: column; gap: 8px; }
 .familiaFeedItem {
   display: flex;
   align-items: flex-start;
@@ -680,10 +645,10 @@
   border-radius: 12px;
 }
 .familiaFeedAvatar {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 900;
   display: flex;
   align-items: center;
@@ -691,25 +656,16 @@
   flex-shrink: 0;
 }
 .familiaFeedContent { flex: 1; min-width: 0; }
-.familiaFeedMsg {
-  font-size: 13px;
-  color: #1A1A1A;
-  line-height: 1.40;
-  font-weight: 500;
-}
+.familiaFeedMsg { font-size: 12px; color: #1A1A1A; line-height: 1.40; font-weight: 500; }
 .familiaFeedMsg strong { font-weight: 800; }
-.familiaFeedTime {
-  font-size: 11px;
-  color: #888888;
-  margin-top: 2px;
-}
+.familiaFeedTime { font-size: 10px; color: #888888; margin-top: 2px; }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   PRINT — foto real a pantalla completa
+   PRINT — foto a pantalla completa. Cards con fondo oscuro semitransparente
    ═══════════════════════════════════════════════════════════════════════════ */
 .printSection {
   position: relative;
-  min-height: 580px;
+  min-height: 600px;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -724,13 +680,16 @@
   display: block;
 }
 
+/* Overlay izquierda clara, derecha oscura — logo texto en izq, cards en der */
 .printOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right,
-    rgba(30,50,52,0.20) 0%,
-    rgba(30,50,52,0.20) 45%,
-    rgba(30,50,52,0.75) 100%);
+  background: linear-gradient(
+    100deg,
+    rgba(20,40,42,0.35) 0%,
+    rgba(20,40,42,0.45) 40%,
+    rgba(10,20,22,0.80) 100%
+  );
 }
 
 .printContent {
@@ -746,8 +705,6 @@
   gap: 80px;
 }
 
-.printTextCol {}
-
 .printEye {
   font-size: 10px;
   font-weight: 900;
@@ -756,58 +713,44 @@
   color: #E5FE73;
   margin-bottom: 14px;
 }
-
 .printTitle {
-  font-size: clamp(28px, 2.8vw, 44px);
+  font-size: clamp(28px, 2.8vw, 42px);
   font-weight: 900;
   color: #FAF6ED;
-  line-height: 1.06;
+  line-height: 1.05;
   letter-spacing: -1.2px;
 }
 
-.printCardsCol {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+.printCardsCol { display: flex; flex-direction: column; gap: 10px; }
 
 .printCard {
-  background: rgba(250,246,237,0.10);
-  border: 1.5px solid rgba(250,246,237,0.18);
-  border-radius: 16px;
-  padding: 18px 22px;
-  backdrop-filter: blur(8px);
+  background: rgba(10,20,22,0.55);
+  border: 1px solid rgba(250,246,237,0.15);
+  border-radius: 14px;
+  padding: 16px 20px;
+  backdrop-filter: blur(10px);
   display: flex;
   gap: 14px;
   align-items: flex-start;
 }
-.printCardIcon { color: #E5FE73; flex-shrink: 0; margin-top: 2px; }
-.printCardTitle {
-  font-size: 14px;
-  font-weight: 800;
-  color: #FAF6ED;
-  letter-spacing: -0.2px;
-  margin-bottom: 4px;
-}
-.printCardBody {
-  font-size: 12px;
-  color: rgba(250,246,237,0.60);
-  line-height: 1.55;
-}
+.printCardIcon { color: #E5FE73; flex-shrink: 0; margin-top: 1px; }
+.printCardTitle { font-size: 13px; font-weight: 800; color: #FAF6ED; letter-spacing: -0.1px; margin-bottom: 3px; }
+.printCardBody  { font-size: 12px; color: rgba(250,246,237,0.55); line-height: 1.50; }
 .printComingSoon {
   font-size: 11px;
   font-weight: 700;
-  color: rgba(250,246,237,0.35);
+  color: rgba(250,246,237,0.30);
   letter-spacing: 0.05em;
   margin-top: 4px;
+  padding-left: 4px;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   TESTIMONIOS — burbujas irregulares estilo BackThen
+   TESTIMONIOS — burbujas grandes con forma de chat real
    ═══════════════════════════════════════════════════════════════════════════ */
 .testimonios {
   background: #FAF6ED;
-  padding: 120px 80px;
+  padding: 140px 80px;
   text-align: center;
 }
 
@@ -819,39 +762,39 @@
   color: #888888;
   margin-bottom: 12px;
 }
-
 .testimoniosTitle {
-  font-size: clamp(28px, 2.8vw, 44px);
+  font-size: clamp(28px, 2.6vw, 40px);
   font-weight: 900;
   color: #1A1A1A;
   letter-spacing: -1.2px;
-  line-height: 1.06;
-  margin-bottom: 64px;
+  line-height: 1.05;
+  margin-bottom: 72px;
 }
 
 .testimoniosGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  max-width: 960px;
+  gap: 28px;
+  max-width: 1000px;
   margin: 0 auto;
+  align-items: start; /* permite offset vertical */
 }
 
-/* Burbujas de chat irregulares, no cards rectangulares */
+/* Burbuja 1: cola abajo izquierda */
 .testimonioCard {
   background: #A6B1E7;
-  border-radius: 40px 40px 40px 8px; /* burbuja chat — cola abajo izquierda */
-  padding: 44px 44px 40px;
+  border-radius: 40px 40px 40px 6px;
+  padding: 48px 48px 44px;
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  position: relative;
+  gap: 18px;
 }
 
+/* Burbuja 2: cola abajo derecha + desplazamiento vertical */
 .testimonioCard:nth-child(2) {
-  border-radius: 40px 40px 8px 40px; /* cola abajo derecha */
-  margin-top: 32px; /* offset visual como BackThen */
+  border-radius: 40px 40px 6px 40px;
+  margin-top: 80px; /* offset para romper la simetría */
 }
 
 .testimonioStars {
@@ -861,10 +804,10 @@
 }
 
 .testimonioQuote {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
   color: #1A1A1A;
-  line-height: 1.72;
+  line-height: 1.75;
   font-style: italic;
   flex: 1;
 }
@@ -882,7 +825,7 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   CTA FINAL — petróleo, tipografía masiva
+   CTA FINAL — tipografía extrema
    ═══════════════════════════════════════════════════════════════════════════ */
 .ctaFinal {
   background: #417178;
@@ -900,17 +843,17 @@
 }
 
 .ctaFinalTitle {
-  font-size: clamp(64px, 10vw, 140px);
+  font-size: clamp(72px, 11vw, 148px);
   font-weight: 900;
   color: #FAF6ED;
-  letter-spacing: -4px;
-  line-height: 0.92;
-  margin-bottom: 18px;
+  letter-spacing: -5px;
+  line-height: 0.90;
+  margin-bottom: 20px;
 }
 
 .ctaFinalSub {
-  font-size: 17px;
-  color: rgba(250,246,237,0.48);
+  font-size: 16px;
+  color: rgba(250,246,237,0.45);
   margin-bottom: 52px;
   font-weight: 400;
 }
@@ -919,7 +862,7 @@
   background: #E5FE73;
   color: #1A1A1A;
   border-radius: 9999px;
-  padding: 18px 52px;
+  padding: 17px 48px;
   font-size: 15px;
   font-weight: 800;
   font-family: var(--aq-font);
@@ -934,11 +877,7 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    FOOTER
    ═══════════════════════════════════════════════════════════════════════════ */
-.footer {
-  background: #335B60;
-  padding: 36px 80px;
-}
-
+.footer { background: #335B60; padding: 32px 80px; }
 .footerInner {
   max-width: 1200px;
   margin: 0 auto;
@@ -946,106 +885,88 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  flex-wrap: wrap;
 }
-
-.footerBrand {
-  font-size: 14px;
-  font-weight: 900;
-  color: rgba(250,246,237,0.45);
-  letter-spacing: -0.2px;
-}
-
-.footerLinks {
-  display: flex;
-  gap: 24px;
-}
+.footerBrand { font-size: 13px; font-weight: 900; color: rgba(250,246,237,0.40); letter-spacing: -0.1px; }
+.footerLinks { display: flex; gap: 22px; }
 .footerLink {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
-  color: rgba(250,246,237,0.35);
+  color: rgba(250,246,237,0.32);
   text-decoration: none;
   transition: color 0.15s;
 }
-.footerLink:hover { color: rgba(250,246,237,0.70); }
-
-.footerCopy {
-  font-size: 12px;
-  color: rgba(250,246,237,0.25);
-}
+.footerLink:hover { color: rgba(250,246,237,0.65); }
+.footerCopy { font-size: 12px; color: rgba(250,246,237,0.22); }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   RESPONSIVE 1100px — tablet landscape
+   RESPONSIVE — 1100px
    ═══════════════════════════════════════════════════════════════════════════ */
 @media (max-width: 1100px) {
-  .nav { padding: 0 28px; }
+  .nav { padding: 0 24px; }
   .navLinks { display: none; }
 
   .hero { grid-template-columns: 1fr; min-height: auto; }
-  .heroContent { padding: 72px 28px 48px; }
-  .heroVisual { padding: 0 28px 72px; justify-content: flex-start; }
-  .heroPhone { max-width: 340px; }
-  .floatCard1 { left: auto; right: 0; }
-  .floatCard2 { left: auto; right: -12px; bottom: 26%; }
+  .heroContent { padding: 72px 24px 40px 40px; }
+  .heroVisual { padding: 0 40px 72px; justify-content: flex-start; }
+  .heroPhone { width: 240px; transform: rotate(3deg); }
 
-  .trust { padding: 20px 28px; gap: 20px; }
+  .trust { padding: 18px 24px; gap: 20px; }
 
-  .featureSection { padding: 72px 0; }
-  .featureWrap { grid-template-columns: 1fr; padding: 0 28px; gap: 40px; }
+  .featureSection { padding: 88px 0; }
+  .featureWrap { grid-template-columns: 1fr; padding: 0 40px; gap: 48px; }
   .featureWrapFlip .featureTextCol { order: 1; }
   .featureWrapFlip .featureImgCol  { order: 2; }
   .featureBody { max-width: 100%; }
 
-  .diarioStack { height: 280px; max-width: 100%; }
-  .diarioCard { width: 100%; max-width: 340px; }
-
+  .diarioWrap { max-width: 100%; }
   .fotosMockup { max-width: 100%; }
   .familiaPanel { max-width: 100%; }
 
-  .printContent { grid-template-columns: 1fr; gap: 40px; padding: 64px 28px; }
+  .printContent { grid-template-columns: 1fr; gap: 40px; padding: 64px 40px; }
 
-  .testimonios { padding: 80px 28px; }
+  .testimonios { padding: 88px 40px; }
   .testimoniosGrid { grid-template-columns: 1fr; max-width: 520px; }
-  .testimonioCard:nth-child(2) { margin-top: 0; }
+  .testimonioCard:nth-child(2) { margin-top: 0; border-radius: 40px 40px 6px 40px; }
 
-  .ctaFinal { padding: 100px 28px; }
-
-  .footer { padding: 28px; }
-  .footerInner { flex-wrap: wrap; }
+  .ctaFinal { padding: 100px 40px; }
+  .footer { padding: 28px 40px; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   RESPONSIVE 640px — mobile
+   RESPONSIVE — 640px (mobile)
    ═══════════════════════════════════════════════════════════════════════════ */
 @media (max-width: 640px) {
   .nav { padding: 0 20px; }
   .navLoginBtn { display: none; }
 
-  .heroContent { padding: 60px 20px 36px; }
-  .heroTitle { letter-spacing: -1.5px; }
+  .heroContent { padding: 60px 20px 32px; }
+  .heroTitle { letter-spacing: -1.8px; }
   .heroVisual { padding: 0 20px 56px; }
-  .heroPhone { max-width: 100%; }
-  .floatCard1, .floatCard2 { display: none; }
+  .heroPhone { width: 200px; transform: rotate(2deg); }
+  .floatCard1 { left: -4px; font-size: 10px; }
+  .floatCard2 { left: -4px; }
+  .heroDecorHeart1, .heroDecorHeart2, .heroDecorStar { display: none; }
 
-  .trust { flex-direction: column; padding: 20px; gap: 14px; }
-  .trustDivider { width: 48px; height: 1px; }
+  .trust { flex-direction: column; padding: 18px 20px; gap: 12px; }
+  .trustDivider { width: 40px; height: 1px; }
 
-  .featureWrap { padding: 0 20px; }
-  .featureSection { padding: 56px 0; }
+  .featureWrap { padding: 0 20px; gap: 36px; }
+  .featureSection { padding: 72px 0; }
+  .featureTitle { letter-spacing: -0.8px; }
 
-  .diarioStack { height: 260px; }
-  .diarioCard { max-width: 100%; }
-
-  .printSection { min-height: 500px; }
+  .printSection { min-height: 480px; }
   .printContent { padding: 56px 20px; }
+  .printTitle { letter-spacing: -0.8px; }
 
-  .testimonios { padding: 64px 20px; }
-  .testimonioCard { padding: 32px 28px; border-radius: 28px; }
-  .testimonioCard:nth-child(2) { border-radius: 28px; }
+  .testimonios { padding: 72px 20px; }
+  .testimonioCard { padding: 32px 28px; }
+  .testimonioCard, .testimonioCard:nth-child(2) { border-radius: 28px; }
 
   .ctaFinal { padding: 80px 20px; }
-  .ctaFinalTitle { letter-spacing: -2.5px; }
-  .ctaFinalBtn { padding: 16px 36px; }
+  .ctaFinalTitle { letter-spacing: -3px; }
+  .ctaFinalBtn { padding: 15px 32px; }
 
   .footer { padding: 24px 20px; }
-  .footerInner { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .footerInner { flex-direction: column; align-items: flex-start; gap: 10px; }
 }
