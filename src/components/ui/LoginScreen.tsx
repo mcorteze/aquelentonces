@@ -37,35 +37,55 @@ export function LoginScreen() {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.card} role="main">
-        <p className={styles.brand}>Aquelentonces</p>
+      {/* Panel decorativo izquierdo */}
+      <div className={styles.panel} aria-hidden="true">
+        <div className={styles.panelDecor}>
+          <div className={styles.panelCircleA} />
+          <div className={styles.panelCircleB} />
+        </div>
+        <div className={styles.panelQuote}>
+          <div className={styles.panelLine} />
+          <p className={styles.panelTitle}>
+            El día a día<br />de tu familia,<br /><em>siempre cerca.</em>
+          </p>
+          <p className={styles.panelSub}>
+            Guarda fotos, notas y momentos que no quieres olvidar.
+          </p>
+        </div>
+      </div>
 
-        <h1 className={styles.title}>
-          El espacio de<br />tu familia
-        </h1>
-        <p className={styles.subtitle}>
-          Guarda y vive los momentos del día a día de tus hijos.
-        </p>
+      {/* Panel de login */}
+      <div className={styles.form}>
+        <div className={styles.formInner}>
+          <span className={styles.brandMark}>Aquelentonces</span>
 
-        {error && (
-          <div className={styles.error} role="alert" aria-live="assertive">
-            <span>{error}</span>
-          </div>
-        )}
+          <h1 className={styles.formTitle}>
+            Bienvenida<br />de nuevo
+          </h1>
+          <p className={styles.formSubtitle}>
+            Entra con tu cuenta de Google para ver el diario de tu familia.
+          </p>
 
-        <button
-          className={styles.btn}
-          onClick={handleLogin}
-          disabled={loading}
-          aria-label="Iniciar sesión con tu cuenta de Google"
-        >
-          {loading ? <span className={styles.spinner} aria-hidden="true" /> : <GoogleIcon />}
-          {loading ? 'Entrando...' : 'Entrar con Google'}
-        </button>
+          {error && (
+            <div className={styles.error} role="alert" aria-live="assertive">
+              {error}
+            </div>
+          )}
 
-        <p className={styles.privacy}>
-          Tus datos son privados y solo tú los puedes ver.
-        </p>
+          <button
+            className={styles.btn}
+            onClick={handleLogin}
+            disabled={loading}
+            aria-label="Iniciar sesión con tu cuenta de Google"
+          >
+            {loading ? <span className={styles.spinner} aria-hidden="true" /> : <GoogleIcon />}
+            {loading ? 'Entrando...' : 'Entrar con Google'}
+          </button>
+
+          <p className={styles.privacy}>
+            Tus datos son privados y solo tú los puedes ver.
+          </p>
+        </div>
       </div>
     </div>
   );

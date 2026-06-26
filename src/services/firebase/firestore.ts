@@ -12,10 +12,8 @@ import {
   orderBy,
   query,
   type CollectionReference,
-  type DocumentReference,
 } from 'firebase/firestore';
 import { app } from './init';
-import type { DailyTask } from '../../modules/daily-tasks/types';
 import type { UserProfile, Child, PaletteId } from '../../types';
 
 const db = getFirestore(app);
@@ -115,17 +113,3 @@ export async function deleteChild(uid: string, childId: string): Promise<void> {
   await deleteDoc(ref);
 }
 
-// ── DailyTasks ───────────────────────────────────────────────────────────────
-
-export function getDailyTasksRef(userId: string): CollectionReference<DailyTask> {
-  return collection(db, 'users', userId, 'daily-tasks') as CollectionReference<DailyTask>;
-}
-
-export async function updateTaskStatus(
-  userId: string,
-  taskId: string,
-  status: DailyTask['status']
-): Promise<void> {
-  const ref = doc(db, 'users', userId, 'daily-tasks', taskId) as DocumentReference<DailyTask>;
-  await updateDoc(ref, { status, updatedAt: serverTimestamp() });
-}

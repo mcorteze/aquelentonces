@@ -1,114 +1,582 @@
 .page {
-  padding: 40px 48px;
-  max-width: 900px;
+  padding: 40px 48px 80px;
+  max-width: 960px;
   margin: 0 auto;
-  min-height: 100%;
 }
 
-.header {
+/* ── Tabs ──────────────────────────────────────────────────────────────────── */
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 40px;
+  background: var(--aq-s-bg-2);
+  border-radius: var(--aq-radio-pill);
+  padding: 4px;
+  width: fit-content;
+}
+
+.tab {
+  padding: 10px 24px;
+  border-radius: var(--aq-radio-pill);
+  border: none;
+  background: none;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--aq-font);
+  color: var(--aq-s-texto-suave);
+  cursor: pointer;
+  transition: background var(--aq-transition), color var(--aq-transition);
+}
+
+.tab:hover {
+  color: var(--aq-s-texto);
+}
+
+.tabActive {
+  background: var(--aq-s-card);
+  color: var(--aq-s-texto-fuerte);
+  box-shadow: var(--aq-sombra-sm);
+}
+
+/* ── Encabezado ────────────────────────────────────────────────────────────── */
+
+.sectionHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
   margin-bottom: 36px;
+  gap: 20px;
 }
 
-.title {
-  font-size: var(--sofia-fs-title);
-  font-weight: 800;
-  color: var(--sofia-texto-fuerte);
-  margin-bottom: 8px;
+.sectionTitle {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 900;
+  color: var(--aq-s-texto-fuerte);
+  letter-spacing: -1.5px;
+  line-height: 1.0;
+  font-family: var(--aq-font);
 }
 
-.subtitle {
-  font-size: var(--sofia-fs-label);
-  color: var(--sofia-texto-tenue);
+.sectionMeta {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--aq-s-texto-tenue);
+  margin-top: 8px;
+  display: block;
+  font-family: var(--aq-font);
 }
 
-.progress {
-  margin-bottom: 32px;
+.editBtn {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
+  padding: 0 18px;
+  height: 40px;
+  background: none;
+  color: var(--aq-s-texto-suave);
+  border: 1.5px solid var(--aq-s-borde);
+  border-radius: var(--aq-radio-pill);
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--aq-font);
+  cursor: pointer;
+  transition: border-color var(--aq-transition), color var(--aq-transition);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.editBtn:hover {
+  border-color: var(--aq-s-acento);
+  color: var(--aq-s-acento);
+}
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px;
+  height: 44px;
+  background: var(--aq-s-acento);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--aq-radio-pill);
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--aq-font);
+  cursor: pointer;
+  transition: opacity var(--aq-transition);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.addBtn:hover {
+  opacity: 0.88;
+}
+
+/* ── Progress bar ──────────────────────────────────────────────────────────── */
+
+.progressWrap {
+  margin-bottom: 40px;
+}
+
+.progressRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
 }
 
 .progressBar {
   flex: 1;
-  height: 10px;
-  border-radius: var(--sofia-radio-pill);
-  background: var(--sofia-borde);
+  height: 6px;
+  background: var(--aq-s-borde);
+  border-radius: var(--aq-radio-pill);
   overflow: hidden;
 }
 
 .progressFill {
   height: 100%;
-  background: var(--sofia-exito);
-  border-radius: var(--sofia-radio-pill);
-  transition: width 0.5s ease;
+  background: var(--aq-s-acento);
+  border-radius: var(--aq-radio-pill);
+  transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .progressLabel {
-  font-size: var(--sofia-fs-label);
-  color: var(--sofia-texto-suave);
-  white-space: nowrap;
+  font-size: 13px;
   font-weight: 700;
+  color: var(--aq-s-texto-tenue);
+  font-family: var(--aq-font);
+  min-width: 32px;
+  text-align: right;
 }
+
+.progressDone {
+  font-size: 13px;
+  color: var(--aq-s-texto-tenue);
+  font-family: var(--aq-font);
+  font-weight: 500;
+}
+
+/* ── Grilla de cards de tarea ──────────────────────────────────────────────── */
+
+.taskGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* Card individual */
+.taskCard {
+  position: relative;
+  border-radius: var(--aq-radio-lg);
+  overflow: hidden;
+  background: var(--aq-s-card);
+  box-shadow: var(--aq-sombra-sm);
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition:
+    box-shadow var(--aq-transition),
+    border-color var(--aq-transition),
+    opacity var(--aq-transition);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.taskCard:hover {
+  box-shadow: var(--aq-sombra);
+}
+
+.taskCard:active {
+  opacity: 0.85;
+}
+
+/* Card completada */
+.taskCardDone {
+  border-color: var(--aq-s-acento);
+}
+
+/* Imagen de la tarea */
+.taskImageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--aq-s-bg-2);
+}
+
+.taskImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+/* Overlay oscuro al completar */
+.taskImageOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(65, 113, 120, 0.55);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.taskCardDone .taskImageOverlay {
+  opacity: 1;
+}
+
+/* Check grande centrado sobre la imagen */
+.taskImageCheck {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--aq-s-cta);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  transform: scale(0.6);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
+}
+
+.taskCardDone .taskImageCheck {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Cuerpo de la card */
+.taskCardBody {
+  padding: 16px 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.taskCardText {
+  flex: 1;
+  min-width: 0;
+}
+
+.taskCardTitle {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--aq-s-texto-fuerte);
+  font-family: var(--aq-font);
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+
+.taskCardDone .taskCardTitle {
+  color: var(--aq-s-texto-tenue);
+  text-decoration: line-through;
+  text-decoration-color: var(--aq-s-acento);
+  text-decoration-thickness: 2px;
+}
+
+.taskCardVariation {
+  font-size: 12px;
+  color: var(--aq-s-acento);
+  font-weight: 600;
+  font-family: var(--aq-font);
+  line-height: 1.4;
+}
+
+/* Check táctil en la esquina inferior derecha */
+.taskCardCheck {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2.5px solid var(--aq-s-borde);
+  background: var(--aq-s-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    background var(--aq-transition),
+    border-color var(--aq-transition);
+  color: transparent;
+}
+
+.taskCard:hover .taskCardCheck {
+  border-color: var(--aq-s-acento);
+}
+
+.taskCardCheckDone {
+  background: var(--aq-s-acento);
+  border-color: var(--aq-s-acento);
+  color: #FFFFFF;
+}
+
+/* ── Mensaje de todos hechos ───────────────────────────────────────────────── */
+
+.allDoneBanner {
+  margin-top: 32px;
+  padding: 24px 28px;
+  background: var(--aq-s-seccion-verde);
+  border-radius: var(--aq-radio-lg);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.allDoneText {
+  flex: 1;
+}
+
+.allDoneTitle {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--aq-p-negro);
+  font-family: var(--aq-font);
+  letter-spacing: -0.4px;
+  margin-bottom: 4px;
+}
+
+.allDoneSub {
+  font-size: 14px;
+  color: var(--aq-p-gris-60);
+  font-family: var(--aq-font);
+}
+
+/* ── Estado vacío ──────────────────────────────────────────────────────────── */
 
 .empty {
   text-align: center;
   padding: 80px 24px;
-  color: var(--sofia-texto-tenue);
 }
 
 .emptyIcon {
-  font-size: 72px;
+  color: var(--aq-s-borde);
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.emptyTitle {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--aq-s-texto-suave);
+  font-family: var(--aq-font);
+  margin-bottom: 10px;
+  letter-spacing: -0.4px;
 }
 
 .emptyText {
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 15px;
+  color: var(--aq-s-texto-tenue);
+  font-family: var(--aq-font);
+  line-height: 1.7;
+  max-width: 300px;
+  margin: 0 auto 28px;
 }
 
-.error {
-  background: rgba(192, 48, 64, 0.12);
-  border: 1px solid var(--sofia-error);
-  border-radius: var(--sofia-radio);
-  padding: 20px 24px;
+.emptyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 28px;
+  height: 52px;
+  background: var(--aq-s-acento);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--aq-radio-pill);
+  font-size: 16px;
+  font-weight: 700;
+  font-family: var(--aq-font);
+  cursor: pointer;
+  transition: opacity var(--aq-transition);
+}
+
+.emptyBtn:hover {
+  opacity: 0.88;
+}
+
+/* ── Vista Mi Rutina ───────────────────────────────────────────────────────── */
+
+.templateList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.templateItem {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--aq-s-card);
+  border: 1.5px solid var(--aq-s-borde-suave);
+  border-radius: var(--aq-radio);
+}
+
+/* Miniatura de imagen en la lista de rutina */
+.templateThumb {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--aq-s-bg-2);
+}
+
+.templateMain {
+  flex: 1;
+  min-width: 0;
+}
+
+.templateTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--aq-s-texto-fuerte);
+  font-family: var(--aq-font);
+  margin-bottom: 5px;
+}
+
+.templateDays {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.templateDayChip {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--aq-font);
+  padding: 3px 8px;
+  background: var(--aq-s-acento-suave);
+  color: var(--aq-s-acento);
+  border-radius: var(--aq-radio-pill);
+}
+
+.templateVariationNote {
+  font-size: 12px;
+  color: var(--aq-s-texto-tenue);
+  font-family: var(--aq-font);
+  margin-top: 3px;
+}
+
+.templateActions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.iconBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  background: var(--aq-s-bg-2);
+  color: var(--aq-s-texto-suave);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--aq-transition), color var(--aq-transition);
+}
+
+.iconBtn:hover {
+  background: var(--aq-s-borde);
+  color: var(--aq-s-texto-fuerte);
+}
+
+.iconBtnDanger:hover {
+  background: var(--aq-s-error-bg);
+  color: var(--aq-s-error);
+}
+
+/* ── Error ─────────────────────────────────────────────────────────────────── */
+
+.error {
+  background: var(--aq-s-error-bg);
+  border: 1.5px solid var(--aq-s-error);
+  border-radius: var(--aq-radio-sm);
+  padding: 14px 18px;
   margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
 
 .errorText {
-  flex: 1;
-  color: var(--sofia-texto);
-  font-size: var(--sofia-fs-label);
+  font-size: 14px;
+  color: var(--aq-s-error);
+  font-family: var(--aq-font);
+  line-height: 1.5;
 }
 
 .retryBtn {
-  background: var(--sofia-acento);
-  color: var(--sofia-acento-contraste);
-  border-radius: var(--sofia-radio-sm);
-  padding: 10px 20px;
-  font-size: var(--sofia-fs-label);
+  background: none;
+  border: 1.5px solid var(--aq-s-error);
+  color: var(--aq-s-error);
+  border-radius: var(--aq-radio-pill);
+  padding: 6px 14px;
+  font-size: 13px;
   font-weight: 700;
-  font-family: var(--sofia-font);
-  transition: background 0.2s;
+  font-family: var(--aq-font);
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
-.retryBtn:hover {
-  background: var(--sofia-acento-hover);
+/* ── Skeleton ──────────────────────────────────────────────────────────────── */
+
+.skeletonGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.skeletonCard {
+  border-radius: var(--aq-radio-lg);
+  overflow: hidden;
+  background: var(--aq-s-bg-2);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.skeletonCardImg {
+  aspect-ratio: 4 / 3;
+  background: var(--aq-s-borde);
+}
+
+.skeletonCardBody {
+  padding: 14px 16px;
+  height: 52px;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .taskGrid {
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  }
 }
 
 @media (max-width: 768px) {
-  .page {
-    padding: 28px 20px;
+  .page { padding: 24px 16px 64px; }
+  .sectionTitle { font-size: 28px; }
+  .tabs { width: 100%; }
+  .tab { flex: 1; text-align: center; padding: 10px 8px; }
+  .taskGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
-  .title {
-    font-size: 28px;
-  }
+  .taskCardTitle { font-size: 15px; }
 }
 
-@media (max-width: 480px) {
-  .page {
-    padding: 20px 14px;
-  }
+@media (max-width: 400px) {
+  .taskGrid { grid-template-columns: 1fr; }
 }

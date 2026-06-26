@@ -50,6 +50,7 @@ export function AppRouter() {
           <Route index element={<Navigate to="/app/inicio" replace />} />
           <Route path="inicio"            element={<HomePage />} />
           <Route path="tareas"            element={<DailyTasksPage />} />
+          <Route path="diario"            element={<Navigate to="/app/inicio" replace />} />
           <Route path="hijos"             element={<ChildrenListPage />} />
           <Route path="hijos/nuevo"       element={<ChildFormPage />} />
           <Route path="hijos/:id/editar"  element={<ChildFormPage />} />
