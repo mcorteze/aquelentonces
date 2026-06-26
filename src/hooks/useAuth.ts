@@ -1,5 +1,8 @@
 import { useAuthStore } from '../stores/authStore';
 
 export function useAuth() {
-  return useAuthStore((s) => ({ user: s.user, loading: s.loading, error: s.error }));
+  const user    = useAuthStore((s) => s.user);
+  const loading = useAuthStore((s) => s.loading);
+  const error   = useAuthStore((s) => s.error);
+  return { user, loading, error };
 }

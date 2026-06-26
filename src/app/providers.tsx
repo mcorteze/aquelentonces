@@ -6,11 +6,11 @@ import { getUserProfile, upsertUserProfile } from '../services/firebase/firestor
 import type { AppUser, PaletteId } from '../types';
 
 export function FirebaseAuthProvider({ children }: { children: React.ReactNode }) {
-  const { setUser, setLoading } = useAuthStore();
-  const { setPalette } = usePaletteStore();
+  const setUser    = useAuthStore((s) => s.setUser);
+  const setLoading = useAuthStore((s) => s.setLoading);
+  const setPalette = usePaletteStore((s) => s.setPalette);
 
   useEffect(() => {
-    // Aplicar paleta default antes de que Firebase resuelva (evita flash)
     applyPalette('kelvar');
 
     const unsubscribe = onAuthChanged(async (firebaseUser) => {
@@ -23,13 +23,11 @@ export function FirebaseAuthProvider({ children }: { children: React.ReactNode }
         };
         setUser(user);
 
-        // Cargar o crear perfil en Firestore
         try {
           const profile = await getUserProfile(firebaseUser.uid);
           if (profile) {
             setPalette(profile.paletteId as PaletteId);
           } else {
-            // Primera vez: crear perfil base
             await upsertUserProfile(firebaseUser.uid, {
               displayName: firebaseUser.displayName ?? '',
               email: firebaseUser.email ?? '',
@@ -38,7 +36,7 @@ export function FirebaseAuthProvider({ children }: { children: React.ReactNode }
             });
           }
         } catch {
-          // Sin Firebase real todavía: silencioso, no bloquear la app
+          // silencioso — no bloquear la app si Firestore falla
         }
       } else {
         setUser(null);

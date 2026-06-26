@@ -12,6 +12,7 @@ export const PALETTES: { id: PaletteId; label: string; accent: string; bg: strin
 ];
 
 export function usePalette() {
-  const { paletteId, setPalette } = usePaletteStore();
+  const paletteId  = usePaletteStore((s) => s.paletteId);
+  const setPalette = usePaletteStore((s) => s.setPalette);
   return { paletteId, setPalette, palettes: PALETTES };
 }
