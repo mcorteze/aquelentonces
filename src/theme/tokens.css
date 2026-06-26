@@ -1,79 +1,123 @@
-/* ============================================================================
+﻿/* ============================================================================
    TOKENS — Aquelentonces
-   Default: Aurora (crema cálido + rosa coral + texto negro expresivo)
-   Inspiración: BackThen — familiar, humano, cálido, nada de dark por default.
+   Identidad: calida y artesanal. Serif en display, humanista en UI.
+   Paleta: crema papel + terracota + verde musgo + lavanda.
    ============================================================================ */
 
 :root {
   /* Superficies */
-  --sofia-bg:         #FDFAF6;   /* crema base */
-  --sofia-bg-2:       #F5EFE6;   /* crema más profunda */
-  --sofia-card:       #FFFFFF;
-  --sofia-card-suave: #FDF6EE;
+  --aq-bg:         #FDFAF6;
+  --aq-bg-2:       #F2EAE0;
+  --aq-card:       #FFFFFF;
+  --aq-card-suave: #FAF6F0;
 
-  /* Texto */
-  --sofia-texto:        #3D2B1F;
-  --sofia-texto-fuerte: #1A0F0A;
-  --sofia-texto-suave:  #6B4F3A;
-  --sofia-texto-tenue:  #A0806A;
+  /* Texto — negro calido, nunca frio */
+  --aq-texto:        #3A2A1C;
+  --aq-texto-fuerte: #1C1007;
+  --aq-texto-suave:  #6A4E38;
+  --aq-texto-tenue:  #A08060;
 
-  /* Acento principal — rosa coral */
-  --sofia-acento:           #E8594A;
-  --sofia-acento-hover:     #D14234;
-  --sofia-acento-suave:     rgba(232, 89, 74, 0.10);
-  --sofia-acento-borde:     rgba(232, 89, 74, 0.35);
-  --sofia-acento-contraste: #FFFFFF;
-  --sofia-acento-texto:     #C03030;
+  /* Acento 1 — Terracota (CTA principal) */
+  --aq-acento:           #C8502A;
+  --aq-acento-hover:     #A83E1C;
+  --aq-acento-suave:     rgba(200, 80, 42, 0.10);
+  --aq-acento-borde:     rgba(200, 80, 42, 0.30);
+  --aq-acento-contraste: #FFFFFF;
+  --aq-acento-texto:     #A83E1C;
 
-  /* Acción secundaria — verde salvia (como BackThen) */
-  --sofia-accion:       #3D8C6A;
-  --sofia-accion-texto: #2A6A50;
-  --sofia-accion-suave: rgba(61, 140, 106, 0.10);
-  --sofia-accion-borde: rgba(61, 140, 106, 0.35);
+  /* Acento 2 — Verde musgo */
+  --aq-verde:       #4A7C59;
+  --aq-verde-suave: rgba(74, 124, 89, 0.10);
+  --aq-verde-borde: rgba(74, 124, 89, 0.30);
+
+  /* Acento 3 — Lavanda */
+  --aq-lavanda:       #7C6AAA;
+  --aq-lavanda-suave: rgba(124, 106, 170, 0.10);
 
   /* Bordes */
-  --sofia-borde:       #E8DDD4;
-  --sofia-borde-suave: #F0E8E0;
-  --sofia-borde-debil: #F5EFE8;
+  --aq-borde:       #E0D4C8;
+  --aq-borde-suave: #EDE4D8;
+  --aq-borde-debil: #F5EFE8;
 
   /* Estados */
-  --sofia-exito:    #2A8A5A;
-  --sofia-exito-bg: rgba(42, 138, 90, 0.10);
-  --sofia-error:    #C03030;
-  --sofia-aviso:    #C87820;
+  --aq-exito:    #4A7C59;
+  --aq-exito-bg: rgba(74, 124, 89, 0.10);
+  --aq-error:    #B83020;
+  --aq-aviso:    #B87020;
 
-  /* Tareas */
-  --sofia-done:    #2A8A5A;
-  --sofia-pending: #A0806A;
+  /* Sidebar / dark surfaces */
+  --aq-dark:         #1C1007;
+  --aq-dark-texto:   rgba(253, 250, 246, 0.92);
+  --aq-dark-hover:   rgba(200, 80, 42, 0.16);
+  --aq-dark-borde:   rgba(253, 250, 246, 0.10);
 
-  /* Sidebar */
-  --sofia-sidebar-bg:    #1A0F0A;
-  --sofia-sidebar-texto: rgba(253, 250, 246, 0.90);
-  --sofia-sidebar-hover: rgba(232, 89, 74, 0.14);
+  /* Secciones landing */
+  --aq-sec-crema:   #F2EAE0;
+  --aq-sec-verde:   #D4E8DC;
+  --aq-sec-lavanda: #E4DCF0;
+  --aq-sec-salmon:  #F5DDD4;
+  --aq-sec-amarillo:#FBF0D4;
 
-  /* ── Tipografía ─────────────────────────────────────────────── */
-  --sofia-font:         'Plus Jakarta Sans', 'Nunito', system-ui, sans-serif;
-  --sofia-font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+  /* Tipografia */
+  --aq-font-display: 'Playfair Display', Georgia, serif;
+  --aq-font:         'Plus Jakarta Sans', system-ui, sans-serif;
 
-  /* Radios — amigables y redondos */
-  --sofia-radio:      20px;
-  --sofia-radio-sm:   12px;
-  --sofia-radio-pill: 9999px;
+  /* Radios */
+  --aq-radio:      20px;
+  --aq-radio-sm:   12px;
+  --aq-radio-pill: 9999px;
 
-  /* Tipografía */
-  --sofia-fs-title:  40px;
-  --sofia-fs-task:   24px;
-  --sofia-fs-label:  16px;
-  --sofia-fs-small:  14px;
+  /* Tamanos tipograficos */
+  --aq-fs-hero:   clamp(48px, 6vw, 80px);
+  --aq-fs-title:  clamp(28px, 3.5vw, 44px);
+  --aq-fs-task:   22px;
+  --aq-fs-label:  16px;
+  --aq-fs-small:  14px;
 
-  /* Toque */
-  --sofia-touch:    56px;
-  --sofia-touch-lg: 72px;
-
-  /* Secciones con fondo de color (estilo BackThen) */
-  --sofia-section-verde:   #D4EDE0;
-  --sofia-section-lavanda: #E4DCF4;
-  --sofia-section-celeste: #D0E8F8;
-  --sofia-section-salmon:  #FAE0DA;
-  --sofia-section-amarillo:#FFF3D0;
+  /* Aliases compatibilidad con componentes existentes */
+  --sofia-bg:           var(--aq-bg);
+  --sofia-bg-2:         var(--aq-bg-2);
+  --sofia-card:         var(--aq-card);
+  --sofia-card-suave:   var(--aq-card-suave);
+  --sofia-texto:        var(--aq-texto);
+  --sofia-texto-fuerte: var(--aq-texto-fuerte);
+  --sofia-texto-suave:  var(--aq-texto-suave);
+  --sofia-texto-tenue:  var(--aq-texto-tenue);
+  --sofia-acento:           var(--aq-acento);
+  --sofia-acento-hover:     var(--aq-acento-hover);
+  --sofia-acento-suave:     var(--aq-acento-suave);
+  --sofia-acento-borde:     var(--aq-acento-borde);
+  --sofia-acento-contraste: var(--aq-acento-contraste);
+  --sofia-acento-texto:     var(--aq-acento-texto);
+  --sofia-accion:       var(--aq-verde);
+  --sofia-accion-texto: var(--aq-verde);
+  --sofia-accion-suave: var(--aq-verde-suave);
+  --sofia-accion-borde: var(--aq-verde-borde);
+  --sofia-borde:        var(--aq-borde);
+  --sofia-borde-suave:  var(--aq-borde-suave);
+  --sofia-borde-debil:  var(--aq-borde-debil);
+  --sofia-exito:        var(--aq-exito);
+  --sofia-exito-bg:     var(--aq-exito-bg);
+  --sofia-error:        var(--aq-error);
+  --sofia-done:         var(--aq-exito);
+  --sofia-pending:      var(--aq-texto-tenue);
+  --sofia-sidebar-bg:    var(--aq-dark);
+  --sofia-sidebar-texto: var(--aq-dark-texto);
+  --sofia-sidebar-hover: var(--aq-dark-hover);
+  --sofia-font:         var(--aq-font);
+  --sofia-font-display: var(--aq-font-display);
+  --sofia-radio:        var(--aq-radio);
+  --sofia-radio-sm:     var(--aq-radio-sm);
+  --sofia-radio-pill:   var(--aq-radio-pill);
+  --sofia-fs-title:     var(--aq-fs-title);
+  --sofia-fs-task:      var(--aq-fs-task);
+  --sofia-fs-label:     var(--aq-fs-label);
+  --sofia-fs-small:     var(--aq-fs-small);
+  --sofia-touch:        56px;
+  --sofia-touch-lg:     72px;
+  --sofia-section-verde:   var(--aq-sec-verde);
+  --sofia-section-lavanda: var(--aq-sec-lavanda);
+  --sofia-section-celeste: var(--aq-sec-lavanda);
+  --sofia-section-salmon:  var(--aq-sec-salmon);
+  --sofia-section-amarillo:var(--aq-sec-amarillo);
 }

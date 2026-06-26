@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { Spinner } from '../components/ui/Spinner';
 import { LoginScreen } from '../components/ui/LoginScreen';
+import { LandingPage } from '../pages/landing/LandingPage';
 import { AppLayout } from '../layouts/AppLayout';
 import { HomePage } from '../modules/home/HomePage';
 import { DailyTasksPage } from '../modules/daily-tasks/DailyTasksPage';
@@ -24,7 +25,10 @@ export function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Pública — redirige si ya autenticado */}
+        {/* Landing pública */}
+        <Route path="/" element={<LandingPage />} />
+
+        {/* Login — redirige si ya autenticado */}
         <Route
           path="/login"
           element={
@@ -53,7 +57,7 @@ export function AppRouter() {
         </Route>
 
         {/* Catch-all */}
-        <Route path="*" element={<Navigate to="/app/inicio" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );
