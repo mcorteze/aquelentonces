@@ -2,7 +2,7 @@
 Actualizado: 2026-06-26
 
 ## Tarea actual
-Vista "En este día" completada. Próximo: Perfil de hijo expandido.
+Perfil de hijo expandido completado. Próximo: Módulo Fotos comentadas.
 
 ## Decisiones tomadas (acumuladas)
 - 2026-06-26 Paleta definitiva: petróleo #417178, lima #E5FE73, crema #FAF6ED, lavanda #A6B1E7, petróleo oscuro #335B60, verde claro #C0D2C7
@@ -15,6 +15,7 @@ Vista "En este día" completada. Próximo: Perfil de hijo expandido.
 - 2026-06-26 HomePage: rediseñado con cards de colores de marca, sin translateY en hover
 - 2026-06-26 Módulo Rutina Diaria: nuevo modelo TaskTemplate + DaySchedule + DayVariation + DailyInstance
 - 2026-06-26 "En este día": Firestore IN sobre array de fechas (10 años), lavanda como color de sección, agrupado por año
+- 2026-06-26 Perfil de hijo: /app/hijos/:id, ChildProfilePage lavanda + línea de tiempo de entradas propias
 
 ## Concepto Rutina Diaria (CRÍTICO)
 - TaskTemplate: tarea base con días asignados y variaciones por día
@@ -29,14 +30,14 @@ Vista "En este día" completada. Próximo: Perfil de hijo expandido.
 - Login `/login`: REDISEÑADO — layout 2 cols, panel petróleo + form, sin emoji
 - AppLayout sidebar: petróleo correcto, item activo lima, Lucide icons
 - HomePage `/app/inicio`: REDISEÑADO — cards marca, eyebrow, 4 módulos
-- Mis Hijos `/app/hijos`: funcional
-- Mi Perfil `/app/perfil`: funcional
 - DailyTasks `/app/tareas`: REDISEÑADO — tabs Hoy/Mi rutina, CRUD templates, asignación por días, variaciones + animación check
 - Diario `/app/diario`: COMPLETO — línea de tiempo + FAB global + "En este día" (sección lavanda)
+- Mis Hijos `/app/hijos`: lista + cards clicables al perfil
+- Perfil de hijo `/app/hijos/:id`: COMPLETO — header lavanda, "El libro de [nombre]", línea de tiempo propia
+- Mi Perfil `/app/perfil`: funcional
 
 ## Pendiente (orden de prioridad)
-- [ ] Perfil de hijo expandido — línea de tiempo propia por hijo, foto, hitos, "El libro de [nombre]"
-- [ ] Módulo Fotos comentadas
+- [ ] Módulo Fotos comentadas — subir foto con pie de foto, fecha, hijo asociado
 - [ ] Módulo Muro familiar
 - [ ] Módulo Calendario
 - [ ] Resumen mensual generado (diferido)
@@ -48,7 +49,8 @@ Vista "En este día" completada. Próximo: Perfil de hijo expandido.
 - ✅ Sidebar actualizado: enlace a Diario con BookOpen icon
 - ✅ Vista "En este día": hook useThisDayEntries + sección lavanda en DiaryPage + agrupado por año
 - ✅ Animación check pop (scale spring) en cards de rutina
-- ✅ Push a GitHub: commits 3753fd2 + 0a5b03a
+- ✅ Perfil de hijo expandido: ChildProfilePage, ruta :id, cards ChildrenList navegables
+- ✅ Push a GitHub: commits fdc6bd9 + acf0f00
 
 ## Contexto crítico
 - Zustand: selectores individuales `(s) => s.field` — NUNCA destructuring
@@ -61,4 +63,4 @@ Vista "En este día" completada. Próximo: Perfil de hijo expandido.
 ## Historial
 - Sesión anterior: landing v1→v4, sistema tokens 4 capas, paletas, providers fix
 - Sesión previa: identidad interior, módulo Rutina Diaria completo, memoria corregida
-- Sesión actual: Diario + FAB + "En este día" + animación check rutina
+- Sesión actual: Diario + FAB + "En este día" + animación check + perfil de hijo
