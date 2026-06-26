@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import { CheckSquare, Users, User } from 'lucide-react';
 import styles from './HomePage.module.css';
 
 const MODULES = [
-  { to: '/app/tareas',  icon: '✅', label: 'Tareas del día',  desc: 'Las actividades de hoy' },
-  { to: '/app/hijos',   icon: '👨‍👩‍👧', label: 'Mis hijos',      desc: 'Gestiona los perfiles' },
-  { to: '/app/perfil',  icon: '👤', label: 'Mi perfil',       desc: 'Tu cuenta y colores' },
+  { to: '/app/tareas', Icon: CheckSquare, label: 'Tareas del día',  desc: 'Las actividades de hoy' },
+  { to: '/app/hijos',  Icon: Users,       label: 'Mis hijos',       desc: 'Gestiona los perfiles'  },
+  { to: '/app/perfil', Icon: User,        label: 'Mi perfil',       desc: 'Tu cuenta y colores'    },
 ];
 
 function getGreeting(): string {
@@ -23,17 +24,17 @@ export function HomePage() {
     <main className={styles.page}>
       <div className={styles.welcome}>
         <h1 className={styles.greeting}>
-          {getGreeting()}{firstName ? `, ${firstName}` : ''} ⭐
+          {getGreeting()}{firstName ? `, ${firstName}` : ''}
         </h1>
         <p className={styles.subgreeting}>¿Qué quieres hacer hoy?</p>
       </div>
 
       <div className={styles.grid}>
-        {MODULES.map(m => (
-          <Link key={m.to} to={m.to} className={styles.moduleCard}>
-            <span className={styles.moduleIcon} aria-hidden="true">{m.icon}</span>
-            <p className={styles.moduleLabel}>{m.label}</p>
-            <p className={styles.moduleDesc}>{m.desc}</p>
+        {MODULES.map(({ to, Icon, label, desc }) => (
+          <Link key={to} to={to} className={styles.moduleCard}>
+            <Icon size={36} strokeWidth={1.75} className={styles.moduleIcon} />
+            <p className={styles.moduleLabel}>{label}</p>
+            <p className={styles.moduleDesc}>{desc}</p>
           </Link>
         ))}
       </div>

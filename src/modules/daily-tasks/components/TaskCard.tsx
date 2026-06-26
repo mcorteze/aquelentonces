@@ -3,20 +3,6 @@ import { TaskStatusControl } from './TaskStatusControl';
 import styles from './TaskCard.module.css';
 import { cn } from '../../../utils/cn';
 
-const TASK_EMOJIS: Record<string, string> = {
-  teeth:      '🦷',
-  bath:       '🛁',
-  breakfast:  '🥣',
-  school:     '🎒',
-  lunch:      '🍱',
-  nap:        '😴',
-  dinner:     '🍽️',
-  bedtime:    '🌙',
-  read:       '📚',
-  play:       '🎮',
-  default:    '⭐',
-};
-
 interface Props {
   task: DailyTask;
   onToggle: () => void;
@@ -24,35 +10,29 @@ interface Props {
 
 export function TaskCard({ task, onToggle }: Props) {
   const assetPath = `/assets/tasks/${task.imageKey}.png`;
-  const emoji = TASK_EMOJIS[task.imageKey] ?? TASK_EMOJIS.default;
 
   return (
     <article className={cn(styles.card, task.status === 'done' && styles.done)}>
       <TaskStatusControl status={task.status} onToggle={onToggle} />
-      <ImageOrPlaceholder src={assetPath} emoji={emoji} alt={task.title} />
+      <ImageOrPlaceholder src={assetPath} alt={task.title} label={task.imageKey} />
       <p className={styles.title}>{task.title}</p>
     </article>
   );
 }
 
-function ImageOrPlaceholder({ src, emoji, alt }: { src: string; emoji: string; alt: string }) {
+function ImageOrPlaceholder({ src, alt, label }: { src: string; alt: string; label: string }) {
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    (e.currentTarget as HTMLImageElement).style.display = 'none';
-    const sibling = (e.currentTarget as HTMLImageElement).nextElementSibling as HTMLElement | null;
+    const img = e.currentTarget;
+    img.style.display = 'none';
+    const sibling = img.nextElementSibling as HTMLElement | null;
     if (sibling) sibling.style.display = 'flex';
   };
 
   return (
     <>
-      <img
-        src={src}
-        alt={alt}
-        className={styles.image}
-        onError={handleError}
-        referrerPolicy="no-referrer"
-      />
-      <div className={styles.placeholder} style={{ display: 'none' }}>
-        {emoji}
+      <img src={src} alt={alt} className={styles.image} onError={handleError} />
+      <div className={styles.placeholder} style={{ display: 'none' }} aria-hidden="true">
+        <span className={styles.placeholderLabel}>{label}</span>
       </div>
     </>
   );

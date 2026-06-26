@@ -1,29 +1,30 @@
 import { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import { Home, Users, CheckSquare, User, Menu, X } from 'lucide-react';
 import styles from './AppLayout.module.css';
 
 const NAV_ITEMS = [
-  { to: '/app/inicio',  label: 'Inicio',         icon: '🏠' },
-  { to: '/app/hijos',   label: 'Mis hijos',       icon: '👨‍👩‍👧' },
-  { to: '/app/tareas',  label: 'Tareas del día',  icon: '✅' },
-  { to: '/app/perfil',  label: 'Mi perfil',       icon: '👤' },
+  { to: '/app/inicio', label: 'Inicio',        Icon: Home        },
+  { to: '/app/hijos',  label: 'Mis hijos',     Icon: Users       },
+  { to: '/app/tareas', label: 'Tareas del día', Icon: CheckSquare },
+  { to: '/app/perfil', label: 'Mi perfil',     Icon: User        },
 ];
 
 function NavItems({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <>
-      {NAV_ITEMS.map(item => (
+      {NAV_ITEMS.map(({ to, label, Icon }) => (
         <NavLink
-          key={item.to}
-          to={item.to}
+          key={to}
+          to={to}
           className={({ isActive }) =>
             `${styles.navItem} ${isActive ? styles.navItemActive : ''}`
           }
           onClick={onNavigate}
         >
-          <span className={styles.navIcon} aria-hidden="true">{item.icon}</span>
-          {item.label}
+          <Icon size={20} className={styles.navIcon} strokeWidth={2} />
+          {label}
         </NavLink>
       ))}
     </>
@@ -33,22 +34,18 @@ function NavItems({ onNavigate }: { onNavigate?: () => void }) {
 export function AppLayout() {
   const { user } = useAuth();
   const [drawerOpen, setDrawerOpen] = useState(false);
-
   const closeDrawer = () => setDrawerOpen(false);
 
   return (
     <div className={styles.shell}>
-      {/* ── Sidebar — visible en tablet/desktop ── */}
+      {/* Sidebar — tablet/desktop */}
       <aside className={styles.sidebar} aria-label="Navegación principal">
         <div className={styles.sidebarLogo}>
-          <span className={styles.logoMark} aria-hidden="true">⭐</span>
           <span className={styles.logoText}>Aquelentonces</span>
         </div>
-
         <nav className={styles.sidebarNav}>
           <NavItems />
         </nav>
-
         <div className={styles.sidebarFooter}>
           <NavLink to="/app/perfil" className={styles.avatarRow}>
             {user?.photoURL ? (
@@ -59,7 +56,9 @@ export function AppLayout() {
                 referrerPolicy="no-referrer"
               />
             ) : (
-              <div className={styles.avatarPlaceholder} aria-hidden="true">👤</div>
+              <div className={styles.avatarPlaceholder} aria-hidden="true">
+                <User size={20} />
+              </div>
             )}
             <span className={styles.avatarName}>
               {user?.displayName ?? user?.email ?? 'Mi perfil'}
@@ -68,7 +67,7 @@ export function AppLayout() {
         </div>
       </aside>
 
-      {/* ── Topbar — visible en móvil ── */}
+      {/* Main */}
       <div className={styles.main}>
         <header className={styles.topbar}>
           <button
@@ -77,9 +76,9 @@ export function AppLayout() {
             aria-label="Abrir menú"
             aria-expanded={drawerOpen}
           >
-            ☰
+            <Menu size={24} />
           </button>
-          <span className={styles.topbarLogo}>⭐ Aquelentonces</span>
+          <span className={styles.topbarLogo}>Aquelentonces</span>
           <NavLink to="/app/perfil" aria-label="Mi perfil">
             {user?.photoURL ? (
               <img
@@ -89,15 +88,16 @@ export function AppLayout() {
                 referrerPolicy="no-referrer"
               />
             ) : (
-              <div className={styles.avatarPlaceholder} aria-hidden="true">👤</div>
+              <div className={styles.avatarPlaceholder} aria-hidden="true">
+                <User size={18} />
+              </div>
             )}
           </NavLink>
         </header>
-
         <Outlet />
       </div>
 
-      {/* ── Drawer móvil ── */}
+      {/* Overlay + Drawer móvil */}
       <div
         className={`${styles.overlay} ${drawerOpen ? styles.overlayVisible : ''}`}
         onClick={closeDrawer}
@@ -109,10 +109,9 @@ export function AppLayout() {
         aria-hidden={!drawerOpen}
       >
         <button className={styles.drawerClose} onClick={closeDrawer} aria-label="Cerrar menú">
-          ✕
+          <X size={20} />
         </button>
         <div className={styles.sidebarLogo} style={{ marginTop: 12 }}>
-          <span className={styles.logoMark} aria-hidden="true">⭐</span>
           <span className={styles.logoText}>Aquelentonces</span>
         </div>
         <div className={styles.sidebarNav}>

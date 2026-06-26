@@ -3,7 +3,7 @@ import { signInWithGoogle } from '../../services/firebase/auth';
 import styles from './LoginScreen.module.css';
 
 const AUTH_ERROR_MESSAGES: Record<string, string> = {
-  'auth/popup-blocked':       'Tu navegador bloqueó la ventana de inicio. Permite ventanas emergentes e intenta de nuevo.',
+  'auth/popup-blocked':           'Tu navegador bloqueó la ventana de inicio. Permite ventanas emergentes e intenta de nuevo.',
   'auth/cancelled-popup-request': 'La sesión fue cancelada. Haz clic en "Entrar con Google" de nuevo.',
   'auth/popup-closed-by-user':    'Cerraste la ventana antes de terminar. Intenta de nuevo cuando quieras.',
   'auth/network-request-failed':  'Sin conexión a internet. Verifica tu red e intenta de nuevo.',
@@ -38,7 +38,6 @@ export function LoginScreen() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.card} role="main">
-        <div className={styles.illustration} aria-hidden="true">⭐</div>
         <p className={styles.brand}>Aquelentonces</p>
 
         <h1 className={styles.title}>
@@ -50,7 +49,6 @@ export function LoginScreen() {
 
         {error && (
           <div className={styles.error} role="alert" aria-live="assertive">
-            <span className={styles.errorIcon} aria-hidden="true">⚠️</span>
             <span>{error}</span>
           </div>
         )}
@@ -66,7 +64,6 @@ export function LoginScreen() {
         </button>
 
         <p className={styles.privacy}>
-          <span className={styles.privacyIcon} aria-hidden="true">🔒</span>
           Tus datos son privados y solo tú los puedes ver.
         </p>
       </div>

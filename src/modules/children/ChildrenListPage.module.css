@@ -138,10 +138,34 @@
   padding: 80px 24px;
 }
 
-.emptyIcon {
-  font-size: 80px;
+.emptyIconWrap {
+  display: flex;
+  justify-content: center;
   margin-bottom: 24px;
+  color: var(--sofia-texto-tenue);
+}
+
+.childAvatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--sofia-section-salmon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.childAvatarEmoji {
+  font-size: 28px;
   line-height: 1;
+}
+
+.deleteBtnConfirm {
+  color: var(--sofia-error) !important;
+  border-color: rgba(192,48,48,0.30) !important;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .emptyTitle {

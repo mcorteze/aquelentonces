@@ -1,22 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useChildren } from './hooks/useChildren';
+import { ArrowLeft } from 'lucide-react';
 import styles from './ChildFormPage.module.css';
 
 const AVATAR_EMOJIS = [
-  '⭐','🌟','🌈','🦋','🐱','🐶','🐰','🦊','🐻','🐼',
+  '🌟','🌈','🦋','🐱','🐶','🐰','🦊','🐻','🐼',
   '🐨','🦁','🐸','🐧','🦄','🐙','🌺','🍀','🎀','🎨',
-  '🚀','🌙','☀️','🍭','🎮','🎵','🏆','💎','🌸','🎠',
+  '🚀','🌙','☀️','🍭','🎵','🏆','💎','🌸','🎠','🌊','🦋',
 ];
 
-function today() {
-  return new Date().toISOString().slice(0, 10);
-}
+function today() { return new Date().toISOString().slice(0, 10); }
 
-interface FormErrors {
-  name?: string;
-  birthDate?: string;
-}
+interface FormErrors { name?: string; birthDate?: string; }
 
 export function ChildFormPage() {
   const navigate = useNavigate();
@@ -26,12 +22,11 @@ export function ChildFormPage() {
 
   const [name, setName] = useState('');
   const [birthDate, setBirthDate] = useState('');
-  const [avatarEmoji, setAvatarEmoji] = useState('⭐');
+  const [avatarEmoji, setAvatarEmoji] = useState('🌟');
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitting, setSubmitting] = useState(false);
   const [globalError, setGlobalError] = useState<string | null>(null);
 
-  // Populate form in edit mode
   useEffect(() => {
     if (isEdit && !loading) {
       const child = children.find(c => c.id === id);
@@ -62,13 +57,7 @@ export function ChildFormPage() {
       if (isEdit && id) {
         await update(id, { name: name.trim(), birthDate, avatarEmoji });
       } else {
-        await add({
-          name: name.trim(),
-          birthDate,
-          avatarEmoji,
-          order: children.length,
-          active: true,
-        });
+        await add({ name: name.trim(), birthDate, avatarEmoji, order: children.length, active: true });
       }
       navigate('/app/hijos');
     } catch {
@@ -81,7 +70,8 @@ export function ChildFormPage() {
   return (
     <main className={styles.page}>
       <button className={styles.backBtn} onClick={() => navigate('/app/hijos')}>
-        ← Volver
+        <ArrowLeft size={18} strokeWidth={2} />
+        Volver
       </button>
 
       <h1 className={styles.title}>
@@ -89,7 +79,6 @@ export function ChildFormPage() {
       </h1>
 
       <form className={styles.card} onSubmit={handleSubmit} noValidate>
-        {/* Nombre */}
         <div className={styles.field}>
           <label htmlFor="child-name" className={`${styles.label} ${styles.labelRequired}`}>
             Nombre
@@ -112,7 +101,6 @@ export function ChildFormPage() {
           )}
         </div>
 
-        {/* Fecha de nacimiento */}
         <div className={styles.field}>
           <label htmlFor="child-birth" className={`${styles.label} ${styles.labelRequired}`}>
             Fecha de nacimiento
@@ -132,14 +120,9 @@ export function ChildFormPage() {
           )}
         </div>
 
-        {/* Avatar emoji */}
         <div className={styles.field}>
-          <p className={styles.label} id="avatar-label">Elige un emoji</p>
-          <div
-            className={styles.emojiGrid}
-            role="radiogroup"
-            aria-labelledby="avatar-label"
-          >
+          <p className={styles.label} id="avatar-label">Avatar</p>
+          <div className={styles.emojiGrid} role="radiogroup" aria-labelledby="avatar-label">
             {AVATAR_EMOJIS.map(emoji => (
               <button
                 key={emoji}
@@ -148,32 +131,22 @@ export function ChildFormPage() {
                 onClick={() => setAvatarEmoji(emoji)}
                 role="radio"
                 aria-checked={avatarEmoji === emoji}
-                aria-label={`Emoji ${emoji}`}
+                aria-label={`Avatar ${emoji}`}
               >
                 {emoji}
               </button>
             ))}
           </div>
+          <p className={styles.fieldHint}>El avatar es temporal — pronto podrás subir una foto.</p>
         </div>
 
-        {globalError && (
-          <p className={styles.globalError} role="alert">{globalError}</p>
-        )}
+        {globalError && <p className={styles.globalError} role="alert">{globalError}</p>}
 
         <div className={styles.actions}>
-          <button
-            type="submit"
-            className={styles.submitBtn}
-            disabled={submitting}
-          >
+          <button type="submit" className={styles.submitBtn} disabled={submitting}>
             {submitting ? 'Guardando...' : isEdit ? 'Guardar cambios' : 'Agregar hijo/a'}
           </button>
-          <button
-            type="button"
-            className={styles.cancelBtn}
-            onClick={() => navigate('/app/hijos')}
-            disabled={submitting}
-          >
+          <button type="button" className={styles.cancelBtn} onClick={() => navigate('/app/hijos')} disabled={submitting}>
             Cancelar
           </button>
         </div>

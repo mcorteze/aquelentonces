@@ -3,6 +3,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { usePalette, PALETTES } from '../../hooks/usePalette';
 import { updateUserDisplayName, updateUserPalette } from '../../services/firebase/firestore';
 import { signOut } from '../../services/firebase/auth';
+import { Check, User } from 'lucide-react';
 import type { PaletteId } from '../../types';
 import styles from './ProfilePage.module.css';
 
@@ -16,9 +17,7 @@ export function ProfilePage() {
   const [logoutPhase, setLogoutPhase] = useState<'idle' | 'confirm'>('idle');
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    setDisplayName(user?.displayName ?? '');
-  }, [user]);
+  useEffect(() => { setDisplayName(user?.displayName ?? ''); }, [user]);
 
   const handleSaveName = async () => {
     if (!user || !displayName.trim()) return;
@@ -39,11 +38,7 @@ export function ProfilePage() {
   const handlePaletteChange = async (id: PaletteId) => {
     setPalette(id);
     if (!user) return;
-    try {
-      await updateUserPalette(user.uid, id);
-    } catch {
-      // Silencioso: la paleta ya está aplicada visualmente
-    }
+    try { await updateUserPalette(user.uid, id); } catch { /* silencioso */ }
   };
 
   const handleLogout = async () => {
@@ -59,7 +54,7 @@ export function ProfilePage() {
 
   return (
     <main className={styles.page}>
-      {/* ── Identidad ── */}
+      {/* Tu cuenta */}
       <section className={styles.section} aria-labelledby="identity-title">
         <p className={styles.sectionTitle} id="identity-title">Tu cuenta</p>
 
@@ -72,7 +67,9 @@ export function ProfilePage() {
               referrerPolicy="no-referrer"
             />
           ) : (
-            <div className={styles.avatarPlaceholder} aria-hidden="true">👤</div>
+            <div className={styles.avatarPlaceholder} aria-hidden="true">
+              <User size={40} strokeWidth={1.5} />
+            </div>
           )}
           <div className={styles.avatarInfo}>
             <p className={styles.userName}>{user.displayName ?? 'Sin nombre'}</p>
@@ -88,11 +85,8 @@ export function ProfilePage() {
           type="text"
           className={styles.input}
           value={displayName}
-          onChange={(e) => {
-            setDisplayName(e.target.value);
-            setSaveStatus('idle');
-          }}
-          onKeyDown={(e) => e.key === 'Enter' && handleSaveName()}
+          onChange={e => { setDisplayName(e.target.value); setSaveStatus('idle'); }}
+          onKeyDown={e => e.key === 'Enter' && handleSaveName()}
           placeholder="¿Cómo te llamas?"
           maxLength={40}
           autoComplete="off"
@@ -108,7 +102,9 @@ export function ProfilePage() {
             {saving ? 'Guardando...' : 'Guardar nombre'}
           </button>
           {saveStatus === 'saved' && (
-            <span className={styles.saveStatus} role="status">✓ Guardado</span>
+            <span className={styles.saveStatus} role="status">
+              <Check size={14} strokeWidth={2.5} /> Guardado
+            </span>
           )}
           {saveStatus === 'error' && (
             <span className={styles.saveError} role="alert">No se pudo guardar. Intenta de nuevo.</span>
@@ -116,7 +112,7 @@ export function ProfilePage() {
         </div>
       </section>
 
-      {/* ── Paleta de colores ── */}
+      {/* Color de la app */}
       <section className={styles.section} aria-labelledby="palette-title">
         <p className={styles.sectionTitle} id="palette-title">Color de la app</p>
         <div className={styles.palettesGrid} role="radiogroup" aria-label="Elige tu paleta de colores">
@@ -129,25 +125,23 @@ export function ProfilePage() {
               aria-checked={paletteId === p.id}
               aria-label={`Paleta ${p.label}`}
             >
-              <div
-                className={styles.palettePreview}
-                style={{ background: p.bg }}
-              >
-                <div
-                  className={styles.paletteAccentDot}
-                  style={{ background: p.accent }}
-                />
+              <div className={styles.palettePreview} style={{ background: p.bg }}>
+                <div className={styles.paletteAccentDot} style={{ background: p.accent }} />
               </div>
               <div className={styles.paletteName}>
                 <span>{p.label}</span>
-                {paletteId === p.id && <span className={styles.paletteCheck} aria-hidden="true">✓</span>}
+                {paletteId === p.id && (
+                  <span className={styles.paletteCheck} aria-hidden="true">
+                    <Check size={13} strokeWidth={3} />
+                  </span>
+                )}
               </div>
             </button>
           ))}
         </div>
       </section>
 
-      {/* ── Cerrar sesión ── */}
+      {/* Cerrar sesión */}
       <section className={styles.section}>
         <div className={styles.logoutSection}>
           <button

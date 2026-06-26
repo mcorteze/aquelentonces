@@ -28,11 +28,18 @@
   height: 120px;
   border-radius: var(--sofia-radio-sm);
   flex-shrink: 0;
-  background: var(--sofia-accion-suave);
+  background: var(--sofia-bg-2);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 56px;
+}
+
+.placeholderLabel {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--sofia-texto-tenue);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .title {

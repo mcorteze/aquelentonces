@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useChildren } from './hooks/useChildren';
+import { Plus, Pencil, Trash2, Users } from 'lucide-react';
 import styles from './ChildrenListPage.module.css';
 
 function calcAge(birthDate: string): string {
@@ -26,11 +27,7 @@ export function ChildrenListPage() {
     }
     setDeletingId(id);
     setConfirmId(null);
-    try {
-      await remove(id);
-    } finally {
-      setDeletingId(null);
-    }
+    try { await remove(id); } finally { setDeletingId(null); }
   };
 
   return (
@@ -38,7 +35,8 @@ export function ChildrenListPage() {
       <div className={styles.header}>
         <h1 className={styles.title}>Mis hijos e hijas</h1>
         <button className={styles.addBtn} onClick={() => navigate('/app/hijos/nuevo')}>
-          + Agregar
+          <Plus size={18} strokeWidth={2.5} />
+          Agregar
         </button>
       </div>
 
@@ -55,20 +53,25 @@ export function ChildrenListPage() {
         </ul>
       ) : children.length === 0 ? (
         <div className={styles.empty}>
-          <div className={styles.emptyIcon}>👨‍👩‍👧</div>
+          <div className={styles.emptyIconWrap} aria-hidden="true">
+            <Users size={56} strokeWidth={1.5} />
+          </div>
           <p className={styles.emptyTitle}>Aún no agregaste hijos</p>
           <p className={styles.emptyText}>
             Agrega a tus hijos e hijas para organizar<br />sus actividades desde la app.
           </p>
           <button className={styles.addBtn} onClick={() => navigate('/app/hijos/nuevo')}>
-            + Agregar el primero
+            <Plus size={18} strokeWidth={2.5} />
+            Agregar el primero
           </button>
         </div>
       ) : (
         <ul className={styles.list}>
           {children.map(child => (
             <li key={child.id} className={styles.childCard}>
-              <span className={styles.childEmoji} aria-hidden="true">{child.avatarEmoji}</span>
+              <div className={styles.childAvatar} aria-hidden="true">
+                <span className={styles.childAvatarEmoji}>{child.avatarEmoji}</span>
+              </div>
               <div className={styles.childInfo}>
                 <p className={styles.childName}>{child.name}</p>
                 <p className={styles.childAge}>{calcAge(child.birthDate)}</p>
@@ -79,15 +82,21 @@ export function ChildrenListPage() {
                   onClick={() => navigate(`/app/hijos/${child.id}/editar`)}
                   aria-label={`Editar ${child.name}`}
                 >
+                  <Pencil size={16} strokeWidth={2} />
                   Editar
                 </button>
                 <button
-                  className={styles.deleteBtn}
+                  className={`${styles.deleteBtn} ${confirmId === child.id ? styles.deleteBtnConfirm : ''}`}
                   onClick={() => handleDelete(child.id)}
                   disabled={deletingId === child.id}
                   aria-label={confirmId === child.id ? `Confirmar eliminar a ${child.name}` : `Eliminar a ${child.name}`}
                 >
-                  {deletingId === child.id ? '...' : confirmId === child.id ? '¿Eliminar?' : '✕'}
+                  {deletingId === child.id
+                    ? '...'
+                    : confirmId === child.id
+                      ? '¿Eliminar?'
+                      : <Trash2 size={16} strokeWidth={2} />
+                  }
                 </button>
               </div>
             </li>
