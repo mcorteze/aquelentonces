@@ -72,13 +72,13 @@
 }
 
 .navItemActive {
-  background: var(--sofia-acento);
-  color: #FFFFFF;
+  background: var(--aq-s-sidebar-activo);
+  color: var(--aq-s-sidebar-activo-texto);
 }
 
 .navItemActive:hover {
-  background: var(--sofia-acento-hover);
-  color: #FFFFFF;
+  background: var(--aq-s-cta-hover);
+  color: var(--aq-s-sidebar-activo-texto);
 }
 
 .navIcon {

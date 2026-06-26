@@ -7,7 +7,7 @@ interface PaletteState {
 }
 
 export const usePaletteStore = create<PaletteState>((set) => ({
-  paletteId: 'aurora',
+  paletteId: 'aquelentonces',
   setPalette: (paletteId) => {
     document.documentElement.setAttribute('data-palette', paletteId);
     set({ paletteId });

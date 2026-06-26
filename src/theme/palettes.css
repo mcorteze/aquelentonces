@@ -1,271 +1,159 @@
-﻿/* ============================================================================
-   PALETAS — Aquelentonces
-   Cada bloque [data-palette="X"] sobreescribe los tokens --sofia-*.
-   El default (sin data-palette) es Aurora, definido en tokens.css.
+/* ============================================================================
+   TEMAS — Aquelentonces
+   Cada tema sobreescribe SOLO los tokens semánticos (--aq-s-*).
+   Los tokens estructurales (tipografía, radios, espaciado) NO se tocan.
+
+   Tema activo se aplica con data-palette="<id>" en <html>.
+   Ejemplo: document.documentElement.dataset.palette = 'aquelentonces'
+
+   TEMAS DISPONIBLES:
+   - aquelentonces  ← principal y único por ahora (crema + petróleo + lima)
+   - kelvar         ← oscuro (azul medianoche, para quienes prefieren dark)
    ============================================================================ */
 
-/* -- AURORA — Crema calido + rosa coral (default) -------------------------- */
-[data-palette="aurora"] {
-  --sofia-bg:           #FDFAF6;
-  --sofia-bg-2:         #F5EFE6;
-  --sofia-card:         #FFFFFF;
-  --sofia-card-suave:   #FDF6EE;
-  --sofia-texto:        #3D2B1F;
-  --sofia-texto-fuerte: #1A0F0A;
-  --sofia-texto-suave:  #6B4F3A;
-  --sofia-texto-tenue:  #A0806A;
-  --sofia-acento:           #E8594A;
-  --sofia-acento-hover:     #D14234;
-  --sofia-acento-suave:     rgba(232,89,74,0.10);
-  --sofia-acento-borde:     rgba(232,89,74,0.35);
-  --sofia-acento-contraste: #FFFFFF;
-  --sofia-acento-texto:     #C03030;
-  --sofia-accion:       #3D8C6A;
-  --sofia-accion-texto: #2A6A50;
-  --sofia-accion-suave: rgba(61,140,106,0.10);
-  --sofia-accion-borde: rgba(61,140,106,0.35);
-  --sofia-borde:        #E8DDD4;
-  --sofia-borde-suave:  #F0E8E0;
-  --sofia-borde-debil:  #F5EFE8;
-  --sofia-exito:        #2A8A5A;
-  --sofia-exito-bg:     rgba(42,138,90,0.10);
-  --sofia-error:        #C03030;
-  --sofia-done:         #2A8A5A;
-  --sofia-pending:      #A0806A;
-  --sofia-sidebar-bg:    #1A0F0A;
-  --sofia-sidebar-texto: rgba(253,250,246,0.90);
-  --sofia-sidebar-hover: rgba(232,89,74,0.14);
-  --sofia-section-verde:   #D4EDE0;
-  --sofia-section-lavanda: #E4DCF4;
-  --sofia-section-celeste: #D0E8F8;
-  --sofia-section-salmon:  #FAE0DA;
-  --sofia-section-amarillo:#FFF3D0;
+
+/* ==========================================================================
+   AQUELENTONCES — Crema cálida · Petróleo · Lima
+   Identidad visual de la marca. Cálido, artesanal, humano.
+   ========================================================================== */
+
+[data-palette="aquelentonces"],
+:root {   /* :root asegura que el tema funcione aunque no haya data-palette */
+
+  /* Superficies */
+  --aq-s-bg:          #FAF6ED;
+  --aq-s-bg-2:        #EDE8DC;
+  --aq-s-card:        #FFFFFF;
+  --aq-s-card-suave:  #F5F0E6;
+
+  /* Texto */
+  --aq-s-texto:        #333333;
+  --aq-s-texto-fuerte: #1A1A1A;
+  --aq-s-texto-suave:  #555555;
+  --aq-s-texto-tenue:  #888888;
+
+  /* Borde */
+  --aq-s-borde:       #DDD8CC;
+  --aq-s-borde-suave: #E8E4D8;
+  --aq-s-borde-debil: #F0EDE4;
+
+  /* Acento primario — petróleo */
+  --aq-s-acento:           #417178;
+  --aq-s-acento-hover:     #335B60;
+  --aq-s-acento-suave:     rgba(65,113,120,0.10);
+  --aq-s-acento-borde:     rgba(65,113,120,0.28);
+  --aq-s-acento-contraste: #FFFFFF;
+  --aq-s-acento-texto:     #417178;
+
+  /* Acción secundaria */
+  --aq-s-accion:       #417178;
+  --aq-s-accion-texto: #417178;
+  --aq-s-accion-suave: rgba(65,113,120,0.10);
+  --aq-s-accion-borde: rgba(65,113,120,0.28);
+
+  /* CTA destacado — lima */
+  --aq-s-cta:           #E5FE73;
+  --aq-s-cta-hover:     #D4EE60;
+  --aq-s-cta-contraste: #1A1A1A;
+
+  /* Estados */
+  --aq-s-exito:    #2E7A4A;
+  --aq-s-exito-bg: rgba(46,122,74,0.10);
+  --aq-s-error:    #B83020;
+  --aq-s-error-bg: rgba(184,48,32,0.10);
+  --aq-s-aviso:    #B87020;
+  --aq-s-done:     #2E7A4A;
+  --aq-s-pending:  #888888;
+
+  /* Sidebar */
+  --aq-s-sidebar-bg:           #417178;
+  --aq-s-sidebar-texto:        #FAF6ED;
+  --aq-s-sidebar-hover:        rgba(229,254,115,0.14);
+  --aq-s-sidebar-activo:       #E5FE73;
+  --aq-s-sidebar-activo-texto: #335B60;
+
+  /* Secciones con color (strips, tarjetas temáticas) */
+  --aq-s-seccion-principal: #417178;
+  --aq-s-seccion-lavanda:   #A6B1E7;
+  --aq-s-seccion-verde:     #C0D2C7;
+  --aq-s-seccion-crema:     #FAF6ED;
+  --aq-s-seccion-oscura:    #335B60;
+
+  /* Sombras (ajustadas al tono cálido) */
+  --aq-sombra-sm: 0 2px 8px rgba(65,113,120,0.10);
+  --aq-sombra:    0 4px 20px rgba(65,113,120,0.14);
+  --aq-sombra-lg: 0 8px 40px rgba(65,113,120,0.18);
 }
 
-/* -- LIREL — Lavanda suave + purpura (claro elegante) ---------------------- */
-[data-palette="lirel"] {
-  --sofia-bg:           #F7F4FC;
-  --sofia-bg-2:         #EDE8F6;
-  --sofia-card:         #FFFFFF;
-  --sofia-card-suave:   #F2EEF8;
-  --sofia-texto:        #2A1A40;
-  --sofia-texto-fuerte: #160A28;
-  --sofia-texto-suave:  #503870;
-  --sofia-texto-tenue:  #806898;
-  --sofia-acento:           #7C3AED;
-  --sofia-acento-hover:     #6525D4;
-  --sofia-acento-suave:     rgba(124,58,237,0.09);
-  --sofia-acento-borde:     rgba(124,58,237,0.30);
-  --sofia-acento-contraste: #FFFFFF;
-  --sofia-acento-texto:     #7C3AED;
-  --sofia-accion:       #3A0870;
-  --sofia-accion-texto: #7C3AED;
-  --sofia-accion-suave: rgba(58,8,112,0.09);
-  --sofia-accion-borde: rgba(58,8,112,0.30);
-  --sofia-borde:        #DDD4F0;
-  --sofia-borde-suave:  #E8E2F6;
-  --sofia-borde-debil:  #F0EBF8;
-  --sofia-exito:        #2E7A4A;
-  --sofia-exito-bg:     rgba(46,122,74,0.10);
-  --sofia-error:        #A01830;
-  --sofia-done:         #2E7A4A;
-  --sofia-pending:      #A090C0;
-  --sofia-sidebar-bg:    #160A28;
-  --sofia-sidebar-texto: rgba(247,244,252,0.92);
-  --sofia-sidebar-hover: rgba(124,58,237,0.14);
-  --sofia-section-verde:   #D8F0E4;
-  --sofia-section-lavanda: #E8E0FA;
-  --sofia-section-celeste: #D4E8FC;
-  --sofia-section-salmon:  #FCE0F0;
-  --sofia-section-amarillo:#FDF6D0;
-}
 
-/* -- MERALI — Pergamino vegetal + verde bosque (calido natural) ------------ */
-[data-palette="merali"] {
-  --sofia-bg:           #F2F4EC;
-  --sofia-bg-2:         #E4EADA;
-  --sofia-card:         #FAFCF6;
-  --sofia-card-suave:   #ECF2E4;
-  --sofia-texto:        #162010;
-  --sofia-texto-fuerte: #081008;
-  --sofia-texto-suave:  #324C28;
-  --sofia-texto-tenue:  #527840;
-  --sofia-acento:           #3A8030;
-  --sofia-acento-hover:     #2A6020;
-  --sofia-acento-suave:     rgba(58,128,48,0.09);
-  --sofia-acento-borde:     rgba(58,128,48,0.32);
-  --sofia-acento-contraste: #FFFFFF;
-  --sofia-acento-texto:     #3A8030;
-  --sofia-accion:       #284820;
-  --sofia-accion-texto: #3A8030;
-  --sofia-accion-suave: rgba(40,72,32,0.09);
-  --sofia-accion-borde: rgba(40,72,32,0.30);
-  --sofia-borde:        #CADAB0;
-  --sofia-borde-suave:  #D8E8C0;
-  --sofia-borde-debil:  #E4F0D0;
-  --sofia-exito:        #2A8040;
-  --sofia-exito-bg:     rgba(42,128,64,0.10);
-  --sofia-error:        #902828;
-  --sofia-done:         #2A8040;
-  --sofia-pending:      #889870;
-  --sofia-sidebar-bg:    #182A10;
-  --sofia-sidebar-texto: rgba(242,244,236,0.92);
-  --sofia-sidebar-hover: rgba(58,128,48,0.14);
-  --sofia-section-verde:   #D8EEC4;
-  --sofia-section-lavanda: #E4DCF0;
-  --sofia-section-celeste: #CEE8F4;
-  --sofia-section-salmon:  #F8E0CC;
-  --sofia-section-amarillo:#F8F4C8;
-}
+/* ==========================================================================
+   KELVAR — Azul medianoche · Azul eléctrico
+   Tema oscuro. Para quienes prefieren trabajar de noche.
+   ========================================================================== */
 
-/* -- FERITH — Blanco luminoso + celeste mar (fresco) ----------------------- */
-[data-palette="ferith"] {
-  --sofia-bg:           #F2F8FE;
-  --sofia-bg-2:         #E2F0FA;
-  --sofia-card:         #FFFFFF;
-  --sofia-card-suave:   #EAF4FC;
-  --sofia-texto:        #0C2038;
-  --sofia-texto-fuerte: #041020;
-  --sofia-texto-suave:  #1E4060;
-  --sofia-texto-tenue:  #406880;
-  --sofia-acento:           #2A90C8;
-  --sofia-acento-hover:     #1A78A8;
-  --sofia-acento-suave:     rgba(42,144,200,0.09);
-  --sofia-acento-borde:     rgba(42,144,200,0.32);
-  --sofia-acento-contraste: #FFFFFF;
-  --sofia-acento-texto:     #2A90C8;
-  --sofia-accion:       #186090;
-  --sofia-accion-texto: #2A90C8;
-  --sofia-accion-suave: rgba(24,96,144,0.09);
-  --sofia-accion-borde: rgba(24,96,144,0.30);
-  --sofia-borde:        #B8D8F0;
-  --sofia-borde-suave:  #CCE8F8;
-  --sofia-borde-debil:  #DCF0FC;
-  --sofia-exito:        #1A9060;
-  --sofia-exito-bg:     rgba(26,144,96,0.10);
-  --sofia-error:        #A02838;
-  --sofia-done:         #1A9060;
-  --sofia-pending:      #80A8C0;
-  --sofia-sidebar-bg:    #082840;
-  --sofia-sidebar-texto: rgba(242,248,254,0.92);
-  --sofia-sidebar-hover: rgba(42,144,200,0.16);
-  --sofia-section-verde:   #CCEEDD;
-  --sofia-section-lavanda: #E0D8F4;
-  --sofia-section-celeste: #CCE8FA;
-  --sofia-section-salmon:  #FAE0D8;
-  --sofia-section-amarillo:#FFF8D0;
-}
-
-/* -- KELVAR — Azul medianoche + azul electrico (oscuro) -------------------- */
 [data-palette="kelvar"] {
-  --sofia-bg:           #080E18;
-  --sofia-bg-2:         #101C30;
-  --sofia-card:         #0E1828;
-  --sofia-card-suave:   #0A1220;
-  --sofia-texto:        #EAF0FC;
-  --sofia-texto-fuerte: #FFFFFF;
-  --sofia-texto-suave:  #C0D0EC;
-  --sofia-texto-tenue:  #90A8D4;
-  --sofia-acento:           #1A7AE0;
-  --sofia-acento-hover:     #2E90F8;
-  --sofia-acento-suave:     rgba(26,122,224,0.15);
-  --sofia-acento-borde:     rgba(26,122,224,0.45);
-  --sofia-acento-contraste: #FFFFFF;
-  --sofia-acento-texto:     #4A9AF0;
-  --sofia-accion:       #0A4A9A;
-  --sofia-accion-texto: #4A9AF0;
-  --sofia-accion-suave: rgba(10,74,154,0.18);
-  --sofia-accion-borde: rgba(10,74,154,0.50);
-  --sofia-borde:        #1A2E50;
-  --sofia-borde-suave:  #142240;
-  --sofia-borde-debil:  #101A30;
-  --sofia-exito:        #2A9A6A;
-  --sofia-exito-bg:     rgba(42,154,106,0.14);
-  --sofia-error:        #C03040;
-  --sofia-done:         #2A9A6A;
-  --sofia-pending:      #607098;
-  --sofia-sidebar-bg:    #040A14;
-  --sofia-sidebar-texto: rgba(234,240,252,0.88);
-  --sofia-sidebar-hover: rgba(26,122,224,0.12);
-  --sofia-section-verde:   #0E2820;
-  --sofia-section-lavanda: #14102C;
-  --sofia-section-celeste: #0A1828;
-  --sofia-section-salmon:  #200E0A;
-  --sofia-section-amarillo:#1C1A08;
-}
 
-/* -- VAKOUN — Grafito frio + magenta (oscuro vibrante) --------------------- */
-[data-palette="vakoun"] {
-  --sofia-bg:           #111318;
-  --sofia-bg-2:         #222630;
-  --sofia-card:         #191C24;
-  --sofia-card-suave:   #14171E;
-  --sofia-texto:        #ECEEF4;
-  --sofia-texto-fuerte: #FFFFFF;
-  --sofia-texto-suave:  #C4C8D4;
-  --sofia-texto-tenue:  #A0A4B4;
-  --sofia-acento:           #E0307A;
-  --sofia-acento-hover:     #F04090;
-  --sofia-acento-suave:     rgba(224,48,122,0.15);
-  --sofia-acento-borde:     rgba(224,48,122,0.45);
-  --sofia-acento-contraste: #FFFFFF;
-  --sofia-acento-texto:     #F04090;
-  --sofia-accion:       #7A1050;
-  --sofia-accion-texto: #D040A0;
-  --sofia-accion-suave: rgba(122,16,80,0.18);
-  --sofia-accion-borde: rgba(122,16,80,0.50);
-  --sofia-borde:        #2C3040;
-  --sofia-borde-suave:  #222530;
-  --sofia-borde-debil:  #1C1E28;
-  --sofia-exito:        #2E8B5A;
-  --sofia-exito-bg:     rgba(46,139,90,0.14);
-  --sofia-error:        #C02840;
-  --sofia-done:         #2E8B5A;
-  --sofia-pending:      #747888;
-  --sofia-sidebar-bg:    #0A0C10;
-  --sofia-sidebar-texto: rgba(236,238,244,0.88);
-  --sofia-sidebar-hover: rgba(224,48,122,0.12);
-  --sofia-section-verde:   #0E2018;
-  --sofia-section-lavanda: #1A0C28;
-  --sofia-section-celeste: #081428;
-  --sofia-section-salmon:  #200818;
-  --sofia-section-amarillo:#1A1608;
-}
+  /* Superficies */
+  --aq-s-bg:          #080E18;
+  --aq-s-bg-2:        #101C30;
+  --aq-s-card:        #0E1828;
+  --aq-s-card-suave:  #0A1220;
 
-/* -- GRAFITO — Oscuro neutro + ambar dorado (austero) ---------------------- */
-[data-palette="grafito"] {
-  --sofia-bg:           #16171B;
-  --sofia-bg-2:         #33373F;
-  --sofia-card:         #23252B;
-  --sofia-card-suave:   #1E1F24;
-  --sofia-texto:        #ECEDEF;
-  --sofia-texto-fuerte: #FFFFFF;
-  --sofia-texto-suave:  #C7CAD1;
-  --sofia-texto-tenue:  #A8AEB8;
-  --sofia-acento:           #D9A441;
-  --sofia-acento-hover:     #EBB84E;
-  --sofia-acento-suave:     rgba(217,164,65,0.14);
-  --sofia-acento-borde:     rgba(217,164,65,0.45);
-  --sofia-acento-contraste: #0A0800;
-  --sofia-acento-texto:     #E8B84E;
-  --sofia-accion:       #2E8B8F;
-  --sofia-accion-texto: #3FA9AD;
-  --sofia-accion-suave: rgba(63,169,173,0.16);
-  --sofia-accion-borde: rgba(63,169,173,0.50);
-  --sofia-borde:        #3A3E47;
-  --sofia-borde-suave:  #2E323A;
-  --sofia-borde-debil:  #252830;
-  --sofia-exito:        #2E8B57;
-  --sofia-exito-bg:     rgba(46,139,87,0.14);
-  --sofia-error:        #C62839;
-  --sofia-done:         #2E8B57;
-  --sofia-pending:      #80868F;
-  --sofia-sidebar-bg:    #0E0F12;
-  --sofia-sidebar-texto: rgba(236,237,239,0.88);
-  --sofia-sidebar-hover: rgba(217,164,65,0.12);
-  --sofia-section-verde:   #101A12;
-  --sofia-section-lavanda: #151020;
-  --sofia-section-celeste: #0C1420;
-  --sofia-section-salmon:  #1E1008;
-  --sofia-section-amarillo:#1A1808;
+  /* Texto */
+  --aq-s-texto:        #C0D0EC;
+  --aq-s-texto-fuerte: #EAF0FC;
+  --aq-s-texto-suave:  #90A8D4;
+  --aq-s-texto-tenue:  #607098;
+
+  /* Borde */
+  --aq-s-borde:       #1A2E50;
+  --aq-s-borde-suave: #142240;
+  --aq-s-borde-debil: #101A30;
+
+  /* Acento primario — azul eléctrico */
+  --aq-s-acento:           #1A7AE0;
+  --aq-s-acento-hover:     #2E90F8;
+  --aq-s-acento-suave:     rgba(26,122,224,0.15);
+  --aq-s-acento-borde:     rgba(26,122,224,0.45);
+  --aq-s-acento-contraste: #FFFFFF;
+  --aq-s-acento-texto:     #4A9AF0;
+
+  /* Acción secundaria */
+  --aq-s-accion:       #0A4A9A;
+  --aq-s-accion-texto: #4A9AF0;
+  --aq-s-accion-suave: rgba(10,74,154,0.18);
+  --aq-s-accion-borde: rgba(10,74,154,0.50);
+
+  /* CTA destacado */
+  --aq-s-cta:           #1A7AE0;
+  --aq-s-cta-hover:     #2E90F8;
+  --aq-s-cta-contraste: #FFFFFF;
+
+  /* Estados */
+  --aq-s-exito:    #2A9A6A;
+  --aq-s-exito-bg: rgba(42,154,106,0.14);
+  --aq-s-error:    #C03040;
+  --aq-s-error-bg: rgba(192,48,64,0.14);
+  --aq-s-aviso:    #C09030;
+  --aq-s-done:     #2A9A6A;
+  --aq-s-pending:  #607098;
+
+  /* Sidebar */
+  --aq-s-sidebar-bg:           #040A14;
+  --aq-s-sidebar-texto:        rgba(234,240,252,0.88);
+  --aq-s-sidebar-hover:        rgba(26,122,224,0.12);
+  --aq-s-sidebar-activo:       #1A7AE0;
+  --aq-s-sidebar-activo-texto: #FFFFFF;
+
+  /* Secciones con color */
+  --aq-s-seccion-principal: #0C1E38;
+  --aq-s-seccion-lavanda:   #14102C;
+  --aq-s-seccion-verde:     #0A1828;
+  --aq-s-seccion-crema:     #0E1828;
+  --aq-s-seccion-oscura:    #040A14;
+
+  /* Sombras */
+  --aq-sombra-sm: 0 2px 8px rgba(0,0,0,0.40);
+  --aq-sombra:    0 4px 20px rgba(0,0,0,0.50);
+  --aq-sombra-lg: 0 8px 40px rgba(0,0,0,0.60);
 }

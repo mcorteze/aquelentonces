@@ -1,120 +1,211 @@
-﻿/* ============================================================================
+/* ============================================================================
    TOKENS — Aquelentonces
-   Tipografia: Lexend Deca (igual que BackThen, toda la escala)
-   Paleta exacta BackThen: #417178 / #E5FE73 / #FAF6ED / #A6B1E7
-   Variante oscura: #335B60
+   Arquitectura de dos capas:
+     1. Primitivos: colores base de la marca (inmutables)
+     2. Semánticos: qué token cumple qué rol — estos son los que los temas sobreescriben
+
+   Los componentes SOLO deben consumir tokens semánticos (--aq-s-*) o aliases (--sofia-*).
+   NUNCA apuntar a primitivos directamente desde componentes.
    ============================================================================ */
 
 :root {
-  /* Superficies */
-  --aq-bg:         #FAF6ED;
-  --aq-bg-2:       #EDE8DC;
-  --aq-card:       #FFFFFF;
-  --aq-card-suave: #F5F0E6;
+
+  /* ==========================================================================
+     CAPA 1 — PRIMITIVOS (paleta de marca, inmutables, no usan los componentes)
+     ========================================================================== */
+
+  /* Marca principal */
+  --aq-p-petroleo:        #417178;
+  --aq-p-petroleo-oscuro: #335B60;
+  --aq-p-lima:            #E5FE73;
+  --aq-p-lima-dark:       #D4EE60;
+  --aq-p-lavanda:         #A6B1E7;
+  --aq-p-verde-claro:     #C0D2C7;
+  --aq-p-crema:           #FAF6ED;
+  --aq-p-crema-oscura:    #EDE8DC;
 
   /* Texto */
-  --aq-texto:        #333333;
-  --aq-texto-fuerte: #1A1A1A;
-  --aq-texto-suave:  #555555;
-  --aq-texto-tenue:  #888888;
+  --aq-p-negro:     #1A1A1A;
+  --aq-p-gris-90:   #333333;
+  --aq-p-gris-60:   #555555;
+  --aq-p-gris-40:   #888888;
+  --aq-p-gris-20:   #CCCCCC;
+  --aq-p-blanco:    #FFFFFF;
 
-  /* Paleta de marca — exacta BackThen */
-  --aq-petroleo:        #417178;
-  --aq-petroleo-oscuro: #335B60;
-  --aq-lima:            #E5FE73;
-  --aq-lima-hover:      #D4EE60;
-  --aq-lavanda:         #A6B1E7;
-  --aq-verde-claro:     #C0D2C7;
-  --aq-crema:           #FAF6ED;
-  --aq-negro:           #000000;
-  --aq-gris:            #333333;
+  /* Semánticos fijos (estados — no cambian por tema) */
+  --aq-p-exito:    #2E7A4A;
+  --aq-p-error:    #B83020;
+  --aq-p-aviso:    #B87020;
 
-  /* Acento — lima sobre petroleo */
-  --aq-acento:           #E5FE73;
-  --aq-acento-hover:     #D4EE60;
-  --aq-acento-suave:     rgba(229,254,115,0.18);
-  --aq-acento-borde:     rgba(229,254,115,0.40);
-  --aq-acento-contraste: #1A1A1A;
-  --aq-acento-texto:     #335B60;
+  /* ==========================================================================
+     CAPA 2 — TOKENS SEMÁNTICOS (contrato que los temas sobreescriben)
+     Valores por defecto = tema Aquelentonces (crema + petróleo + lima)
+     ========================================================================== */
 
-  /* Bordes */
-  --aq-borde:       #DDD8CC;
-  --aq-borde-suave: #E8E4D8;
-  --aq-borde-debil: #F0EDE4;
+  /* Superficies */
+  --aq-s-bg:          #FAF6ED;
+  --aq-s-bg-2:        #EDE8DC;
+  --aq-s-card:        #FFFFFF;
+  --aq-s-card-suave:  #F5F0E6;
+
+  /* Texto */
+  --aq-s-texto:        #333333;
+  --aq-s-texto-fuerte: #1A1A1A;
+  --aq-s-texto-suave:  #555555;
+  --aq-s-texto-tenue:  #888888;
+
+  /* Borde */
+  --aq-s-borde:       #DDD8CC;
+  --aq-s-borde-suave: #E8E4D8;
+  --aq-s-borde-debil: #F0EDE4;
+
+  /* Acento primario — el color de acción principal (botones, links, highlights) */
+  --aq-s-acento:           #417178;
+  --aq-s-acento-hover:     #335B60;
+  --aq-s-acento-suave:     rgba(65,113,120,0.10);
+  --aq-s-acento-borde:     rgba(65,113,120,0.28);
+  --aq-s-acento-contraste: #FFFFFF;
+  --aq-s-acento-texto:     #417178;
+
+  /* Acción secundaria (botones secundarios, accion CTA) */
+  --aq-s-accion:       #417178;
+  --aq-s-accion-texto: #417178;
+  --aq-s-accion-suave: rgba(65,113,120,0.10);
+  --aq-s-accion-borde: rgba(65,113,120,0.28);
+
+  /* CTA destacado — lima sobre oscuro */
+  --aq-s-cta:           #E5FE73;
+  --aq-s-cta-hover:     #D4EE60;
+  --aq-s-cta-contraste: #1A1A1A;
 
   /* Estados */
-  --aq-exito:    #417178;
-  --aq-exito-bg: rgba(65,113,120,0.12);
-  --aq-error:    #B83020;
-  --aq-aviso:    #B87020;
+  --aq-s-exito:    #2E7A4A;
+  --aq-s-exito-bg: rgba(46,122,74,0.10);
+  --aq-s-error:    #B83020;
+  --aq-s-error-bg: rgba(184,48,32,0.10);
+  --aq-s-aviso:    #B87020;
+  --aq-s-done:     #2E7A4A;
+  --aq-s-pending:  #888888;
 
-  /* Superficies oscuras */
-  --aq-dark:        #417178;
-  --aq-dark-oscuro: #335B60;
-  --aq-dark-texto:  #FAF6ED;
-  --aq-dark-hover:  rgba(229,254,115,0.14);
-  --aq-dark-borde:  rgba(250,246,237,0.12);
+  /* Sidebar / navegación */
+  --aq-s-sidebar-bg:    #417178;
+  --aq-s-sidebar-texto: #FAF6ED;
+  --aq-s-sidebar-hover: rgba(229,254,115,0.14);
+  --aq-s-sidebar-activo: #E5FE73;
+  --aq-s-sidebar-activo-texto: #335B60;
 
-  /* Tipografia — Lexend Deca para todo */
-  --aq-font-display: 'Lexend Deca', system-ui, sans-serif;
+  /* Secciones con color (strips de landing, cards temáticas) */
+  --aq-s-seccion-principal: #417178;
+  --aq-s-seccion-lavanda:   #A6B1E7;
+  --aq-s-seccion-verde:     #C0D2C7;
+  --aq-s-seccion-crema:     #FAF6ED;
+  --aq-s-seccion-oscura:    #335B60;
+
+  /* ==========================================================================
+     CAPA 3 — TOKENS ESTRUCTURALES (no cambian por tema)
+     ========================================================================== */
+
+  /* Tipografía */
   --aq-font:         'Lexend Deca', system-ui, sans-serif;
+  --aq-font-display: 'Lexend Deca', system-ui, sans-serif;
+
+  /* Escala tipográfica */
+  --aq-fs-hero:   clamp(44px, 6vw, 80px);
+  --aq-fs-h1:     clamp(28px, 3.6vw, 48px);
+  --aq-fs-h2:     clamp(22px, 2.8vw, 36px);
+  --aq-fs-h3:     clamp(18px, 2vw, 26px);
+  --aq-fs-label:  16px;
+  --aq-fs-body:   16px;
+  --aq-fs-small:  14px;
+  --aq-fs-micro:  12px;
 
   /* Radios */
   --aq-radio:      20px;
   --aq-radio-sm:   12px;
+  --aq-radio-lg:   32px;
   --aq-radio-pill: 9999px;
 
-  /* Escala tipografica */
-  --aq-fs-hero:  clamp(44px, 6vw, 80px);
-  --aq-fs-title: clamp(26px, 3.2vw, 42px);
-  --aq-fs-task:  20px;
-  --aq-fs-label: 16px;
-  --aq-fs-small: 14px;
+  /* Touch targets */
+  --aq-touch:    56px;
+  --aq-touch-lg: 72px;
 
-  /* Aliases para componentes internos (--sofia-*) */
-  --sofia-bg:           var(--aq-bg);
-  --sofia-bg-2:         var(--aq-bg-2);
-  --sofia-card:         var(--aq-card);
-  --sofia-card-suave:   var(--aq-card-suave);
-  --sofia-texto:        var(--aq-texto);
-  --sofia-texto-fuerte: var(--aq-texto-fuerte);
-  --sofia-texto-suave:  var(--aq-texto-suave);
-  --sofia-texto-tenue:  var(--aq-texto-tenue);
-  --sofia-acento:           var(--aq-petroleo);
-  --sofia-acento-hover:     var(--aq-petroleo-oscuro);
-  --sofia-acento-suave:     rgba(65,113,120,0.10);
-  --sofia-acento-borde:     rgba(65,113,120,0.28);
-  --sofia-acento-contraste: #FFFFFF;
-  --sofia-acento-texto:     var(--aq-petroleo);
-  --sofia-accion:       var(--aq-petroleo);
-  --sofia-accion-texto: var(--aq-petroleo);
-  --sofia-accion-suave: rgba(65,113,120,0.10);
-  --sofia-accion-borde: rgba(65,113,120,0.28);
-  --sofia-borde:        var(--aq-borde);
-  --sofia-borde-suave:  var(--aq-borde-suave);
-  --sofia-borde-debil:  var(--aq-borde-debil);
-  --sofia-exito:        var(--aq-exito);
-  --sofia-exito-bg:     var(--aq-exito-bg);
-  --sofia-error:        var(--aq-error);
-  --sofia-done:         var(--aq-exito);
-  --sofia-pending:      var(--aq-texto-tenue);
-  --sofia-sidebar-bg:    var(--aq-dark);
-  --sofia-sidebar-texto: var(--aq-dark-texto);
-  --sofia-sidebar-hover: var(--aq-dark-hover);
+  /* Espaciado base */
+  --aq-space-xs:  4px;
+  --aq-space-sm:  8px;
+  --aq-space-md:  16px;
+  --aq-space-lg:  24px;
+  --aq-space-xl:  40px;
+  --aq-space-2xl: 64px;
+  --aq-space-3xl: 96px;
+
+  /* Sombras */
+  --aq-sombra-sm: 0 2px 8px rgba(65,113,120,0.10);
+  --aq-sombra:    0 4px 20px rgba(65,113,120,0.14);
+  --aq-sombra-lg: 0 8px 40px rgba(65,113,120,0.18);
+
+  /* Transiciones */
+  --aq-transition: 180ms ease;
+
+  /* ==========================================================================
+     CAPA 4 — ALIASES LEGADO (--sofia-*) apuntando a semánticos
+     Los componentes existentes siguen funcionando sin tocar sus CSS.
+     Cuando se migren, eliminar estos aliases.
+     ========================================================================== */
+
+  --sofia-bg:           var(--aq-s-bg);
+  --sofia-bg-2:         var(--aq-s-bg-2);
+  --sofia-card:         var(--aq-s-card);
+  --sofia-card-suave:   var(--aq-s-card-suave);
+
+  --sofia-texto:        var(--aq-s-texto);
+  --sofia-texto-fuerte: var(--aq-s-texto-fuerte);
+  --sofia-texto-suave:  var(--aq-s-texto-suave);
+  --sofia-texto-tenue:  var(--aq-s-texto-tenue);
+
+  --sofia-acento:           var(--aq-s-acento);
+  --sofia-acento-hover:     var(--aq-s-acento-hover);
+  --sofia-acento-suave:     var(--aq-s-acento-suave);
+  --sofia-acento-borde:     var(--aq-s-acento-borde);
+  --sofia-acento-contraste: var(--aq-s-acento-contraste);
+  --sofia-acento-texto:     var(--aq-s-acento-texto);
+
+  --sofia-accion:       var(--aq-s-accion);
+  --sofia-accion-texto: var(--aq-s-accion-texto);
+  --sofia-accion-suave: var(--aq-s-accion-suave);
+  --sofia-accion-borde: var(--aq-s-accion-borde);
+
+  --sofia-borde:        var(--aq-s-borde);
+  --sofia-borde-suave:  var(--aq-s-borde-suave);
+  --sofia-borde-debil:  var(--aq-s-borde-debil);
+
+  --sofia-exito:        var(--aq-s-exito);
+  --sofia-exito-bg:     var(--aq-s-exito-bg);
+  --sofia-error:        var(--aq-s-error);
+  --sofia-done:         var(--aq-s-done);
+  --sofia-pending:      var(--aq-s-pending);
+
+  --sofia-sidebar-bg:    var(--aq-s-sidebar-bg);
+  --sofia-sidebar-texto: var(--aq-s-sidebar-texto);
+  --sofia-sidebar-hover: var(--aq-s-sidebar-hover);
+
   --sofia-font:         var(--aq-font);
   --sofia-font-display: var(--aq-font-display);
-  --sofia-radio:        var(--aq-radio);
-  --sofia-radio-sm:     var(--aq-radio-sm);
-  --sofia-radio-pill:   var(--aq-radio-pill);
-  --sofia-fs-title:     var(--aq-fs-title);
-  --sofia-fs-task:      var(--aq-fs-task);
-  --sofia-fs-label:     var(--aq-fs-label);
-  --sofia-fs-small:     var(--aq-fs-small);
-  --sofia-touch:        56px;
-  --sofia-touch-lg:     72px;
-  --sofia-section-verde:   var(--aq-verde-claro);
-  --sofia-section-lavanda: var(--aq-lavanda);
-  --sofia-section-celeste: var(--aq-verde-claro);
-  --sofia-section-salmon:  #F0DDD4;
-  --sofia-section-amarillo:var(--aq-lima);
+
+  --sofia-radio:      var(--aq-radio);
+  --sofia-radio-sm:   var(--aq-radio-sm);
+  --sofia-radio-pill: var(--aq-radio-pill);
+
+  --sofia-fs-title:  var(--aq-fs-h2);
+  --sofia-fs-task:   var(--aq-fs-h3);
+  --sofia-fs-label:  var(--aq-fs-label);
+  --sofia-fs-small:  var(--aq-fs-small);
+
+  --sofia-touch:     var(--aq-touch);
+  --sofia-touch-lg:  var(--aq-touch-lg);
+
+  --sofia-section-verde:    var(--aq-s-seccion-verde);
+  --sofia-section-lavanda:  var(--aq-s-seccion-lavanda);
+  --sofia-section-celeste:  var(--aq-s-seccion-verde);
+  --sofia-section-salmon:   #F0DDD4;
+  --sofia-section-amarillo: var(--aq-s-cta);
 }

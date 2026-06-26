@@ -11,7 +11,7 @@ export function FirebaseAuthProvider({ children }: { children: React.ReactNode }
   const setPalette = usePaletteStore((s) => s.setPalette);
 
   useEffect(() => {
-    applyPalette('aurora');
+    applyPalette('aquelentonces');
 
     const unsubscribe = onAuthChanged(async (firebaseUser) => {
       if (firebaseUser) {
@@ -32,15 +32,15 @@ export function FirebaseAuthProvider({ children }: { children: React.ReactNode }
               displayName: firebaseUser.displayName ?? '',
               email: firebaseUser.email ?? '',
               photoURL: firebaseUser.photoURL ?? '',
-              paletteId: 'aurora',
+              paletteId: 'aquelentonces',
             });
           }
         } catch {
-          // silencioso â€” no bloquear la app si Firestore falla
+          // silencioso — no bloquear la app si Firestore falla
         }
       } else {
         setUser(null);
-        applyPalette('aurora');
+        applyPalette('aquelentonces');
       }
       setLoading(false);
     });
