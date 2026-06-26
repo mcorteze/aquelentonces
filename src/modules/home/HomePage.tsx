@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import { CheckSquare, Users, User, BookOpen } from 'lucide-react';
+import { CheckSquare, Users, User, BookOpen, Camera } from 'lucide-react';
 import styles from './HomePage.module.css';
 
 const MODULES = [
-  { to: '/app/tareas',  Icon: CheckSquare, label: 'Rutina del día',  desc: 'Las actividades de hoy' },
-  { to: '/app/diario',  Icon: BookOpen,    label: 'Diario',          desc: 'Notas y momentos'       },
-  { to: '/app/hijos',   Icon: Users,       label: 'Mis hijos',       desc: 'Gestiona los perfiles'  },
-  { to: '/app/perfil',  Icon: User,        label: 'Mi perfil',       desc: 'Tu cuenta y colores'    },
+  { to: '/app/tareas',  Icon: CheckSquare, label: 'Rutina del día', desc: 'Las actividades de hoy'   },
+  { to: '/app/diario',  Icon: BookOpen,    label: 'Diario',          desc: 'Notas y momentos'         },
+  { to: '/app/fotos',   Icon: Camera,      label: 'Fotos',           desc: 'Recuerdos con imagen'     },
+  { to: '/app/hijos',   Icon: Users,       label: 'Mis hijos',       desc: 'Perfiles y línea de tiempo' },
+  { to: '/app/perfil',  Icon: User,        label: 'Mi perfil',       desc: 'Tu cuenta y colores'      },
 ];
 
 function getGreeting(): string {

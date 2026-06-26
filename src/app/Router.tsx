@@ -12,6 +12,7 @@ import { ProfilePage } from '../modules/profile/ProfilePage';
 import { ChildrenListPage } from '../modules/children/ChildrenListPage';
 import { ChildFormPage } from '../modules/children/ChildFormPage';
 import { ChildProfilePage } from '../modules/children/ChildProfilePage';
+import { PhotosPage } from '../modules/photos/PhotosPage';
 import { PrivateRoute } from './PrivateRoute';
 
 function RedirectIfAuth({ children }: { children: React.ReactNode }) {
@@ -20,10 +21,14 @@ function RedirectIfAuth({ children }: { children: React.ReactNode }) {
   return user ? <Navigate to="/app/inicio" replace /> : <>{children}</>;
 }
 
-/** Wrapper para pasar la lista de hijos a DiaryPage sin duplicar el fetch */
 function DiaryPageWrapper() {
   const { children } = useChildren();
   return <DiaryPage children={children} />;
+}
+
+function PhotosPageWrapper() {
+  const { children } = useChildren();
+  return <PhotosPage children={children} />;
 }
 
 export function AppRouter() {
@@ -60,6 +65,7 @@ export function AppRouter() {
           <Route path="hijos/nuevo"       element={<ChildFormPage />} />
           <Route path="hijos/:id"         element={<ChildProfilePage />} />
           <Route path="hijos/:id/editar"  element={<ChildFormPage />} />
+          <Route path="fotos"             element={<PhotosPageWrapper />} />
           <Route path="perfil"            element={<ProfilePage />} />
         </Route>
 

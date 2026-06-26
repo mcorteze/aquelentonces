@@ -1,0 +1,353 @@
+.page {
+  padding: 48px 48px 120px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* ── Encabezado ─────────────────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 52px;
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--aq-s-acento);
+  font-family: var(--aq-font);
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 900;
+  color: var(--aq-s-texto-fuerte);
+  letter-spacing: -2px;
+  line-height: 1.0;
+  font-family: var(--aq-font);
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: var(--aq-s-texto-tenue);
+  font-family: var(--aq-font);
+  font-weight: 500;
+}
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px;
+  height: 44px;
+  background: var(--aq-s-acento);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--aq-radio-pill);
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--aq-font);
+  cursor: pointer;
+  transition: opacity var(--aq-transition);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.addBtn:hover {
+  opacity: 0.88;
+}
+
+/* ── Galería por meses ───────────────────────────────────────────────────── */
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+}
+
+.monthGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.monthHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.monthTitle {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--aq-s-texto-suave);
+  font-family: var(--aq-font);
+  white-space: nowrap;
+}
+
+.monthCount {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--aq-s-texto-tenue);
+  background: var(--aq-s-bg-2);
+  padding: 2px 9px;
+  border-radius: var(--aq-radio-pill);
+  font-family: var(--aq-font);
+}
+
+.monthLine {
+  flex: 1;
+  height: 1px;
+  background: var(--aq-s-borde-debil);
+}
+
+/* Grid de fotos — 3 columnas en desktop */
+.photoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+/* ── Card de foto ────────────────────────────────────────────────────────── */
+
+.photoCard {
+  border-radius: var(--aq-radio);
+  overflow: hidden;
+  background: var(--aq-s-card);
+  border: 1.5px solid var(--aq-s-borde-suave);
+  transition: border-color var(--aq-transition), box-shadow var(--aq-transition);
+}
+
+.photoCard:hover {
+  border-color: var(--aq-s-acento-borde);
+  box-shadow: var(--aq-sombra-sm);
+}
+
+.photoImageWrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--aq-s-bg-2);
+}
+
+.photoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photoPlaceholder {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Badgecito de "foto pendiente" en esquina */
+.photoPlaceholderBadge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(65, 113, 120, 0.8);
+  color: #FAF6ED;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Badge de hijo en esquina inferior izquierda */
+.photoChildBadge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  font-size: 18px;
+  line-height: 1;
+  background: rgba(250, 246, 237, 0.9);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photoBody {
+  padding: 12px 14px 14px;
+}
+
+.photoCaption {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--aq-s-texto);
+  font-family: var(--aq-font);
+  line-height: 1.5;
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.photoDate {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--aq-s-texto-tenue);
+  font-family: var(--aq-font);
+  letter-spacing: 0.04em;
+}
+
+/* ── Estado vacío ────────────────────────────────────────────────────────── */
+
+.empty {
+  text-align: center;
+  padding: 20px 24px 80px;
+}
+
+.emptyImageGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 120px);
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 32px;
+  border-radius: var(--aq-radio);
+  overflow: hidden;
+}
+
+.emptyGridImg {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+  opacity: 0.5;
+}
+
+.emptyTitle {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--aq-s-texto-suave);
+  font-family: var(--aq-font);
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+
+.emptyText {
+  font-size: 16px;
+  color: var(--aq-s-texto-tenue);
+  font-family: var(--aq-font);
+  line-height: 1.7;
+  max-width: 380px;
+  margin: 0 auto 32px;
+}
+
+.emptyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 28px;
+  height: 48px;
+  background: var(--aq-s-acento);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--aq-radio-pill);
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--aq-font);
+  cursor: pointer;
+  transition: opacity var(--aq-transition);
+}
+
+.emptyBtn:hover {
+  opacity: 0.88;
+}
+
+/* ── Skeleton ────────────────────────────────────────────────────────────── */
+
+.skeletonGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.skeletonCard {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--aq-radio);
+  background: var(--aq-s-bg-2);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* ── Error ───────────────────────────────────────────────────────────────── */
+
+.error {
+  background: var(--aq-s-error-bg);
+  border: 1.5px solid var(--aq-s-error);
+  border-radius: var(--aq-radio-sm);
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.errorText {
+  font-size: 14px;
+  color: var(--aq-s-error);
+  font-family: var(--aq-font);
+}
+
+.retryBtn {
+  background: none;
+  border: 1.5px solid var(--aq-s-error);
+  color: var(--aq-s-error);
+  border-radius: var(--aq-radio-pill);
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--aq-font);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .photoGrid    { grid-template-columns: repeat(2, 1fr); }
+  .skeletonGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .page      { padding: 28px 20px 100px; }
+  .title     { font-size: 32px; letter-spacing: -1px; }
+  .header    { align-items: flex-start; }
+  .photoGrid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .emptyImageGrid { grid-template-columns: repeat(2, 90px); }
+  .emptyGridImg   { width: 90px; height: 90px; }
+}
+
+@media (max-width: 400px) {
+  .photoGrid    { grid-template-columns: 1fr; }
+  .skeletonGrid { grid-template-columns: 1fr; }
+}
