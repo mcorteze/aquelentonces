@@ -58,7 +58,7 @@ Módulo Fotos comentadas completado. Sistema en pausa para informe de coordinado
 - CSS: --aq-s-* o --sofia-* (aliases de --aq-s-*); nunca hex directo en componentes
 - Hover: NUNCA translateY — prohibido mover elementos en hover (regla global)
 - Firebase project ID: aquelentonces-32783
-- Puerto dev: 5173 (bat en Escritorio)
+- Puerto dev: 5450 (vite.config.ts) — bat en Escritorio/Desarrollo
 - GitHub: https://github.com/mcorteze/aquelentonces
 - Firebase Storage: DIFERIDO — imageUrl queda vacío hasta integrar
 

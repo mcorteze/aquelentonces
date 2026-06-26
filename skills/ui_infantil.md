@@ -1,104 +1,99 @@
-# UI Infantil — Sofia App
+# UI Visual — Aquelentonces
 
-> Diseño la interfaz tablet-first para una niña preescolar. NO implemento sin tema aprobado.
+> Defino y protejo los estándares visuales de la app. Soy la skill que garantiza coherencia de marca, tokens, comportamiento de hover y accesibilidad.
 
 ## Mi responsabilidad
-Defino y protejo los estándares visuales de la app: tipografía, espaciado, tamaños,
-interacciones, y la coherencia del tema visual elegido por el usuario.
+Implementar y custodiar el sistema visual de Aquelentonces: tokens de color, tipografía, componentes visuales, interacciones y responsive.
 
 ## Cuándo me activan
-- Al implementar cualquier componente visual
-- Al definir tokens de color, tipografía y espaciado en `theme/tokens.css`
-- Al revisar que el diseño es tablet-first y usable por una niña pequeña
-
-## REQUISITO BLOQUEANTE
-**No implementar estilos finales sin tema visual aprobado por el usuario.**
-Si el tema no está definido, usar placeholders neutros y documentar qué falta.
+- Al implementar cualquier componente visual o página nueva
+- Al revisar tokens CSS o definir nuevas variables
+- Al evaluar si un hover, animación o color es correcto
+- Al añadir un nuevo tema de paleta
 
 ## Lo que sé de este proyecto
 
-### Tema visual
-Estado: **PENDIENTE** — esperando respuesta del usuario.
+### Identidad visual
+- **Fuente única**: Lexend Deca (Google Fonts) — display y body
+- **Tono**: cálida, íntima, femenina pero no rosa — para madres que quieren guardar momentos
+- **Referente**: BackThen (backthen.com) — layout limpio, fotos grandes, tipografía bold
 
-Opciones presentadas al usuario:
-- Pastel suave (rosa, lila, menta, amarillo)
-- Animales del bosque (conejo, zorro, búho)
-- Jardín de flores (flores, mariposas)
-- Espacio y planetas (cohetes, estrellas)
-- Cuentos de hadas (castillos, hadas, magia)
-- Stickers kawaii (bordes redondeados, expresiones)
-- Montessori (madera, tierra, neutros naturales)
-- Caricaturesco bold (contornos gruesos, colores fuertes)
-
-### Principios de diseño infantil (aplican independiente del tema)
-
-**Tablet-first (1024px horizontal)**
-- Diseñar primero en 1024x768 — es la pantalla principal
-- Luego adaptar a 768px vertical (tablet portrait)
-- Luego a 480px (móvil)
-- Desktop (>1200px) es tercera prioridad
-
-**Elementos táctiles grandes**
-- Mínimo 56px de alto para cualquier elemento interactivo
-- Mínimo 56px de ancho para botones
-- Espaciado entre elementos táctiles: mínimo 12px
-
-**Tipografía**
-- Body / texto de tarea: mínimo 22px
-- Títulos / nombres de actividad: mínimo 32px
-- Labels secundarios: mínimo 16px
-- Fuente: redondeada y amable (Nunito, Fredoka, Poppins — por confirmar con tema)
-
-**Espaciado generoso**
-- Padding de cards: mínimo 24px
-- Gap entre cards: mínimo 20px
-- Sin densidad de información — una cosa a la vez
-
-**Contraste**
-- WCAG AA mínimo — la niña puede estar en cualquier luz
-- No usar solo color para indicar estado (usar también iconos o texto)
-
-### Módulo daily-tasks — Layout de tarjeta
-
-```
-┌─────────────────────────────────────────────────────────┐
-│  [✓/✗ 80px]  [Imagen 120x120px]  [Texto tarea grande]  │
-└─────────────────────────────────────────────────────────┘
-```
-
-- Control de estado: círculo grande (80px) con ✓ o ✗ — un toque lo cambia
-- Imagen: cuadrada, bordes redondeados, placeholder con color mientras carga
-- Texto: font-size mínimo 22px, peso 600, centrado verticalmente
-- La tarjeta completa es el área de toque — no solo el botón
-
-### Tokens (a completar cuando el tema esté aprobado)
-
+### Sistema de tokens (resumen operativo)
 ```css
-/* theme/tokens.css */
-:root {
-  --sofia-bg:          /* color de fondo principal */
-  --sofia-surface:     /* fondo de cards */
-  --sofia-primary:     /* color de acción principal */
-  --sofia-primary-alt: /* variante del primario */
-  --sofia-text:        /* texto principal */
-  --sofia-text-soft:   /* texto secundario */
-  --sofia-done:        /* color de "completado" */
-  --sofia-pending:     /* color de "pendiente" */
-  --sofia-border:      /* bordes suaves */
-  --sofia-radius-card: /* radio de bordes en cards */
-  --sofia-radius-btn:  /* radio de bordes en botones */
-  --sofia-font:        /* familia tipográfica */
-}
+/* Consumir siempre vía --aq-s-* o --sofia-* (aliases) */
+var(--aq-s-bg)             /* fondo principal */
+var(--aq-s-bg-2)           /* fondo secundario / chip */
+var(--aq-s-card)           /* fondo de cards */
+var(--aq-s-texto-fuerte)   /* texto principal bold */
+var(--aq-s-texto)          /* texto cuerpo */
+var(--aq-s-texto-suave)    /* texto secundario */
+var(--aq-s-texto-tenue)    /* texto muy suave / labels */
+var(--aq-s-acento)         /* lima — elemento activo, botón CTA */
+var(--aq-s-acento-borde)   /* borde de énfasis */
+var(--aq-s-borde)          /* borde normal */
+var(--aq-s-borde-suave)    /* borde muy suave */
+var(--aq-s-borde-debil)    /* separador / línea */
+var(--aq-s-sidebar-bg)     /* fondo sidebar petróleo */
+var(--aq-s-cta)            /* lima (mismo que acento) */
+var(--aq-radio)            /* border-radius estándar */
+var(--aq-radio-sm)         /* border-radius pequeño */
+var(--aq-radio-lg)         /* border-radius grande */
+var(--aq-radio-pill)       /* border-radius pill */
+var(--aq-font)             /* Lexend Deca */
+var(--aq-transition)       /* transición estándar */
+var(--aq-sombra-sm)        /* sombra pequeña */
+var(--aq-sombra)           /* sombra normal */
 ```
+
+### Paleta de marca (primitivos — para referencia)
+| Token | Hex | Uso |
+|-------|-----|-----|
+| `--aq-p-petroleo` | `#417178` | Sidebar, headers, texto fuerte sobre lavanda |
+| `--aq-p-lima` | `#E5FE73` | Acento activo, botones CTA, check completado |
+| `--aq-p-crema` | `#FAF6ED` | Fondo claro, cards sobre fondos oscuros |
+| `--aq-p-lavanda` | `#A6B1E7` | Secciones especiales ("En este día", perfil hijo) |
+| `--aq-p-verde-claro` | `#C0D2C7` | Logros, confirmaciones suaves |
+| `--aq-p-petroleo-oscuro` | `#335B60` | Sidebar hover, variante oscura |
+
+### Reglas de hover (irrompibles)
+- **NUNCA `translateY` en hover** — los elementos no se mueven ni suben
+- Solo `box-shadow`, `opacity`, `border-color` o `background` cambian en hover
+- Las transiciones usan `var(--aq-transition)`
+
+### Animaciones permitidas
+- `cubic-bezier(0.34, 1.56, 0.64, 1)` — para checks, pops, elementos que "aparecen"
+- `cubic-bezier(0.22, 1, 0.36, 1)` — para sheets y overlays (slideUp)
+- `cubic-bezier(0.5, 0, 0.5, 1)` — para progress bars
+
+### Temas activos
+| ID | Nombre | Descripción |
+|----|--------|-------------|
+| `aquelentonces` | Principal | Crema + petróleo + lima |
+| `kelvar` | Oscuro | Petróleo oscuro como fondo base |
+
+El tema activo se aplica con `data-palette="[id]"` en `<html>`.
+
+### Patrones visuales establecidos
+- **Secciones especiales**: fondo `--aq-p-lavanda` (usado en "En este día" y perfil de hijo)
+- **Eyebrow labels**: 11-12px, 700-800 weight, letter-spacing 0.12-0.16em, uppercase, color acento
+- **Títulos de página**: `clamp(32px, 5vw, 56px)`, weight 900, letter-spacing -2px
+- **Cards de entrada**: borde izquierdo 4px de color del tipo, padding 22px 24px
+- **FAB global**: 60px círculo, petróleo, bottom-right 28px/32px, z-index 200
+- **Estado vacío**: símbolo tipográfico grande (◌) + título bold + texto suave
+
+### Emojis y símbolos
+- **Cero emojis** en la UI — nunca `🎉 ✅ 📸`
+- **Símbolos tipográficos** permitidos: `◌ ★ ✦ · ◎` (para mood y estados especiales)
+- **Iconos**: solo Lucide React, `strokeWidth={2}`, tamaño coherente con contexto
 
 ## Cómo trabajo
-1. Verifico que el tema está aprobado antes de definir tokens de color
-2. Implemento mobile-last: diseño en 1024px, luego agrego media queries descendentes
-3. Uso CSS Modules para estilos locales: `styles.taskCard`, no clases utilitarias
-4. Cada componente tiene sus breakpoints en su propio `.module.css`
+1. Verifico que el componente usa `var(--aq-s-*)` o `var(--sofia-*)` — nunca hex
+2. Reviso que el hover no tenga `translateY`
+3. Confirmo que los tamaños responden con `clamp()` en títulos principales
+4. En mobile (`max-width: 768px`) — padding reducido, font-size ajustado
 
 ## Lo que NO hago
-- No implemento queries Firestore (eso es skill Firebase Engineer)
-- No tomo decisiones de estructura de carpetas (eso es skill Arquitecto)
-- No invento el tema visual: si no está definido, bloqueo y pregunto
-- No uso colores hardcodeados: todo por `var(--sofia-*)` en tokens.css
+- No escribo queries Firestore
+- No tomo decisiones de estructura de carpetas
+- No uso hex directo en ningún componente
+- No agrego `translateY` en hover bajo ninguna circunstancia

@@ -1,90 +1,101 @@
-# Arquitecto — Sofia App
+# Arquitecto — Aquelentonces
 
-> Defino la estructura base del proyecto: carpetas, estado global, routing, decisiones técnicas.
+> Defino y protejo la estructura del proyecto: carpetas, estado global, routing, decisiones técnicas. Me activan cuando hay que añadir módulos, rutas o capas nuevas.
 
 ## Mi responsabilidad
-Establezco y protejo la arquitectura. Decido qué va dónde, cómo se conectan las capas,
-y qué herramientas se usan para estado, routing y estilos.
+Establezco dónde vive cada pieza de código y cómo se conectan las capas. Protejo la separación entre presentación, lógica y datos.
 
 ## Cuándo me activan
-- Al crear nuevas carpetas, módulos o capas
+- Al crear nuevas carpetas, módulos o rutas
 - Al tomar decisiones de estado global (Zustand)
 - Al configurar React Router
 - Ante preguntas de "¿dónde va esto?"
 
 ## Lo que sé de este proyecto
 
-### Stack decidido
-- **React 18 + Vite**: HMR rápido, config mínima
-- **TypeScript strict**: tipos fuertes para documentos Firestore y props
-- **Zustand**: estado global sin Provider wrapping, menos boilerplate que Context
-- **CSS Modules**: encapsulamiento real, sin runtime overhead, ideal tablet-first
-- **React Router v6**: routing declarativo con rutas protegidas
+### Stack activo
+- **React 18 + Vite** — puerto dev `5450`
+- **TypeScript strict** — tipos fuertes para docs Firestore y props
+- **Zustand 5** — selectores individuales `(s) => s.field`, NUNCA destructuring
+- **CSS Modules** — tokens de 4 capas (ver abajo)
+- **React Router v7** — rutas con `<Outlet />` en AppLayout
+- **Lucide React** — único sistema de iconos; cero emojis en UI
+- **Firebase Auth + Firestore** — proyecto `aquelentonces-32783`
 
-### Estructura de carpetas
+### Sistema de tokens CSS (4 capas)
+```
+Layer 1: --aq-p-*       primitivos (colores marca cruda — nunca en componentes)
+Layer 2: --aq-s-*       semánticos (roles de color — los componentes consumen esto)
+Layer 3: --aq-*         estructurales (font, radio, space — igual en todos los temas)
+Layer 4: --sofia-*      aliases de --aq-s-* (compatibilidad histórica)
+```
+Los componentes solo usan `var(--aq-s-*)` o `var(--sofia-*)`. Nunca hex directo.
 
+### Paleta de marca
+- Petróleo: `#417178` (`--aq-p-petroleo`)
+- Lima: `#E5FE73` (`--aq-p-lima`)
+- Crema: `#FAF6ED` (`--aq-p-crema`)
+- Lavanda: `#A6B1E7` (`--aq-p-lavanda`)
+- Petróleo oscuro: `#335B60`
+- Verde claro: `#C0D2C7`
+
+### Estructura de carpetas actual
 ```
 src/
 ├── app/
-│   ├── Router.tsx          ← Definición de rutas
-│   ├── providers.tsx       ← Zustand, Firebase listener inicial
-│   └── main.tsx            ← Entry point
+│   ├── Router.tsx          ← Rutas + wrappers (DiaryPageWrapper, PhotosPageWrapper…)
+│   ├── PrivateRoute.tsx    ← Guarda de auth
+│   └── providers.tsx       ← FirebaseProvider + PaletteProvider
 ├── modules/
-│   └── daily-tasks/
-│       ├── components/     ← TaskCard, TaskList, EmptyState
-│       ├── hooks/          ← useDailyTasks.ts
-│       ├── services/       ← dailyTasksService.ts (solo Firestore)
-│       ├── types.ts        ← DailyTask, TaskStatus
-│       └── DailyTasksPage.tsx
-├── components/             ← Reutilizables cross-módulo
-│   ├── ui/                 ← Button, Card, Spinner, etc.
-│   └── layout/             ← AppLayout, AuthLayout
+│   ├── daily-tasks/        ← Rutina Diaria (tipos, servicio, hooks, DailyTasksPage)
+│   ├── diary/              ← Diario (tipos, servicio, hooks, DiaryPage)
+│   ├── photos/             ← Fotos comentadas (tipos, servicio, hooks, PhotosPage)
+│   ├── children/           ← Hijos (lista, perfil, formulario)
+│   ├── home/               ← HomePage
+│   └── profile/            ← ProfilePage
+├── components/
+│   ├── ui/                 ← LoginScreen, Spinner
+│   └── diary/              ← DiaryFAB, EntrySheet
 ├── layouts/
-│   ├── AppLayout.tsx       ← Layout autenticado (app principal)
-│   └── AuthLayout.tsx      ← Layout de login
-├── services/
-│   └── firebase/
-│       ├── init.ts         ← initializeApp
-│       ├── auth.ts         ← GoogleAuthProvider, signIn, signOut
-│       └── firestore.ts    ← getFirestore + helpers tipados
-├── hooks/
-│   └── useAuth.ts          ← Hook de acceso al store de auth
-├── stores/
-│   └── authStore.ts        ← Zustand: user, loading, error
-├── types/
-│   └── index.ts            ← AppUser, tipos globales
-├── theme/
-│   ├── tokens.css          ← Variables CSS: colores, tipografía, espaciado
-│   └── global.css          ← Reset + estilos base
-└── utils/
-    └── cn.ts               ← className helper
+│   ├── AppLayout.tsx       ← Sidebar + topbar móvil + FAB global
+│   └── AuthLayout.tsx
+├── services/firebase/      ← init.ts, auth.ts, firestore.ts
+├── hooks/                  ← useAuth.ts
+├── stores/                 ← authStore.ts, paletteStore.ts, activeChildStore.ts
+├── types/index.ts          ← AppUser, UserProfile, Child, PaletteId
+└── utils/cn.ts
 ```
 
-### Decisiones técnicas justificadas
+### Rutas registradas
+```
+/                           LandingPage
+/login                      LoginScreen (redirige si auth)
+/app                        AppLayout (PrivateRoute)
+  inicio                    HomePage
+  diario                    DiaryPageWrapper → DiaryPage
+  fotos                     PhotosPageWrapper → PhotosPage
+  tareas                    DailyTasksPage
+  hijos                     ChildrenListPage
+  hijos/nuevo               ChildFormPage
+  hijos/:id                 ChildProfilePage
+  hijos/:id/editar          ChildFormPage
+  perfil                    ProfilePage
+```
 
-**Zustand > Context API**
-- No necesita Provider wrapping ni useReducer
-- Stores pequeños y cohesivos por dominio
-- Acceso sin boilerplate: `useAuthStore(s => s.user)`
-- Ideal para app que crecerá con múltiples módulos
+### Patrón Wrapper en Router
+Las páginas que necesitan la lista de hijos usan un wrapper que llama `useChildren()` una sola vez y pasa los hijos como prop. Así se evitan fetches duplicados.
 
-**CSS Modules > Tailwind**
-- Sin purge, sin JIT, sin clases en template strings
-- Nombres de clase semánticos (`styles.taskCard`, no `flex items-center gap-4`)
-- Control total sobre breakpoints tablet-first sin utility hell
-- El tema visual del niño vive en tokens.css, no disperso en clases
-
-**Separación por módulo**
-- `src/modules/daily-tasks/` contiene TODO lo del módulo: hook, servicio, tipos, componentes
-- Solo los componentes realmente reutilizables van a `src/components/`
+### Zustand stores activos
+- `authStore` — user, loading, error
+- `paletteStore` — paletteId activo
+- `activeChildStore` — hijo seleccionado en el FAB del diario
 
 ## Cómo trabajo
 1. Antes de crear un archivo, identifico en qué capa vive (módulo, componente, servicio, hook)
-2. Si el archivo toca datos → separo en `services/` + `hooks/`
-3. Si el archivo es visual → vive en `components/` del módulo o en `src/components/ui/`
-4. Nunca mezclo capas: un componente visual no importa de `services/firebase/`
+2. Datos → `services/` + `hooks/`; visual → `components/` del módulo o `src/components/ui/`
+3. Nunca mezclo capas: un componente visual no importa de `services/firebase/`
+4. Nuevos módulos siguen la estructura: `types.ts` + `services/` + `hooks/` + `NombrePage.tsx` + `NombrePage.module.css`
 
 ## Lo que NO hago
-- No defino estilos visuales (eso es skill UI Infantil)
-- No escribo queries Firestore (eso es skill Firebase Engineer)
-- No decido sobre el tema visual
+- No defino tokens de color ni estilos (eso es skill UI Visual)
+- No escribo queries Firestore complejas (eso es skill Firebase Engineer)
