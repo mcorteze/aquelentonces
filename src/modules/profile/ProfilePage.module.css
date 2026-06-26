@@ -1,0 +1,251 @@
+.page {
+  padding: 40px 48px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.section {
+  background: var(--sofia-card);
+  border: 1.5px solid var(--sofia-borde);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 24px;
+}
+
+.sectionTitle {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--sofia-texto-tenue);
+  margin-bottom: 20px;
+}
+
+/* ── Avatar + nombre ─────────────────────── */
+.avatarRow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  border: 3px solid var(--sofia-borde);
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--sofia-bg-2);
+}
+
+.avatarPlaceholder {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: var(--sofia-acento-suave);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  flex-shrink: 0;
+}
+
+.avatarInfo {
+  flex: 1;
+}
+
+.userName {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--sofia-texto-fuerte);
+  margin-bottom: 4px;
+}
+
+.userEmail {
+  font-size: 15px;
+  color: var(--sofia-texto-tenue);
+}
+
+/* ── Nombre editable ─────────────────────── */
+.fieldLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sofia-texto-suave);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.fieldHint {
+  font-size: 12px;
+  color: var(--sofia-texto-tenue);
+  margin-top: 4px;
+}
+
+.input {
+  width: 100%;
+  background: var(--sofia-bg-2);
+  border: 1.5px solid var(--sofia-borde);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 17px;
+  font-family: var(--sofia-font);
+  color: var(--sofia-texto-fuerte);
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--sofia-acento);
+}
+
+.input::placeholder {
+  color: var(--sofia-texto-tenue);
+}
+
+.saveRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.saveBtn {
+  background: var(--sofia-acento);
+  color: var(--sofia-acento-contraste);
+  border-radius: 10px;
+  padding: 11px 24px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--sofia-font);
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.saveBtn:hover:not(:disabled) {
+  background: var(--sofia-acento-hover);
+}
+
+.saveBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.saveStatus {
+  font-size: 14px;
+  color: var(--sofia-exito);
+  font-weight: 600;
+}
+
+.saveError {
+  font-size: 14px;
+  color: var(--sofia-error);
+}
+
+/* ── Paleta de colores ───────────────────── */
+.palettesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.paletteCard {
+  border-radius: 12px;
+  border: 2.5px solid transparent;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.1s;
+  background: none;
+  padding: 0;
+  text-align: left;
+}
+
+.paletteCard:hover {
+  transform: scale(1.03);
+}
+
+.paletteCard:focus-visible {
+  outline: 3px solid var(--sofia-acento);
+  outline-offset: 2px;
+}
+
+.paletteCardActive {
+  border-color: var(--sofia-acento);
+}
+
+.palettePreview {
+  height: 64px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 8px;
+}
+
+.paletteAccentDot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.4);
+}
+
+.paletteName {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--sofia-texto-suave);
+  padding: 8px 10px;
+  background: var(--sofia-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.paletteCheck {
+  color: var(--sofia-acento);
+  font-size: 15px;
+}
+
+/* ── Logout ──────────────────────────────── */
+.logoutSection {
+  border-top: 1px solid var(--sofia-borde-suave);
+  padding-top: 20px;
+  margin-top: 8px;
+}
+
+.logoutBtn {
+  background: transparent;
+  border: 1.5px solid var(--sofia-borde);
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: var(--sofia-font);
+  color: var(--sofia-texto-tenue);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.logoutBtn:hover {
+  border-color: var(--sofia-error);
+  color: var(--sofia-error);
+  background: rgba(192,48,64,0.06);
+}
+
+.logoutBtnConfirm {
+  background: var(--sofia-error);
+  border-color: var(--sofia-error);
+  color: #fff;
+}
+
+.logoutBtnConfirm:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 20px 16px;
+  }
+  .section {
+    padding: 24px 18px;
+  }
+  .palettesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

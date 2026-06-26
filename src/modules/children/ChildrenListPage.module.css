@@ -1,0 +1,202 @@
+.page {
+  padding: 40px 48px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  gap: 16px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--sofia-texto-fuerte);
+}
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--sofia-acento);
+  color: var(--sofia-acento-contraste);
+  border-radius: 12px;
+  padding: 13px 22px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: var(--sofia-font);
+  white-space: nowrap;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.addBtn:hover {
+  background: var(--sofia-acento-hover);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Child card ── */
+.childCard {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--sofia-card);
+  border: 1.5px solid var(--sofia-borde);
+  border-radius: 16px;
+  padding: 22px 24px;
+  transition: border-color 0.2s;
+}
+
+.childCard:hover {
+  border-color: var(--sofia-acento-borde);
+}
+
+.childEmoji {
+  font-size: 48px;
+  line-height: 1;
+  width: 60px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.childInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.childName {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--sofia-texto-fuerte);
+  margin-bottom: 4px;
+}
+
+.childAge {
+  font-size: 15px;
+  color: var(--sofia-texto-tenue);
+}
+
+.childActions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.editBtn {
+  background: var(--sofia-bg-2);
+  border: 1px solid var(--sofia-borde);
+  border-radius: 8px;
+  padding: 9px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--sofia-font);
+  color: var(--sofia-texto-suave);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.editBtn:hover {
+  background: var(--sofia-acento-suave);
+  border-color: var(--sofia-acento-borde);
+  color: var(--sofia-acento-texto);
+}
+
+.deleteBtn {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-size: 14px;
+  font-family: var(--sofia-font);
+  color: var(--sofia-texto-tenue);
+  transition: background 0.2s, color 0.2s;
+}
+
+.deleteBtn:hover {
+  color: var(--sofia-error);
+  background: rgba(192,48,64,0.07);
+}
+
+/* ── Empty state ── */
+.empty {
+  text-align: center;
+  padding: 80px 24px;
+}
+
+.emptyIcon {
+  font-size: 72px;
+  margin-bottom: 20px;
+  line-height: 1;
+}
+
+.emptyTitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--sofia-texto-fuerte);
+  margin-bottom: 10px;
+}
+
+.emptyText {
+  font-size: 16px;
+  color: var(--sofia-texto-tenue);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+/* ── Loading skeleton ── */
+.skeleton {
+  height: 96px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, var(--sofia-card) 25%, var(--sofia-bg-2) 50%, var(--sofia-card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Error ── */
+.error {
+  background: rgba(192,48,64,0.08);
+  border: 1px solid var(--sofia-error);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.errorText {
+  flex: 1;
+  color: var(--sofia-texto);
+  font-size: 15px;
+}
+
+.retryBtn {
+  background: var(--sofia-acento);
+  color: var(--sofia-acento-contraste);
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--sofia-font);
+}
+
+@media (max-width: 600px) {
+  .page { padding: 20px 14px; }
+  .title { font-size: 24px; }
+  .addBtn { padding: 11px 16px; font-size: 14px; }
+  .childCard { padding: 16px; gap: 14px; }
+  .childName { font-size: 18px; }
+  .childEmoji { font-size: 40px; width: 48px; }
+}

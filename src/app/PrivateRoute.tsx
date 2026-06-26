@@ -5,5 +5,6 @@ import { useAuth } from '../hooks/useAuth';
 export function PrivateRoute({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth();
   if (loading) return null;
-  return user ? <>{children}</> : <Navigate to="/login" replace />;
+  if (!user) return <Navigate to="/login" replace />;
+  return <>{children}</>;
 }

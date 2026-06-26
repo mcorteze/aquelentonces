@@ -4,3 +4,32 @@ export interface AppUser {
   displayName: string | null;
   photoURL: string | null;
 }
+
+export type PaletteId =
+  | 'kelvar'
+  | 'sorin'
+  | 'merali'
+  | 'ferith'
+  | 'vakoun'
+  | 'lirel'
+  | 'grafito';
+
+export interface UserProfile {
+  uid: string;
+  displayName: string;
+  email: string;
+  photoURL: string;
+  paletteId: PaletteId;
+  createdAt: Date;
+  lastSeenAt: Date;
+}
+
+export interface Child {
+  id: string;
+  name: string;
+  birthDate: string;    // ISO date string 'YYYY-MM-DD'
+  avatarEmoji: string;
+  order: number;
+  active: boolean;
+  createdAt: Date;
+}
